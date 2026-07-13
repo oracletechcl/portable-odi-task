@@ -77,8 +77,16 @@ Completed:
 - Amazon EMR and Google Dataproc JSON adapters parsed successfully with `json.load`.
 - Microsoft Fabric and Databricks YAML adapters parsed successfully with `YAML.load_file`.
 - `git diff --check`: passed.
+- Isolated full test suite: `4 passed`.
+- `python -m compileall src`: passed.
+- OCI shell syntax validation: passed.
+- Consolidated portable mapping YAML/JSON parse: passed.
+- Direct OCI Data Flow Java rerun `RUN_JAVA_LANGUAGE_PROBE_RERUN`: `SUCCEEDED` — `ocid1.dataflowrun.oc1.us-sanjose-1.anzwuljrfioir7iakicmlegqau4uq2e5gsqnlmm5z556grzngcw4hgsrgpzq`.
+- Direct OCI Data Flow Scala rerun `RUN_SCALA_LANGUAGE_PROBE_RERUN`: `SUCCEEDED` — `ocid1.dataflowrun.oc1.us-sanjose-1.anzwuljrfioir7ia5ajodklhlpj5zaf5mi2j7lf62vxqjwyy65dlmgsv2oza`.
+- Direct OCI Data Flow SQL rerun `RUN_SQL_LANGUAGE_PROBE_RERUN`: `SUCCEEDED` — `ocid1.dataflowrun.oc1.us-sanjose-1.anzwuljrfioir7iawzienxwkltcros2lyq7bfcydnrjegjff6uxsmxgrfqeq`.
+- Initial language-run diagnostics were corrected as follows: Java JAR Java 17/no arguments → Java 8 with explicit arguments; Scala no arguments → explicit arguments; SQL undeclared parameters → declared SQL parameters.
 
-Still pending with the integration owner: full repository validation, OCI uploads, direct OCI Data Flow Java/SQL/Scala application runs, OCID inventory updates, and Data Integration pipeline verification. The existing workspace-principal `CreateRun` authorization blocker continues to apply to pipeline runs.
+Still pending with the integration owner: OCID inventory cross-check and Data Integration pipeline verification. The original workspace-principal `CreateRun` authorization blocker persists for pipeline runs.
 
 ### Tracking gate evidence
 

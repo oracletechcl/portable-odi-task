@@ -18,5 +18,5 @@ Maintain a portable data integration proof of concept.
 ## Validation
 
 Run `python -m compileall src`, `pytest -q`, and `mvn -q -DskipTests package`
-before completion. When shell scripts change, run `find platforms/oci/scripts
--name "*.sh" -exec bash -n {} \;`.
+before completion. When shell scripts change, run
+`find platforms/oci/scripts -name "*.sh" -exec bash -n {} \;`.

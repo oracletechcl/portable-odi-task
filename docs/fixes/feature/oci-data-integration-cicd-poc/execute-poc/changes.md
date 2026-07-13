@@ -75,4 +75,7 @@ The follow-up now provides one portable source flavor for each OCI Data Flow lan
 - Green: isolated `pytest` passed all 3 language-artifact tests.
 - `mvn -q -DskipTests package` passed and produced the Java and Scala JARs (warnings only).
 - EMR/Dataproc JSON and Fabric/Databricks YAML parsed successfully; `git diff --check` passed.
-- Remaining: full repository suite, shell syntax where changed, OCI Data Flow direct runs/inventory, and blocked Data Integration pipeline execution.
+- Isolated full suite: `4 passed`; `python -m compileall src`, OCI shell syntax validation, and consolidated portable mapping YAML/JSON parsing all passed.
+- Direct OCI Data Flow reruns succeeded: Java `RUN_JAVA_LANGUAGE_PROBE_RERUN` (`ocid1.dataflowrun.oc1.us-sanjose-1.anzwuljrfioir7iakicmlegqau4uq2e5gsqnlmm5z556grzngcw4hgsrgpzq`), Scala `RUN_SCALA_LANGUAGE_PROBE_RERUN` (`ocid1.dataflowrun.oc1.us-sanjose-1.anzwuljrfioir7ia5ajodklhlpj5zaf5mi2j7lf62vxqjwyy65dlmgsv2oza`), and SQL `RUN_SQL_LANGUAGE_PROBE_RERUN` (`ocid1.dataflowrun.oc1.us-sanjose-1.anzwuljrfioir7iawzienxwkltcros2lyq7bfcydnrjegjff6uxsmxgrfqeq`).
+- The initial language runs supplied diagnostics, not final evidence: Java used a Java 17 JAR with no arguments; Scala had no arguments; and SQL parameters were undeclared. The successful reruns used Java 8, explicit Java/Scala arguments, and declared SQL parameters.
+- Remaining: OCID inventory cross-check and the original blocked Data Integration pipeline execution. The workspace principal still cannot create Data Flow runs (`CreateRun` authorization).
