@@ -54,3 +54,21 @@ Tracking task opened. The portable transformation and validation jobs, test data
 - The default global Python environment fails before test collection because `pyspark` is absent. The declared isolated environment ran the full available suite successfully (`1 passed`).
 - Controlled direct validation with `--minimum-records=100`: `FAILED` as expected with `RuntimeError`. This verifies the intended quality-gate failure behavior without relying on the blocked Data Integration pipeline path.
 - Pipeline-level success and failure demonstrations remain blocked until the workspace principal is authorized to create Data Flow runs.
+
+## Follow-up: language flavors and movable platforms
+
+### Root Cause Analysis
+
+The initial PoC demonstrated only Python in OCI Data Flow and only Databricks as a non-OCI mapping. It did not visibly cover every Data Flow language in the service UI or the requested target platforms.
+
+### How It Was Fixed
+
+Pending addition of runnable Java, SQL, and Scala samples; their OCI Data Flow applications; and portable mappings for Amazon EMR, Microsoft Fabric, and Google Dataproc while retaining Databricks.
+
+### Summary
+
+Approved follow-up opened under the existing tracking PR.
+
+### Validation
+
+Pending.

@@ -54,6 +54,24 @@ The implementation keeps transformation and validation rules in portable PySpark
 - Controlled direct validation run with `--minimum-records=100`: `FAILED` as expected with `RuntimeError`, demonstrating the quality gate's failure behavior.
 - Pipeline-level success and controlled-failure execution remain blocked by the workspace principal's Data Flow `CreateRun` authorization failure.
 
+## Follow-up: language flavors and movable platforms
+
+### Red
+
+Pending: add failing checks for the Java, Scala, and SQL artifact layout plus the supported-platform mapping matrix before implementation.
+
+### Green
+
+Pending.
+
+### Refactor
+
+Pending.
+
+### Validation
+
+Pending Java/Scala builds, portable tests, YAML validation, OCI Data Flow language-run status, and inventory review.
+
 ### Tracking gate evidence
 
 - Branch verified: `feature/oci-data-integration-cicd-poc`.

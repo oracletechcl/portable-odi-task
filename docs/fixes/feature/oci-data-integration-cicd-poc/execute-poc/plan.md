@@ -39,3 +39,29 @@ To be assigned after the tracking pull request exists and before implementation 
 ## Tracking PR
 
 Draft PR: https://github.com/oracletechcl/portable-odi-task/pull/1
+
+## Follow-up: language flavors and movable platforms
+
+### Approved scope
+
+- Retain the existing Python Data Flow application and add runnable Java, SQL, and Scala language samples.
+- Keep Databricks as a supported movable platform.
+- Add artifact-only deployment mappings for Amazon EMR, Microsoft Fabric, and Google Dataproc. No resources are created outside OCI.
+- Build and validate the Java and Scala artifacts, upload all OCI language artifacts, create and directly run the three new OCI Data Flow applications, and record their OCIDs.
+
+### Follow-up plan
+
+1. Add minimal Java, Scala, and Spark SQL language samples with build configuration and tests or compile checks.
+2. Add Amazon EMR, Microsoft Fabric, and Google Dataproc adapters while retaining the Databricks adapter.
+3. Extend CI to validate Python, Java, Scala, SQL, and all portable platform mapping files.
+4. Upload OCI artifacts and create/run Java, SQL, and Scala Data Flow applications in `us-sanjose-1`.
+5. Update the neutral specification, portability matrix, inventory, TDD record, draft PR, and final validation evidence.
+
+### Follow-up ownership
+
+| Owner | Files or scope | State |
+|---|---|---|
+| Language owner | Java, Scala, SQL samples; build and test configuration | Pending Phase 3 |
+| Platform owner | EMR, Fabric, Dataproc, Databricks portability artifacts | Pending Phase 3 |
+| TDD auditor | Follow-up TDD and change-record evidence | Pending Phase 3 |
+| Integration owner | OCI Data Flow provisioning, inventory, CI integration, final validation | Root |
