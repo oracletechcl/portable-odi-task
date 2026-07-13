@@ -1,0 +1,34 @@
+resources:
+  jobs:
+    customer_portability_demo:
+      name: customer-portability-demo
+      parameters:
+        - name: input_path
+          default: ""
+        - name: output_path
+          default: ""
+        - name: tax_rate
+          default: "0.18"
+        - name: minimum_records
+          default: "1"
+      tasks:
+        - task_key: transform_customers
+          spark_python_task:
+            python_file: ../../../src/pyspark/customer_transform.py
+            parameters:
+              - --input
+              - "{{job.parameters.input_path}}"
+              - --output
+              - "{{job.parameters.output_path}}"
+              - --tax-rate
+              - "{{job.parameters.tax_rate}}"
+        - task_key: validate_customers
+          depends_on:
+            - task_key: transform_customers
+          spark_python_task:
+            python_file: ../../../src/pyspark/validate_output.py
+            parameters:
+              - --input
+              - "{{job.parameters.output_path}}"
+              - --minimum-records
+              - "{{job.parameters.minimum_records}}"

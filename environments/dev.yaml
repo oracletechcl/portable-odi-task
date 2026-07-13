@@ -1,0 +1,6 @@
+environment: dev
+bucket: odi-portability-demo
+input_path: oci://odi-portability-demo@REPLACE_NAMESPACE/input/customers.csv
+output_path: oci://odi-portability-demo@REPLACE_NAMESPACE/output/dev/customers/
+tax_rate: 0.18
+minimum_records: 1

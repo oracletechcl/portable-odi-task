@@ -1,0 +1,47 @@
+image: python:3.12-slim
+
+definitions:
+  caches:
+    pip: ~/.cache/pip
+  steps:
+    - step: &validate
+        name: Validate portable code
+        caches:
+          - pip
+        script:
+          - apt-get update
+          - apt-get install -y default-jre-headless
+          - pip install -r requirements-dev.txt
+          - python -m compileall src
+          - pytest -q
+          - find platforms/oci/scripts -name "*.sh" -exec bash -n {} \;
+    - step: &upload-dev
+        name: Upload demo code
+        deployment: test
+        caches:
+          - pip
+        script:
+          - pip install oci-cli
+          - ./platforms/oci/scripts/configure-oci.sh
+          - ./platforms/oci/scripts/upload-code.sh
+          - ./platforms/oci/scripts/upload-input.sh
+    - step: &verify-output
+        name: Verify OCI output
+        caches:
+          - pip
+        script:
+          - pip install oci-cli
+          - ./platforms/oci/scripts/configure-oci.sh
+          - ./platforms/oci/scripts/verify-output.sh
+
+pipelines:
+  pull-requests:
+    "**":
+      - step: *validate
+  branches:
+    main:
+      - step: *validate
+      - step: *upload-dev
+  custom:
+    verify-oci-output:
+      - step: *verify-output

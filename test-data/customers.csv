@@ -1,0 +1,6 @@
+customer_id,customer_name,status,country,amount
+1,Ana Lopez,ACTIVE,PE,150.50
+2,John Smith,INACTIVE,US,80.00
+3,Maria Perez,ACTIVE,PE,275.25
+4,Carlos Diaz,ACTIVE,CL,90.00
+5,Ana Lopez,ACTIVE,PE,125.00

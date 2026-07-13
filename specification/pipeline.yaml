@@ -1,0 +1,34 @@
+name: customer-portability-demo
+version: 1.0.0
+description: >
+  Filters active customers, normalizes names, calculates tax, and validates
+  output quality.
+parameters:
+  input_path:
+    type: string
+    required: true
+  output_path:
+    type: string
+    required: true
+  tax_rate:
+    type: decimal
+    default: 0.18
+  minimum_records:
+    type: integer
+    default: 1
+tasks:
+  - key: transform_customers
+    language: pyspark
+    source: src/pyspark/customer_transform.py
+  - key: validate_customers
+    language: pyspark
+    source: src/pyspark/validate_output.py
+    depends_on:
+      - transform_customers
+platforms:
+  oci:
+    runtime: OCI Data Flow
+    orchestrator: OCI Data Integration
+  databricks:
+    runtime: Databricks Runtime
+    orchestrator: Lakeflow Jobs
