@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.oracle.poc</groupId>
+  <artifactId>portable-spark-language-probes</artifactId>
+  <version>1.0.0</version>
+  <name>Portable Spark language probes</name>
+
+  <properties>
+    <!-- OCI Data Flow Spark 3.5 runs on a Java 8-compatible runtime. -->
+    <maven.compiler.release>8</maven.compiler.release>
+    <scala.version>2.12.18</scala.version>
+    <spark.version>3.5.5</spark.version>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+
+  <!-- Spark is supplied by OCI Data Flow. Keep deployment JARs small. -->
+  <dependencies>
+    <dependency>
+      <groupId>org.apache.spark</groupId>
+      <artifactId>spark-sql_2.12</artifactId>
+      <version>${spark.version}</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.scala-lang</groupId>
+      <artifactId>scala-library</artifactId>
+      <version>${scala.version}</version>
+      <scope>provided</scope>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <finalName>customer-java-probe</finalName>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.13.0</version>
+        <configuration>
+          <release>${maven.compiler.release}</release>
+          <compileSourceRoots>
+            <compileSourceRoot>${project.basedir}/src/java</compileSourceRoot>
+          </compileSourceRoots>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>net.alchim31.maven</groupId>
+        <artifactId>scala-maven-plugin</artifactId>
+        <version>4.9.2</version>
+        <executions>
+          <execution>
+            <id>compile-scala-probe</id>
+            <phase>process-resources</phase>
+            <goals><goal>compile</goal></goals>
+            <configuration>
+              <scalaVersion>${scala.version}</scalaVersion>
+              <sourceDir>${project.basedir}/src/scala</sourceDir>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jar-plugin</artifactId>
+        <version>3.4.2</version>
+        <configuration>
+          <archive>
+            <manifest>
+              <mainClass>com.oracle.poc.CustomerJavaProbe</mainClass>
+            </manifest>
+          </archive>
+        </configuration>
+        <executions>
+          <execution>
+            <id>package-scala-probe</id>
+            <phase>package</phase>
+            <goals><goal>jar</goal></goals>
+            <configuration>
+              <classifier>scala</classifier>
+              <finalName>customer-scala-probe</finalName>
+              <archive>
+                <manifest>
+                  <mainClass>com.oracle.poc.CustomerScalaProbe</mainClass>
+                </manifest>
+              </archive>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+</project>

@@ -1,0 +1,50 @@
+{
+  "format": "portable-deployment-mapping/v1",
+  "platform": "Amazon EMR",
+  "name": "customer-portability-demo",
+  "artifactUri": "${ARTIFACT_URI}",
+  "parameters": {
+    "input_path": "${INPUT_PATH}",
+    "output_path": "${OUTPUT_PATH}",
+    "tax_rate": "${TAX_RATE:-0.18}",
+    "minimum_records": "${MINIMUM_RECORDS:-1}"
+  },
+  "steps": [
+    {
+      "name": "transform-customers",
+      "actionOnFailure": "CANCEL_AND_WAIT",
+      "hadoopJarStep": {
+        "jar": "command-runner.jar",
+        "args": [
+          "spark-submit",
+          "--deploy-mode",
+          "cluster",
+          "${ARTIFACT_URI}/src/pyspark/customer_transform.py",
+          "--input",
+          "${INPUT_PATH}",
+          "--output",
+          "${OUTPUT_PATH}",
+          "--tax-rate",
+          "${TAX_RATE:-0.18}"
+        ]
+      }
+    },
+    {
+      "name": "validate-customers",
+      "actionOnFailure": "CANCEL_AND_WAIT",
+      "hadoopJarStep": {
+        "jar": "command-runner.jar",
+        "args": [
+          "spark-submit",
+          "--deploy-mode",
+          "cluster",
+          "${ARTIFACT_URI}/src/pyspark/validate_output.py",
+          "--input",
+          "${OUTPUT_PATH}",
+          "--minimum-records",
+          "${MINIMUM_RECORDS:-1}"
+        ]
+      }
+    }
+  ]
+}

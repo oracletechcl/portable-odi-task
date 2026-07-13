@@ -1,0 +1,36 @@
+format: portable-deployment-mapping/v1
+platform: Microsoft Fabric
+artifact_type: data-pipeline
+name: customer-portability-demo
+description: >
+  Fabric adapter that invokes the repository's portable PySpark files as
+  Spark notebooks or files. The logical transformation remains in src/pyspark.
+parameters:
+  input_path:
+    type: string
+    default: ""
+  output_path:
+    type: string
+    default: ""
+  tax_rate:
+    type: decimal
+    default: "0.18"
+  minimum_records:
+    type: integer
+    default: "1"
+activities:
+  - name: transform_customers
+    type: spark-notebook
+    source_file: src/pyspark/customer_transform.py
+    parameters:
+      input: "@pipeline().parameters.input_path"
+      output: "@pipeline().parameters.output_path"
+      tax_rate: "@pipeline().parameters.tax_rate"
+  - name: validate_customers
+    type: spark-notebook
+    depends_on:
+      - transform_customers
+    source_file: src/pyspark/validate_output.py
+    parameters:
+      input: "@pipeline().parameters.output_path"
+      minimum_records: "@pipeline().parameters.minimum_records"

@@ -1,0 +1,53 @@
+name: customer-portability-demo
+version: 1.0.0
+description: >
+  Filters active customers, normalizes names, calculates tax, and validates
+  output quality.
+parameters:
+  input_path:
+    type: string
+    required: true
+  output_path:
+    type: string
+    required: true
+  tax_rate:
+    type: decimal
+    default: 0.18
+  minimum_records:
+    type: integer
+    default: 1
+tasks:
+  - key: transform_customers
+    language: pyspark
+    source: src/pyspark/customer_transform.py
+  - key: validate_customers
+    language: pyspark
+    source: src/pyspark/validate_output.py
+    depends_on:
+      - transform_customers
+language_probes:
+  - language: java
+    source: src/java/com/oracle/poc/CustomerJavaProbe.java
+    artifact: target/customer-java-probe.jar
+  - language: python
+    source: src/pyspark/customer_transform.py
+  - language: sql
+    source: src/sql/customer_transform.sql
+  - language: scala
+    source: src/scala/com/oracle/poc/CustomerScalaProbe.scala
+platforms:
+  oci:
+    runtime: OCI Data Flow
+    orchestrator: OCI Data Integration
+  databricks:
+    runtime: Databricks Runtime
+    orchestrator: Lakeflow Jobs
+  amazon_emr:
+    runtime: Amazon EMR on EC2 or EMR Serverless
+    orchestrator: EMR Steps
+  microsoft_fabric:
+    runtime: Fabric Spark
+    orchestrator: Fabric Data Factory pipeline
+  google_dataproc:
+    runtime: Dataproc Serverless for Spark
+    orchestrator: Dataproc workflow template
