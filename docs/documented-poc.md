@@ -51,3 +51,4 @@ The Data Integration workspace principal needs least-privilege permissions to ma
 - The Data Integration end-to-end run failed before the transform began. Its workspace principal received `NotAuthorizedOrNotFound` from the Data Flow `CreateRun` API. No IAM changes were made by this PoC.
 - The controlled direct Data Flow failure completed as expected with `RuntimeError` at `--minimum-records 100`.
 - The pipeline-level success and failure-propagation criteria remain blocked until the workspace principal is granted the documented least-privilege Data Flow application/run permissions.
+- The live Data Integration pipeline currently invokes the applications with their configured default arguments. Map `P_INPUT_PATH`, `P_OUTPUT_PATH`, `P_TAX_RATE`, and `P_MINIMUM_RECORDS`, then rerun the success and controlled-failure paths after the workspace principal is authorized.
