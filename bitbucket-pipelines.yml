@@ -10,10 +10,11 @@ definitions:
           - pip
         script:
           - apt-get update
-          - apt-get install -y default-jre-headless
+          - apt-get install -y default-jre-headless maven
           - pip install -r requirements-dev.txt
           - python -m compileall src
           - pytest -q
+          - mvn -q -DskipTests package
           - find platforms/oci/scripts -name "*.sh" -exec bash -n {} \;
     - step: &upload-dev
         name: Upload demo code
@@ -21,6 +22,9 @@ definitions:
         caches:
           - pip
         script:
+          - apt-get update
+          - apt-get install -y default-jre-headless maven
+          - mvn -q -DskipTests package
           - pip install oci-cli
           - ./platforms/oci/scripts/configure-oci.sh
           - ./platforms/oci/scripts/upload-code.sh

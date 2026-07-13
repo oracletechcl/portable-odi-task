@@ -25,16 +25,17 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - name: Install Java and Python dependencies
+      - name: Install Java, Maven, and Python dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y default-jre-headless
+          sudo apt-get install -y default-jre-headless maven
           python -m pip install --upgrade pip
           python -m pip install -r requirements-dev.txt
       - name: Validate source and scripts
         run: |
           python -m compileall src
           python -m pytest -q
+          mvn -q -DskipTests package
           find platforms/oci/scripts -name "*.sh" -exec bash -n {} \;
 
   upload-dev:
@@ -58,6 +59,9 @@ jobs:
           python-version: "3.12"
       - name: Configure OCI CLI and upload assets
         run: |
+          sudo apt-get update
+          sudo apt-get install -y default-jre-headless maven
+          mvn -q -DskipTests package
           python -m pip install oci-cli
           ./platforms/oci/scripts/configure-oci.sh
           ./platforms/oci/scripts/upload-code.sh

@@ -1,0 +1,53 @@
+{
+  "format": "portable-deployment-mapping/v1",
+  "platform": "Google Dataproc",
+  "name": "customer-portability-demo",
+  "placement": {
+    "managedCluster": {
+      "clusterName": "customer-portability-demo-cluster",
+      "config": {
+        "softwareConfig": {
+          "imageVersion": "2.2-debian12"
+        }
+      }
+    }
+  },
+  "parameters": {
+    "artifact_uri": "${ARTIFACT_URI}",
+    "input_path": "${INPUT_PATH}",
+    "output_path": "${OUTPUT_PATH}",
+    "tax_rate": "${TAX_RATE:-0.18}",
+    "minimum_records": "${MINIMUM_RECORDS:-1}"
+  },
+  "jobs": [
+    {
+      "stepId": "transform-customers",
+      "pysparkJob": {
+        "mainPythonFileUri": "${ARTIFACT_URI}/src/pyspark/customer_transform.py",
+        "args": [
+          "--input",
+          "${INPUT_PATH}",
+          "--output",
+          "${OUTPUT_PATH}",
+          "--tax-rate",
+          "${TAX_RATE:-0.18}"
+        ]
+      }
+    },
+    {
+      "stepId": "validate-customers",
+      "prerequisiteStepIds": [
+        "transform-customers"
+      ],
+      "pysparkJob": {
+        "mainPythonFileUri": "${ARTIFACT_URI}/src/pyspark/validate_output.py",
+        "args": [
+          "--input",
+          "${OUTPUT_PATH}",
+          "--minimum-records",
+          "${MINIMUM_RECORDS:-1}"
+        ]
+      }
+    }
+  ]
+}

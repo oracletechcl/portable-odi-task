@@ -63,12 +63,16 @@ The initial PoC demonstrated only Python in OCI Data Flow and only Databricks as
 
 ### How It Was Fixed
 
-Pending addition of runnable Java, SQL, and Scala samples; their OCI Data Flow applications; and portable mappings for Amazon EMR, Microsoft Fabric, and Google Dataproc while retaining Databricks.
+Added runnable Java, Scala, and Spark SQL probe sources plus a Maven build that creates OCI Data Flow-ready Java and Scala JARs. Added artifact-only adapters for Amazon EMR, Microsoft Fabric, and Google Dataproc, and aligned the retained Databricks mapping with repository-source paths. OCI Data Flow applications and runs remain an integration-owner step, so no OCI claim is made here.
 
 ### Summary
 
-Approved follow-up opened under the existing tracking PR.
+The follow-up now provides one portable source flavor for each OCI Data Flow language option: Python (existing), Java, SQL, and Scala. Its supported movable-platform adapters are Databricks, Amazon EMR, Microsoft Fabric, and Google Dataproc.
 
 ### Validation
 
-Pending.
+- Red: isolated `pytest` reported 3 expected failures before `pom.xml` and Java/Scala/SQL artifacts existed.
+- Green: isolated `pytest` passed all 3 language-artifact tests.
+- `mvn -q -DskipTests package` passed and produced the Java and Scala JARs (warnings only).
+- EMR/Dataproc JSON and Fabric/Databricks YAML parsed successfully; `git diff --check` passed.
+- Remaining: full repository suite, shell syntax where changed, OCI Data Flow direct runs/inventory, and blocked Data Integration pipeline execution.

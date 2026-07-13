@@ -58,25 +58,31 @@ The implementation keeps transformation and validation rules in portable PySpark
 
 ### Red
 
-Pending: add failing checks for the Java, Scala, and SQL artifact layout plus the supported-platform mapping matrix before implementation.
+Added `tests/test_language_artifacts.py` before the language artifacts. In the declared isolated environment, `/private/tmp/portable-odi-venv/bin/pytest -q tests/test_language_artifacts.py` failed as expected: 3 failures for the missing `pom.xml`, Java/Scala/SQL source files, and the absent SQL transformation contract. (The global `pytest` command is unavailable on this host.)
 
 ### Green
 
-Pending.
+After the Java, Scala, and SQL samples plus Maven build configuration were added, `/private/tmp/portable-odi-venv/bin/pytest -q tests/test_language_artifacts.py` passed: `3 passed`. `mvn -q -DskipTests package` also passed after allowing Maven access to its local dependency cache; it produced `target/customer-java-probe.jar` and `target/customer-scala-probe-scala.jar`. The Maven output contained only JDK/Scala dependency deprecation warnings.
 
 ### Refactor
 
-Pending.
+The platform adapters retain source-controlled, artifact-only references rather than embedding transformation logic or provisioning non-OCI resources. Databricks was updated to the same repository-source convention used by the new Amazon EMR, Microsoft Fabric, and Google Dataproc mappings.
 
 ### Validation
 
-Pending Java/Scala builds, portable tests, YAML validation, OCI Data Flow language-run status, and inventory review.
+Completed:
+
+- Language structural tests: `3 passed`.
+- Java/Scala Maven build: passed.
+- Amazon EMR and Google Dataproc JSON adapters parsed successfully with `json.load`.
+- Microsoft Fabric and Databricks YAML adapters parsed successfully with `YAML.load_file`.
+- `git diff --check`: passed.
+
+Still pending with the integration owner: full repository validation, OCI uploads, direct OCI Data Flow Java/SQL/Scala application runs, OCID inventory updates, and Data Integration pipeline verification. The existing workspace-principal `CreateRun` authorization blocker continues to apply to pipeline runs.
 
 ### Tracking gate evidence
 
 - Branch verified: `feature/oci-data-integration-cicd-poc`.
 - Tracking commits verified: `05b0097` and `bfb2cc1`.
 - Draft PR recorded in `plan.md`: `https://github.com/oracletechcl/portable-odi-task/pull/1`.
-- No implementation artifacts or tests existed at this audit point; the Red step remains pending.
-
-Pending.
+- Follow-up Red/Green evidence is now recorded above; artifacts and structural tests exist.

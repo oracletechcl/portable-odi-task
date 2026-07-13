@@ -2,6 +2,10 @@ resources:
   jobs:
     customer_portability_demo:
       name: customer-portability-demo
+      description: >
+        Databricks orchestration adapter for the portable customer PySpark
+        transformation. Configure the repository as the job Git source before
+        deployment; do not copy the business logic into the job definition.
       parameters:
         - name: input_path
           default: ""
@@ -14,7 +18,8 @@ resources:
       tasks:
         - task_key: transform_customers
           spark_python_task:
-            python_file: ../../../src/pyspark/customer_transform.py
+            python_file: src/pyspark/customer_transform.py
+            source: GIT
             parameters:
               - --input
               - "{{job.parameters.input_path}}"
@@ -26,7 +31,8 @@ resources:
           depends_on:
             - task_key: transform_customers
           spark_python_task:
-            python_file: ../../../src/pyspark/validate_output.py
+            python_file: src/pyspark/validate_output.py
+            source: GIT
             parameters:
               - --input
               - "{{job.parameters.output_path}}"

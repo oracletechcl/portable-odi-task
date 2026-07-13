@@ -25,6 +25,16 @@ tasks:
     source: src/pyspark/validate_output.py
     depends_on:
       - transform_customers
+language_probes:
+  - language: java
+    source: src/java/com/oracle/poc/CustomerJavaProbe.java
+    artifact: target/customer-java-probe.jar
+  - language: python
+    source: src/pyspark/customer_transform.py
+  - language: sql
+    source: src/sql/customer_transform.sql
+  - language: scala
+    source: src/scala/com/oracle/poc/CustomerScalaProbe.scala
 platforms:
   oci:
     runtime: OCI Data Flow
@@ -32,3 +42,12 @@ platforms:
   databricks:
     runtime: Databricks Runtime
     orchestrator: Lakeflow Jobs
+  amazon_emr:
+    runtime: Amazon EMR on EC2 or EMR Serverless
+    orchestrator: EMR Steps
+  microsoft_fabric:
+    runtime: Fabric Spark
+    orchestrator: Fabric Data Factory pipeline
+  google_dataproc:
+    runtime: Dataproc Serverless for Spark
+    orchestrator: Dataproc workflow template

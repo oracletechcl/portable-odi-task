@@ -17,3 +17,24 @@ oci os object put \
   --name scripts/validate_output.py \
   --file src/pyspark/validate_output.py \
   --force
+
+oci os object put \
+  --namespace-name "${OCI_NAMESPACE}" \
+  --bucket-name "${OCI_BUCKET}" \
+  --name scripts/customer-java-probe.jar \
+  --file target/customer-java-probe.jar \
+  --force
+
+oci os object put \
+  --namespace-name "${OCI_NAMESPACE}" \
+  --bucket-name "${OCI_BUCKET}" \
+  --name scripts/customer-scala-probe.jar \
+  --file target/customer-scala-probe-scala.jar \
+  --force
+
+oci os object put \
+  --namespace-name "${OCI_NAMESPACE}" \
+  --bucket-name "${OCI_BUCKET}" \
+  --name scripts/customer_transform.sql \
+  --file src/sql/customer_transform.sql \
+  --force
