@@ -79,3 +79,7 @@ The follow-up now provides one portable source flavor for each OCI Data Flow lan
 - Direct OCI Data Flow reruns succeeded: Java `RUN_JAVA_LANGUAGE_PROBE_RERUN` (`ocid1.dataflowrun.oc1.us-sanjose-1.anzwuljrfioir7iakicmlegqau4uq2e5gsqnlmm5z556grzngcw4hgsrgpzq`), Scala `RUN_SCALA_LANGUAGE_PROBE_RERUN` (`ocid1.dataflowrun.oc1.us-sanjose-1.anzwuljrfioir7ia5ajodklhlpj5zaf5mi2j7lf62vxqjwyy65dlmgsv2oza`), and SQL `RUN_SQL_LANGUAGE_PROBE_RERUN` (`ocid1.dataflowrun.oc1.us-sanjose-1.anzwuljrfioir7iawzienxwkltcros2lyq7bfcydnrjegjff6uxsmxgrfqeq`).
 - The initial language runs supplied diagnostics, not final evidence: Java used a Java 17 JAR with no arguments; Scala had no arguments; and SQL parameters were undeclared. The successful reruns used Java 8, explicit Java/Scala arguments, and declared SQL parameters.
 - Remaining: OCID inventory cross-check and the original blocked Data Integration pipeline execution. The workspace principal still cannot create Data Flow runs (`CreateRun` authorization).
+
+### Documentation audit update
+
+The PoC readout now makes the artifact lifecycle, six-step orchestration, portability boundary, and persisted/non-persisted/non-provisioned distinctions explicit. HTML parser validation and `git diff --check` passed.

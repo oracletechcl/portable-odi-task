@@ -94,3 +94,7 @@ Still pending with the integration owner: OCID inventory cross-check and Data In
 - Tracking commits verified: `05b0097` and `bfb2cc1`.
 - Draft PR recorded in `plan.md`: `https://github.com/oracletechcl/portable-odi-task/pull/1`.
 - Follow-up Red/Green evidence is now recorded above; artifacts and structural tests exist.
+
+### Documentation audit update
+
+`docs/poc-readout.html` now records the immutable artifact lifecycle, six-step orchestration, portable versus OCI-bound/external mapping boundary, and the persisted, non-persisted, and non-provisioned item distinctions. HTML parser validation and `git diff --check` passed.

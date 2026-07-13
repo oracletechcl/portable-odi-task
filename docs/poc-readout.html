@@ -93,6 +93,14 @@
     .next { counter-reset: item; margin: 0; padding: 0; list-style: none; }
     .next li { position: relative; margin: 0 0 14px; padding-left: 44px; }
     .next li::before { position: absolute; left: 0; top: 0; width: 29px; height: 29px; content: counter(item); counter-increment: item; border-radius: 50%; background: var(--navy); color: #fff; font-size: .8rem; font-weight: 850; line-height: 29px; text-align: center; }
+    .sequence { margin: 0; padding: 0; list-style: none; counter-reset: step; }
+    .sequence.continues { counter-reset: step 3; }
+    .sequence li { position: relative; min-height: 68px; margin: 0; padding: 0 0 20px 52px; }
+    .sequence li::before { position: absolute; left: 0; top: 0; display: grid; width: 34px; height: 34px; place-items: center; content: counter(step); counter-increment: step; border-radius: 50%; background: var(--blue); color: #fff; font-size: .85rem; font-weight: 850; }
+    .sequence li:not(:last-child)::after { position: absolute; top: 36px; bottom: 3px; left: 16px; border-left: 2px solid #b9d7e8; content: ""; }
+    .sequence h3 { margin: 0 0 3px; }
+    .sequence p { color: var(--muted); font-size: .92rem; }
+    .artifact-note { margin-top: 14px; color: var(--muted); font-size: .87rem; }
     .footnote { color: var(--muted); font-size: .85rem; }
     footer { border-top: 1px solid var(--line); background: #fff; color: var(--muted); font-size: .83rem; }
     footer .wrap { padding: 22px 0; }
@@ -248,6 +256,43 @@
         <div class="lane"><div class="lane-label">Deployment logic</div><div class="lane-content"><p><strong>Platform-specific by choice.</strong> OCI scripts and external platform mappings describe how to submit the same logical workload to each supported runtime.</p></div></div>
         <div class="lane"><div class="lane-label">Governance</div><div class="lane-content"><p><strong>Controlled promotion.</strong> Environment YAML carries configuration. CI/CD validates an immutable artifact before it is promoted to TEST and then PROD.</p></div></div>
       </div>
+      <figure class="diagram" style="margin-top:18px">
+        <svg viewBox="0 0 1120 515" role="img" aria-labelledby="boundary-diagram-title boundary-diagram-desc" xmlns="http://www.w3.org/2000/svg">
+          <title id="boundary-diagram-title">Portable and OCI-bound artifact boundary</title>
+          <desc id="boundary-diagram-desc">A layered architecture diagram separates portable artifacts kept in the Git repository from OCI-specific deployment adapters and the OCI control plane. It shows source code, pipeline specification, environment configuration, and data contract as portable. OCI scripts upload artifacts to the private Object Storage bucket, OCI Data Integration stores design metadata and exports a ZIP release, and OCI Data Flow executes the applications. External Databricks, Amazon EMR, Microsoft Fabric, and Google Dataproc mappings stay in the repository and do not represent provisioned external resources.</desc>
+          <defs>
+            <marker id="b-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 10 5 0 10z" fill="#1769aa"/></marker>
+            <style>.bt{font-family:Inter,Arial,sans-serif;fill:#132238}.bh{font-size:18px;font-weight:800}.bm{font-size:14px;font-weight:700}.bs{font-size:12px}.bl{font-family:Inter,Arial,sans-serif;fill:#52657a;font-size:11px;font-weight:700}</style>
+          </defs>
+          <rect x="18" y="28" width="440" height="282" rx="18" fill="#e8f5f1" stroke="#65ad9c" stroke-width="2" stroke-dasharray="8 6"/>
+          <text x="43" y="61" class="bt bh" fill="#126b62">Portable artifacts · move with the workload</text>
+          <text x="43" y="82" class="bt bs" fill="#52657a">Persisted in the Git repository; tested and versioned together</text>
+          <g><rect x="44" y="110" width="182" height="72" rx="10" fill="#fff" stroke="#96cfc1"/><text x="60" y="139" class="bt bm">Code &amp; SQL</text><text x="60" y="160" class="bt bs">src/pyspark · src/java</text><text x="60" y="176" class="bt bs">src/scala · src/sql</text></g>
+          <g><rect x="246" y="110" width="182" height="72" rx="10" fill="#fff" stroke="#96cfc1"/><text x="262" y="139" class="bt bm">Pipeline contract</text><text x="262" y="160" class="bt bs">specification/pipeline.yaml</text><text x="262" y="176" class="bt bs">parameters + task order</text></g>
+          <g><rect x="44" y="202" width="182" height="72" rx="10" fill="#fff" stroke="#96cfc1"/><text x="60" y="231" class="bt bm">Environment config</text><text x="60" y="252" class="bt bs">environments/test.yaml</text><text x="60" y="268" class="bt bs">environments/prod.yaml</text></g>
+          <g><rect x="246" y="202" width="182" height="72" rx="10" fill="#fff" stroke="#96cfc1"/><text x="262" y="231" class="bt bm">Data contract &amp; tests</text><text x="262" y="252" class="bt bs">test-data · tests</text><text x="262" y="268" class="bt bs">validation expectations</text></g>
+          <rect x="493" y="28" width="610" height="357" rx="18" fill="#e7f1f9" stroke="#76a8cb" stroke-width="2" stroke-dasharray="8 6"/>
+          <text x="519" y="61" class="bt bh" fill="#123b63">OCI-specific adapters &amp; control plane</text>
+          <text x="519" y="82" class="bt bs" fill="#52657a">Deployment route used by this PoC in us-sanjose-1</text>
+          <g><rect x="522" y="111" width="158" height="88" rx="10" fill="#fff" stroke="#9bbbd2"/><text x="541" y="142" class="bt bm">OCI adapter</text><text x="541" y="162" class="bt bs">platforms/oci/scripts</text><text x="541" y="180" class="bt bs">upload &amp; verify</text></g>
+          <g><rect x="732" y="111" width="158" height="88" rx="10" fill="#fff" stroke="#c7796d"/><ellipse cx="763" cy="145" rx="14" ry="5" fill="#fff" stroke="#c74634" stroke-width="2.5"/><path d="M749 145v22c0 3 6 6 14 6s14-3 14-6v-22" fill="#fff" stroke="#c74634" stroke-width="2.5"/><text x="792" y="142" class="bt bm">Object Storage</text><text x="748" y="187" class="bt bs">private bucket</text></g>
+          <g><rect x="930" y="111" width="145" height="88" rx="10" fill="#fff" stroke="#8db8b6"/><circle cx="957" cy="147" r="6" fill="#fff" stroke="#0e93a6" stroke-width="2"/><circle cx="977" cy="162" r="6" fill="#fff" stroke="#0e93a6" stroke-width="2"/><path d="M962 151l10 8" stroke="#0e93a6" stroke-width="2"/><text x="949" y="184" class="bt bm">Data Integration</text></g>
+          <g><rect x="732" y="241" width="158" height="101" rx="10" fill="#fff" stroke="#9bbbd2"/><path d="M762 302l9-19h-8l13-23-2 18h8z" fill="#fff" stroke="#1769aa" stroke-width="2"/><text x="792" y="280" class="bt bm">Data Flow</text><text x="748" y="321" class="bt bs">managed Spark execution</text></g>
+          <g><rect x="930" y="241" width="145" height="101" rx="10" fill="#fff" stroke="#c7796d"/><path d="M951 270h25v30h-25z" fill="#fff" stroke="#c74634" stroke-width="2.5"/><path d="M956 280h15M956 287h11" stroke="#c74634" stroke-width="2"/><text x="991" y="280" class="bt bm">Metadata</text><text x="946" y="317" class="bt bs">design + export ZIP</text></g>
+          <path d="M460 157h59" fill="none" stroke="#1769aa" stroke-width="3" marker-end="url(#b-arrow)"/><text x="463" y="142" class="bl">package + upload</text>
+          <path d="M682 155h46" fill="none" stroke="#1769aa" stroke-width="3" marker-end="url(#b-arrow)"/><text x="687" y="141" class="bl">persisted</text>
+          <path d="M892 155h34" fill="none" stroke="#0e93a6" stroke-width="3" marker-end="url(#b-arrow)"/><text x="884" y="141" class="bl">orchestrates</text>
+          <path d="M1003 201v36h-191" fill="none" stroke="#0e93a6" stroke-width="3" marker-end="url(#b-arrow)"/><text x="850" y="224" class="bl">submits run</text>
+          <path d="M811 239V203" fill="none" stroke="#1769aa" stroke-width="3" marker-end="url(#b-arrow)"/><text x="818" y="224" class="bl">code + data</text>
+          <path d="M891 291h35" fill="none" stroke="#1769aa" stroke-width="3" marker-end="url(#b-arrow)"/><text x="892" y="277" class="bl">outputs + logs</text>
+          <rect x="18" y="408" width="1085" height="83" rx="16" fill="#f7fbfd" stroke="#b8cbdc" stroke-width="1.5"/>
+          <text x="43" y="439" class="bt bm">External-platform deployment mappings (source-controlled, not provisioned)</text>
+          <text x="43" y="464" class="bt bs">platforms/databricks · platforms/amazon-emr · platforms/microsoft-fabric · platforms/google-dataproc</text>
+          <text x="665" y="439" class="bt bm">What moves: portable code, contract, configuration, tests</text>
+          <text x="665" y="464" class="bt bs">What does not move automatically: identities, storage endpoints, runtime settings, jobs, clusters, or external runs</text>
+        </svg>
+        <figcaption>Portability boundary diagram. Persisted locations are shown explicitly: the Git repository holds portable source and mappings; the private OCI bucket holds uploaded runtime artifacts and outputs; Data Integration retains design metadata and produces an export ZIP. OCI service iconography follows simplified visual conventions from Oracle’s OCI Architecture Diagram Toolkit.</figcaption>
+      </figure>
     </section>
 
     <section>
@@ -274,6 +319,67 @@
         <article class="platform mapping"><span class="tag map">Mapping only</span><h3>Google Dataproc</h3><p>Dataproc Serverless for Spark with workflow-template definition.</p></article>
       </div>
       <p class="footnote" style="margin-top:12px"><strong>Important distinction:</strong> Databricks, Amazon EMR, Microsoft Fabric, and Google Dataproc are supported by repository deployment mappings only. This PoC did not provision, connect to, or execute workloads in those external platforms.</p>
+    </section>
+
+    <section id="artifact-flow">
+      <p class="eyebrow" style="color:#1769aa">Artifact inventory and handoffs</p>
+      <h2>Every important file has a clear producer, destination, and consumer.</h2>
+      <p class="section-intro">This table is the practical integration contract. “Object Storage” means the private <code>odi-portability-demo</code> PoC bucket; a non-storage entry remains versioned in source control or is retained by its owning service.</p>
+      <div class="table-wrap">
+        <table>
+          <caption>Artifact-level flow inventory</caption>
+          <thead><tr><th>Artifact</th><th>Repository path</th><th>Creation / packaging action</th><th>Persisted destination</th><th>Producer</th><th>Consumer</th></tr></thead>
+          <tbody>
+            <tr><td>Customer transform</td><td><code>src/pyspark/customer_transform.py</code></td><td>Source-controlled; uploaded unchanged by <code>upload-code.sh</code></td><td><code>scripts/customer_transform.py</code> in Object Storage</td><td>Engineering team / CI</td><td>OCI Data Flow; external platform mappings</td></tr>
+            <tr><td>Output validator</td><td><code>src/pyspark/validate_output.py</code></td><td>Source-controlled; uploaded unchanged by <code>upload-code.sh</code></td><td><code>scripts/validate_output.py</code> in Object Storage</td><td>Engineering team / CI</td><td>OCI Data Flow; external platform mappings</td></tr>
+            <tr><td>Java Spark probe</td><td><code>src/java/.../CustomerJavaProbe.java</code> and <code>pom.xml</code></td><td>Maven creates <code>target/customer-java-probe.jar</code></td><td><code>scripts/customer-java-probe.jar</code> in Object Storage</td><td>Maven build in CI</td><td>Java OCI Data Flow application</td></tr>
+            <tr><td>Scala Spark probe</td><td><code>src/scala/.../CustomerScalaProbe.scala</code> and <code>pom.xml</code></td><td>Maven/Scala build creates <code>target/customer-scala-probe-scala.jar</code></td><td><code>scripts/customer-scala-probe.jar</code> in Object Storage</td><td>Maven build in CI</td><td>Scala OCI Data Flow application</td></tr>
+            <tr><td>SQL Spark probe</td><td><code>src/sql/customer_transform.sql</code></td><td>Source-controlled; uploaded unchanged by <code>upload-code.sh</code></td><td><code>scripts/customer_transform.sql</code> in Object Storage</td><td>Engineering team / CI</td><td>SQL OCI Data Flow application</td></tr>
+            <tr><td>Input data sample</td><td><code>test-data/customers.csv</code></td><td>Uploaded by <code>upload-input.sh</code></td><td><code>input/customers.csv</code> in Object Storage</td><td>CI upload step</td><td>Customer transform application</td></tr>
+            <tr><td>Pipeline specification and environment configuration</td><td><code>specification/pipeline.yaml</code>; <code>environments/test.yaml</code>; <code>environments/prod.yaml</code></td><td>Versioned configuration; no binary packaging</td><td>Git repository only; no default Object Storage object</td><td>Engineering team</td><td>CI/CD, release promotion, deployment operators</td></tr>
+            <tr><td>External platform mappings</td><td><code>platforms/databricks</code>; <code>platforms/amazon-emr</code>; <code>platforms/microsoft-fabric</code>; <code>platforms/google-dataproc</code></td><td>Versioned deployment definitions; parameter substitution occurs only when adopted in a target platform</td><td>Git repository only; no external resource created by this PoC</td><td>Engineering team</td><td>Future target-platform deployment process</td></tr>
+            <tr><td>OCI deployment scripts</td><td><code>platforms/oci/scripts</code></td><td>Shell syntax checked; invoked after CI validation</td><td>Git repository only; scripts upload the listed runtime artifacts</td><td>Engineering team / CI</td><td>OCI CLI and Object Storage</td></tr>
+            <tr><td>Data Integration release export</td><td>Created by the Data Integration service (not a repository source file)</td><td>Export request packages five Data Integration design objects</td><td><code>releases/customer-portability-demo-1.0.0.pipeline.zip</code> in Object Storage</td><td>OCI Data Integration</td><td>Release promotion and audit process</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="artifact-note">Runtime output is produced by Data Flow under the configured <code>output/customers/</code> prefix. The PoC’s direct output-verification script checks that this prefix contains at least one object.</p>
+    </section>
+
+    <section id="orchestration-sequence">
+      <p class="eyebrow" style="color:#1769aa">End-to-end orchestration sequence</p>
+      <h2>How a change becomes a validated, promotable execution.</h2>
+      <div class="grid grid-2">
+        <article class="card">
+          <ol class="sequence">
+            <li><h3>Checkout and review</h3><p>A developer change or pull request is checked out from GitHub, which is intentionally standing in for Bitbucket in this PoC. Source, tests, specifications, environment files, and mappings travel together.</p></li>
+            <li><h3>Validate and package</h3><p>CI compiles Python, runs tests, checks OCI shell syntax, and runs Maven to create the Java and Scala probe JARs. The same validation commands exist in GitHub Actions and in <code>bitbucket-pipelines.yml</code>.</p></li>
+            <li><h3>Publish the runtime inputs</h3><p>On the controlled main-branch route, OCI upload scripts place Python, SQL, JARs, and the sample CSV in the private Object Storage bucket. CI runtime credentials are supplied as protected pipeline secrets, not repository files.</p></li>
+          </ol>
+        </article>
+        <article class="card">
+          <ol class="sequence continues">
+            <li><h3>Execute directly in Data Flow</h3><p>Data Flow applications reference the uploaded artifacts and run managed Spark. This direct path produced the confirmed transform and validation results, including one intentional validation failure.</p></li>
+            <li><h3>Orchestrate and export with Data Integration</h3><p>Data Integration holds the project, tasks, pipeline, application, and publication metadata. It sequences transform then validate and exports the design objects as a ZIP release package.</p></li>
+            <li><h3>Promote the immutable release</h3><p>The tested artifact is promoted from TEST to PROD with environment-specific paths and values from the YAML configuration. The business logic is not edited between environments.</p></li>
+          </ol>
+        </article>
+      </div>
+      <div class="callout warning" style="margin-top:16px"><strong>Current stop point in the sequence.</strong> Step 5 cannot yet submit its child Data Flow run through the Data Integration workspace principal. The service returned <code>NotAuthorizedOrNotFound</code> from <code>CreateRun</code>; no IAM policy was changed by this PoC. The direct Data Flow route remains the execution evidence until that pre-existing authorization is verified and corrected by the appropriate administrator.</div>
+    </section>
+
+    <section id="boundary-explained">
+      <p class="eyebrow" style="color:#1769aa">Portable versus OCI-bound</p>
+      <h2>Move the workload, then re-bind the platform services.</h2>
+      <div class="grid grid-2">
+        <article class="card"><h3>What is portable</h3><p>The PySpark transformation and validation logic, Java/Scala/SQL probes, pipeline parameter contract, tests, sample data format, environment settings, and target-platform mapping files can be carried to another supported Spark environment. They provide the logical task order and expected interfaces, not a guarantee of an identical managed-service implementation.</p></article>
+        <article class="card"><h3>What is OCI-bound</h3><p>OCI CLI upload scripts, OCI Object Storage paths, OCI Data Flow application and run identifiers, Data Integration design metadata, the exported OCI pipeline ZIP, OCI identity configuration, and service-specific orchestration are bound to OCI. These components are recreated or reconfigured when a different runtime is chosen.</p></article>
+      </div>
+      <div class="grid grid-2" style="margin-top:16px">
+        <article class="card"><h3>What moves to Databricks, EMR, Fabric, or Dataproc</h3><p>Take the portable source, the pipeline parameter contract, test expectations, and the corresponding mapping file. Then configure that platform’s repository connection, storage URI, Spark/runtime version, job or workflow settings, identities, and observability destinations in the target environment.</p></article>
+        <article class="card"><h3>What a mapping is—and is not</h3><p>A mapping is an infrastructure/deployment blueprint in source control. It is <strong>not</strong> an externally provisioned job, cluster, workspace, bucket, credential, network connection, or run. This PoC made no connection to—and started no execution in—Databricks, Amazon EMR, Microsoft Fabric, or Google Dataproc.</p></article>
+      </div>
+      <div class="callout" style="margin-top:16px"><strong>Deliberately not stored or provisioned.</strong> No private keys, passwords, tokens, or runtime secrets are saved in the repository. No external-platform resources or runs were provisioned. OCI Data Integration design objects expose service keys rather than design-object OCIDs, so no such OCIDs are available to save. This PoC also made no IAM policy changes; it documents the required authorization boundary instead.</div>
     </section>
 
     <section id="assets">
