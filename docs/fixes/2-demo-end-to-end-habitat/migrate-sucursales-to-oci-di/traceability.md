@@ -14,7 +14,7 @@
 | AC-10 | Package a machine-ready mock backend | deterministic runtime archive | `test_start_wrapper.py`, archive-content checks | Passed: runtime-only tar and checksum |
 | AC-11 | Exclude secrets and promote one artifact | `.gitignore`, parameterized config, checksums | `test_security.py`, checksum verification | Passed on new release and both archives |
 | AC-12 | Pass completion gates | All task files | Compile, pytest, Maven, shell commands | Completed; root pytest blocked by missing baseline `pyspark`, recorded in TDD |
-| AC-13 | Document the complete Compute VM-to-OCI demo | `migrated-pipeline-demo/README.md` | `test_readme_documents_the_entire_compute_vm_to_oci_demo`, command/checksum audit | Passed: Red/Green acceptance test and 68-test migrated suite |
+| AC-13 | Document the concise prepared-VM-to-OCI checklist | `migrated-pipeline-demo/README.md` | `test_readme_documents_the_entire_compute_vm_to_oci_demo`, endpoint-safety scan | Passed: six ordered steps and 68-test migrated suite |
 
 ## Evidence Policy
 

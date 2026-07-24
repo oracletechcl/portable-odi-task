@@ -112,6 +112,11 @@ release verification, wrapper-backed systemd deployment, private VCN rules,
 OCI import/publication/execution, deterministic result comparison, and service
 operations. The final migrated suite passed 68 tests in 5.33 seconds.
 
+The prepared-VM documentation was then simplified into six ordered quick-start
+steps. Its revised acceptance test passed, the endpoint-safety scan found no
+tracked environment values, and the migrated suite passed 68 tests in 5.08
+seconds.
+
 ## Refactor
 
 Complete. Shared metadata, parameter, checksum, and packaging helpers remove

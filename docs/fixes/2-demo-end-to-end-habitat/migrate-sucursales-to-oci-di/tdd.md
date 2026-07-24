@@ -238,6 +238,24 @@ Focused Green: 1 passed in 0.04 seconds.
 Full migrated suite: 68 passed in 4.94 seconds. Both release checksum commands
 reported `OK`.
 
+### Iteration 8: Concise Prepared-VM Quick Start
+
+Status: Green on 2026-07-24.
+
+Red changed the README acceptance contract to require a short quick-start
+heading, the deployed service/runtime/output paths, and explicit public/private
+IP placeholders. The focused test failed as expected because the long-form
+runbook did not match that operator contract.
+
+Green replaced the long-form section with six ordered steps: connect, start and
+health-check, publish once, run with two parameters, verify eight outputs, and
+operate the service. No real IP, OCID, private key, password, or secret was
+introduced.
+
+Focused Green: 1 passed in 0.03 seconds.
+
+Full migrated suite: 68 passed in 5.08 seconds.
+
 ## Refactor
 
 Status: complete.

@@ -174,10 +174,10 @@ Unavailable external tooling or live OCI access is reported accurately.
 
 ### AC-13 — End-to-End Operator Runbook
 
-The migrated demo README documents a complete operator path from immutable
-release verification through mock-backend deployment on a supplied Compute VM,
-private VCN access, project import, application publication, parameterized task
-execution, deterministic output comparison, and service operation.
+The migrated demo README provides a concise checklist for the prepared Compute
+VM: SSH access, mock start and health check, one-time application publication,
+parameterized task execution, output verification, and service operation. It
+uses placeholders instead of tracked environment endpoints.
 
 ## Non-Functional Requirements
 

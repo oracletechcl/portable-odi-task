@@ -185,11 +185,16 @@ def test_readme_documents_the_entire_compute_vm_to_oci_demo() -> None:
     readme = (IMPLEMENTATION_ROOT.parent / "README.md").read_text(encoding="utf-8")
 
     required_runbook_content = (
-        "## Run the Entire End-to-End Demo",
+        "## Quick Start: Run the Mock and Trigger OCI Data Integration",
         "odi-portability-demo",
         "HABITAT_SUCURSALES.project.zip",
         "habitat-sucursales-mock-backend-1.0.0.tar.gz",
         "start-mock-backend.sh",
+        "habitat-sucursales-mock.service",
+        "/opt/habitat-sucursales/current",
+        "/var/lib/habitat-sucursales/output",
+        "<vm-public-ip>",
+        "<vm-private-ip>",
         "TCP 8080",
         "/health",
         "HABITAT_SUCURSALES_DEMO",

@@ -55,9 +55,8 @@ provisioning were removed when the user excluded infrastructure scripting.
 - Added the OCI project staging directory and deterministic
   `HABITAT_SUCURSALES.project.zip`.
 - Added the deterministic machine-ready backend tar and checksum.
-- Added a complete Compute VM-to-OCI operator runbook covering systemd,
-  private-network access, import, publication, execution, output comparison,
-  and service operation.
+- Added a concise six-step Compute VM-to-OCI checklist covering SSH, systemd,
+  health, publication, execution, output verification, and service operation.
 - Added SDD/TDD/traceability records for the runbook acceptance contract.
 
 ## Validation
@@ -73,10 +72,8 @@ provisioning were removed when the user excluded infrastructure scripting.
   export root, deterministic checksum, canonical-project-shaped metadata, and
   no unresolved request placeholders.
 - Backend tar: deterministic checksum, executable wrapper, no tests or caches.
-- End-to-end README: Red/Green acceptance test passed; documented release,
-  Compute VM, private-network, OCI import/publish/run, output verification, and
-  service lifecycle commands were audited against the delivered artifacts and
-  installed OCI CLI.
+- End-to-end README: Red/Green acceptance test passed; the six-step prepared-VM
+  checklist and endpoint-safety scan passed.
 - Expected output: eight files; every hash, size, and row count matches the run
   manifest; encoding, delimiter, and line-ending checks passed.
 - Security scan: no OCIDs, private keys, secret assignments, real endpoints, or
