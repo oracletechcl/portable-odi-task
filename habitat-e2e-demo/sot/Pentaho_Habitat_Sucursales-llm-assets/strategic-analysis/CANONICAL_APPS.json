@@ -1,0 +1,23 @@
+{
+  "project": "Pentaho Habitat Sucursales",
+  "generated": "2026-07-22",
+  "canonical_apps": [
+    {
+      "app_id": "Sucursales",
+      "base_name": "Sucursales",
+      "version": "",
+      "variant": "",
+      "family": "Pentaho Data Integration",
+      "description": "Enterprise Services workload implemented as Source Module",
+      "complexity_score": 9,
+      "priority_tier": "T3 \u2013 STANDARD",
+      "roadmap_path": "../modernization-roadmap/Sucursales/roadmap.md",
+      "to_be_path": "../cloud-native-architecture/canonical-app-to-be/Sucursales/to-be.md",
+      "retired_count": 0,
+      "redundant_versions": [],
+      "provisional_wave": "Wave 1",
+      "domain": "Enterprise Services",
+      "wave": "Wave 1"
+    }
+  ]
+}

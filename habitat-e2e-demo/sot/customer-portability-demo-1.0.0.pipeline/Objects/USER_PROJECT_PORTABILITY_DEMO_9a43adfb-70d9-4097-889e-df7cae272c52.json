@@ -1,0 +1,19 @@
+{
+  "modelType" : "USER_PROJECT",
+  "key" : "9a43adfb-70d9-4097-889e-df7cae272c52",
+  "name" : "PORTABILITY_DEMO",
+  "description" : "Portable PySpark CI/CD proof of concept",
+  "objectVersion" : 1,
+  "identifier" : "PORTABILITY_DEMO",
+  "modelVersion" : "20200901",
+  "objectStatus" : 8,
+  "metadata" : {
+    "createdBy" : "ocid1.user.oc1..aaaaaaaajpizqlfu7yhwkjvqyeobcd6zggh4bke5pb76toqpglisleyqv2sa",
+    "createdByName" : "Denny Alquinta",
+    "updatedBy" : "ocid1.user.oc1..aaaaaaaajpizqlfu7yhwkjvqyeobcd6zggh4bke5pb76toqpglisleyqv2sa",
+    "updatedByName" : "Denny Alquinta",
+    "timeCreated" : "2026-07-13T16:33:57.955Z",
+    "timeUpdated" : "2026-07-13T16:33:57.955Z",
+    "registryVersion" : 1
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "modelType" : "PIPELINE_TASK",
+  "key" : "fc64b80c-7628-4576-aff7-0bda6fdd3786",
+  "name" : "TASK_RUN_CUSTOMER_PIPELINE",
+  "objectVersion" : 1,
+  "identifier" : "TASK_RUN_CUSTOMER_PIPELINE",
+  "inputPorts" : [ ],
+  "outputPorts" : [ ],
+  "configProviderDelegate" : { },
+  "modelVersion" : "20230421",
+  "objectStatus" : 8,
+  "metadata" : {
+    "createdBy" : "ocid1.user.oc1..aaaaaaaajpizqlfu7yhwkjvqyeobcd6zggh4bke5pb76toqpglisleyqv2sa",
+    "createdByName" : "Denny Alquinta",
+    "updatedBy" : "ocid1.user.oc1..aaaaaaaajpizqlfu7yhwkjvqyeobcd6zggh4bke5pb76toqpglisleyqv2sa",
+    "updatedByName" : "Denny Alquinta",
+    "timeCreated" : "2026-07-13T17:13:25.182Z",
+    "timeUpdated" : "2026-07-13T17:13:25.182Z",
+    "aggregatorKey" : "9a43adfb-70d9-4097-889e-df7cae272c52",
+    "registryVersion" : 1,
+    "aggregator" : {
+      "type" : "USER_PROJECT",
+      "key" : "9a43adfb-70d9-4097-889e-df7cae272c52",
+      "name" : "PORTABILITY_DEMO",
+      "identifier" : "PORTABILITY_DEMO",
+      "description" : "Portable PySpark CI/CD proof of concept"
+    }
+  },
+  "pipeline" : {
+    "modelType" : "PIPELINE",
+    "key" : "11abd998-ed40-4b4a-90eb-b244bd600039",
+    "name" : "PL_CUSTOMER_PORTABILITY_DEMO",
+    "identifier" : "PL_CUSTOMER_PORTABILITY_DEMO",
+    "modelVersion" : "20220124",
+    "objectVersion" : 1,
+    "nodes" : [ ],
+    "parameters" : [ ],
+    "nestedDepth" : 0,
+    "objectStatus" : 1
+  }
+}

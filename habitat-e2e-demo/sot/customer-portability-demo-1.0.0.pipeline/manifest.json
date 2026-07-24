@@ -1,0 +1,13 @@
+{
+  "objects" : [ "/Objects/USER_PROJECT_PORTABILITY_DEMO_9a43adfb-70d9-4097-889e-df7cae272c52.json", "/Objects/OCI_DATAFLOW_TASK_TASK_CUSTOMER_TRANSFORM_816bf5d7-83ce-430d-9ada-7c94580afdc3.json", "/Objects/OCI_DATAFLOW_TASK_TASK_VALIDATE_CUSTOMERS_611236f4-c350-4411-937b-97c4b9028ca1.json", "/Objects/PIPELINE_PL_CUSTOMER_PORTABILITY_DEMO_11abd998-ed40-4b4a-90eb-b244bd600039.json", "/Objects/PIPELINE_TASK_TASK_RUN_CUSTOMER_PIPELINE_fc64b80c-7628-4576-aff7-0bda6fdd3786.json" ],
+  "modelVersionMap" : {
+    "17230268181" : "20230421",
+    "257" : "20200901",
+    "67176213" : "20230421",
+    "788" : "20220124"
+  },
+  "version" : "V1",
+  "objectKeysProvidedForExport" : [ "fc64b80c-7628-4576-aff7-0bda6fdd3786" ],
+  "exportedWorkspaceOcid" : "ocid1.disworkspace.oc1.us-sanjose-1.anzwuljr2ow634yazkdp5uah7vgzz24pn2hbipwtukv72ap6hrbikm4nggca",
+  "referencedObjectsList" : [ ]
+}
