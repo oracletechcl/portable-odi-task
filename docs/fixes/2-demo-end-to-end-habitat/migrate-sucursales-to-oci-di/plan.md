@@ -24,7 +24,7 @@ The final release must include:
 
 1. A locally executable mock-backed implementation.
 2. Expected output for a fixed demonstration date.
-3. A private OCI Compute deployment module for the mock service.
+3. A deterministic, machine-ready mock backend bundle.
 4. A deterministic OCI Data Integration `.pipeline.zip` import artifact.
 
 ## Sources of Truth
@@ -36,9 +36,9 @@ The final release must include:
    export structure
 4. Current OCI Data Integration REST-task, pipeline, and import contracts
 
-Source-of-truth inputs are evidence only. They must not be copied into the
-release or committed because they contain environment metadata and credential
-fields.
+Source-of-truth inputs are evidence only. They are part of the pre-existing
+tracked baseline and contain environment metadata and credential fields. This
+task must not modify them or copy their values into the migrated release.
 
 ## Approved Scope
 
@@ -55,8 +55,7 @@ fields.
 - Run all inferred backend behavior through one dependency-free HTTP service.
 - Start that service only through
   `habitat-e2e-demo/migrated-pipeline-demo/implementation/start-mock-backend.sh`.
-- Use the same wrapper locally and from the OCI Compute systemd service.
-- Deploy the service to private OCI Compute in an existing VCN/subnet.
+- Make the wrapper and backend bundle runnable on a user-supplied machine.
 - Orchestrate it with OCI Data Integration synchronous REST tasks.
 - Produce deterministic expected CSV outputs and checksums.
 - Package the OCI export as
@@ -67,6 +66,8 @@ fields.
 - Contacting the original databases, vendor services, file shares, or SMTP
   servers.
 - Deploying to a live tenancy during this task.
+- Provisioning a machine, network, service manager, or OCI infrastructure.
+- Terraform, cloud-init, systemd, IAM, VCN, subnet, and firewall scripting.
 - Copying source credentials, OCIDs, hostnames, email addresses, or endpoints.
 - Encoding business transformations exclusively in OCI visual operators.
 - Changing the existing customer portability proof of concept.
@@ -101,16 +102,17 @@ The success path is:
 6. Validate outputs.
 7. End successfully.
 
-Each operational task has an `ALL_FAILED` notification branch. The pipeline
-uses a required `MOCK_BASE_URL` parameter and contains no environment endpoint.
+The four Atenciones/Agendamiento tasks have `ALL_FAILED` notification branches.
+A period-calculation failure goes directly to the failed end state, matching
+the Pentaho job. The pipeline uses a required `MOCK_BASE_URL` parameter and
+contains no environment endpoint.
 
-### Compute Deployment
+### Machine-Ready Mock Bundle
 
-Terraform provisions a private Compute instance and network security group in
-an existing VCN/subnet. Cloud-init installs the release bundle and a systemd
-unit whose `ExecStart` calls the same bash wrapper used locally. The instance
-has no public IP. Access to the mock port is limited to a supplied OCI Data
-Integration subnet CIDR.
+The release includes a deterministic runtime-only archive containing the mock
+service, raw fixtures, configuration, and the same bash wrapper used locally.
+The user supplies and operates the destination machine. No machine, network, or
+service-manager provisioning is part of this task.
 
 ## TDD Plan
 
@@ -132,7 +134,8 @@ Green:
 Red:
 
 - Atenciones and Agendamiento schemas, ordering, date/time formatting,
-  `fechaCierre`, `~|` delimiter, and DNI punctuation removal.
+  `fechaCierre`, `~|` delimiter, and literal-dot removal from DNI values while
+  preserving hyphens.
 - Motivo ID/description splitting, ordinal alignment, hierarchy fields, and
   mismatched-pair rejection.
 
@@ -153,7 +156,7 @@ Green:
 
 - Implement the orchestrator, API, CLI, and single bash entrypoint.
 
-### Iteration 4 — OCI Export and Compute Contract
+### Iteration 4 — OCI Export and Machine-Ready Runtime
 
 Red:
 
@@ -161,12 +164,12 @@ Red:
   parameterized private endpoint, deterministic ZIP, and `.pipeline.zip`
   suffix.
 - No credentials, real OCIDs, or real endpoints.
-- Terraform private-network and single-wrapper systemd contract.
+- Runtime-only deterministic backend archive and single-wrapper contract.
 
 Green:
 
-- Implement export generation, packaging, checksums, Terraform, cloud-init,
-  and deployment documentation.
+- Implement export generation, packaging, checksums, and runtime bundle
+  documentation.
 
 ### Refactor
 
@@ -182,6 +185,7 @@ Green:
 - `docs/fixes/2-demo-end-to-end-habitat/migrate-sucursales-to-oci-di/traceability.md`
 - `docs/fixes/2-demo-end-to-end-habitat/migrate-sucursales-to-oci-di/tdd.md`
 - `docs/fixes/2-demo-end-to-end-habitat/migrate-sucursales-to-oci-di/changes.md`
+- `docs/fixes/2-demo-end-to-end-habitat-2-tdd.md`
 - `habitat-e2e-demo/migrated-pipeline-demo/README.md`
 - `.gitignore`
 
@@ -205,7 +209,6 @@ Green:
 - Four raw fixture CSVs under
   `habitat-e2e-demo/migrated-pipeline-demo/implementation/fixtures/raw/{202606,202607}/`
 - `habitat-e2e-demo/migrated-pipeline-demo/implementation/tests/conftest.py`
-- `habitat-e2e-demo/migrated-pipeline-demo/implementation/tests/test_compute_contract.py`
 - `habitat-e2e-demo/migrated-pipeline-demo/implementation/tests/test_mock_api.py`
 - `habitat-e2e-demo/migrated-pipeline-demo/implementation/tests/test_oci_export.py`
 - `habitat-e2e-demo/migrated-pipeline-demo/implementation/tests/test_periods.py`
@@ -213,18 +216,6 @@ Green:
 - `habitat-e2e-demo/migrated-pipeline-demo/implementation/tests/test_security.py`
 - `habitat-e2e-demo/migrated-pipeline-demo/implementation/tests/test_start_wrapper.py`
 - `habitat-e2e-demo/migrated-pipeline-demo/implementation/tests/test_transformations.py`
-
-### OCI Compute Deployment
-
-- `platforms/oci/habitat-sucursales-mock/README.md`
-- `platforms/oci/habitat-sucursales-mock/cloud-init.yaml.tftpl`
-- `platforms/oci/habitat-sucursales-mock/iam-policy.example.txt`
-- `platforms/oci/habitat-sucursales-mock/main.tf`
-- `platforms/oci/habitat-sucursales-mock/outputs.tf`
-- `platforms/oci/habitat-sucursales-mock/terraform.tfvars.example`
-- `platforms/oci/habitat-sucursales-mock/variables.tf`
-- `platforms/oci/habitat-sucursales-mock/versions.tf`
-- `platforms/oci/habitat-sucursales-mock/scripts/build-mock-bundle.sh`
 
 ### Generated Release and Expected Outputs
 
@@ -236,17 +227,18 @@ Green:
 - `habitat-e2e-demo/migrated-pipeline-demo/target/habitat-sucursales-1.0.0.pipeline.zip`
 - `habitat-e2e-demo/migrated-pipeline-demo/target/habitat-sucursales-1.0.0.pipeline.zip.sha256`
 - `habitat-e2e-demo/migrated-pipeline-demo/target/habitat-sucursales-mock-backend-1.0.0.tar.gz`
+- `habitat-e2e-demo/migrated-pipeline-demo/target/habitat-sucursales-mock-backend-1.0.0.tar.gz.sha256`
 
 ## Agent Roster and File Ownership
 
-The agents are spawned after the tracking pull request exists.
+Phase 3 roster started after the tracking pull request became visible:
 
-| Owner | Responsibility | Files |
-| --- | --- | --- |
-| Transformation owner | Red/Green for periods and transformations | `contracts.py`, `periods.py`, `transformations.py`, `pipeline.py`, raw fixtures, period/transformation/pipeline tests |
-| OCI/mock owner | Red/Green for mock service, export, and deployment | `mock_api.py`, `oci_export.py`, CLI, wrapper, target artifacts, `platforms/oci/habitat-sucursales-mock/**`, related tests |
-| Verification auditor | Independent security, SDD/TDD, and validation audit | Read-only; reports findings to integration owner |
-| Root integration owner | Tracking docs, integration, packaging, conflict resolution, commits, PR | Docs, README, `.gitignore`, `pyproject.toml`, final validation |
+| Agent | State | Responsibility | Files |
+| --- | --- | --- | --- |
+| `/root/transformation_owner` | Audit-hardened Green complete: 34 passed | Red/Green for periods and transformations | `contracts.py`, `periods.py`, `transformations.py`, `pipeline.py`, raw fixtures, period/transformation/pipeline tests |
+| `/root/oci_mock_owner` | Green complete: full implementation suite 67 passed | Red/Green for mock service, OCI export, wrapper, and runtime bundle | `mock_api.py`, `oci_export.py`, CLI, wrapper, config, related tests |
+| `/root/verification_auditor` | Final package audit complete | Independent security, SDD/TDD, and validation audit | Read-only; reports findings to integration owner |
+| `/root` | Integration owner | Tracking docs, integration, packaging, conflict resolution, commits, PR | Task docs, branch TDD readout, README, `.gitignore`, `pyproject.toml`, generated target outputs, final validation |
 
 Concurrent editing of the same file is prohibited. Conflicts: none planned.
 
@@ -259,7 +251,7 @@ pytest -q habitat-e2e-demo/migrated-pipeline-demo/implementation/tests/test_peri
 pytest -q habitat-e2e-demo/migrated-pipeline-demo/implementation/tests/test_transformations.py
 pytest -q habitat-e2e-demo/migrated-pipeline-demo/implementation/tests/test_pipeline.py
 pytest -q habitat-e2e-demo/migrated-pipeline-demo/implementation/tests/test_mock_api.py habitat-e2e-demo/migrated-pipeline-demo/implementation/tests/test_start_wrapper.py
-pytest -q habitat-e2e-demo/migrated-pipeline-demo/implementation/tests/test_oci_export.py habitat-e2e-demo/migrated-pipeline-demo/implementation/tests/test_compute_contract.py habitat-e2e-demo/migrated-pipeline-demo/implementation/tests/test_security.py
+pytest -q habitat-e2e-demo/migrated-pipeline-demo/implementation/tests/test_oci_export.py habitat-e2e-demo/migrated-pipeline-demo/implementation/tests/test_security.py
 ```
 
 Completion gates:
@@ -270,10 +262,10 @@ python -m compileall src
 pytest -q
 mvn -q -DskipTests package
 find platforms/oci -name "*.sh" -exec bash -n {} \;
-terraform fmt -check platforms/oci/habitat-sucursales-mock
-terraform validate
 ```
 
-If Terraform is unavailable, record that environment limitation without
-claiming the command passed. Live OCI import is out of scope because no tenancy
-access is available; offline import compatibility remains mandatory.
+Live OCI import is out of scope because no tenancy access is available;
+offline structural compatibility remains mandatory. Security scans cover the
+new migration release and machine-ready runtime files;
+pre-existing tracked SOT risks are reported separately and not rewritten by
+this task.

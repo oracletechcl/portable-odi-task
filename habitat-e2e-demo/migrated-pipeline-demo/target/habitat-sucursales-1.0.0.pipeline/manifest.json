@@ -1,0 +1,25 @@
+{
+  "exportedWorkspaceOcid": "",
+  "modelVersionMap": {
+    "17230268181": "20230421",
+    "257": "20200901",
+    "788": "20220124"
+  },
+  "objectKeysProvidedForExport": [
+    "88560655-5474-52cd-aa79-cfee4eaf272e"
+  ],
+  "objects": [
+    "/Objects/USER_PROJECT_HABITAT_SUCURSALES_e1b6819d-e0ac-5944-9d4c-6e3d606794bd.json",
+    "/Objects/REST_TASK_REST_PERIODS_fcb04644-b3ae-5afe-b6e2-a2ff77a93b8b.json",
+    "/Objects/REST_TASK_REST_ATENCIONES_PREVIOUS_631ffaed-0809-5d48-8eed-f85c772d8774.json",
+    "/Objects/REST_TASK_REST_ATENCIONES_CURRENT_d4235f94-6716-5f4b-82e7-af4dc6e228d3.json",
+    "/Objects/REST_TASK_REST_AGENDAMIENTOS_PREVIOUS_d185baee-f8cf-524b-8c51-699bb1108fc2.json",
+    "/Objects/REST_TASK_REST_AGENDAMIENTOS_CURRENT_ee7bd597-3447-537b-a92a-d5b66228e5cf.json",
+    "/Objects/REST_TASK_REST_VALIDATE_f99e3f89-3240-50fb-9be6-211315d11c4d.json",
+    "/Objects/REST_TASK_REST_NOTIFY_ERROR_f12195de-fa50-54a9-8763-ec6325c35c38.json",
+    "/Objects/PIPELINE_PL_HABITAT_SUCURSALES_2421c59e-28e1-5aa3-b9d6-6ccb90940e1e.json",
+    "/Objects/PIPELINE_TASK_TASK_RUN_HABITAT_SUCURSALES_88560655-5474-52cd-aa79-cfee4eaf272e.json"
+  ],
+  "referencedObjectsList": [],
+  "version": "V1"
+}

@@ -1,0 +1,101 @@
+{
+  "apiCallMode": "SYNCHRONOUS",
+  "configProviderDelegate": {},
+  "description": "Calls the portable mock endpoint /v1/notify-error",
+  "executeRestCallConfig": {
+    "configValues": {
+      "configParamValues": {
+        "requestPayload": {
+          "refValue": {
+            "configValues": {
+              "configParamValues": {
+                "dataParam": {
+                  "stringValue": "{\"message\":\"OCI Data Integration processing task failed\",\"status\":\"error\",\"step\":\"${FAILED_STEP}\"}"
+                }
+              }
+            },
+            "modelType": "JSON_TEXT"
+          }
+        },
+        "requestURL": {
+          "stringValue": "${MOCK_BASE_URL}/v1/notify-error"
+        }
+      },
+      "parentRef": {
+        "parent": "f12195de-fa50-54a9-8763-ec6325c35c38"
+      }
+    },
+    "methodType": "POST",
+    "requestHeaders": {
+      "Content-Type": "application/json"
+    }
+  },
+  "identifier": "REST_NOTIFY_ERROR",
+  "inputPorts": [],
+  "isConcurrentAllowed": false,
+  "jsonData": "{\"message\":\"OCI Data Integration processing task failed\",\"status\":\"error\",\"step\":\"${FAILED_STEP}\"}",
+  "key": "f12195de-fa50-54a9-8763-ec6325c35c38",
+  "metadata": {
+    "aggregator": {
+      "description": "Portable mock-backed Habitat Sucursales migration",
+      "identifier": "HABITAT_SUCURSALES",
+      "key": "e1b6819d-e0ac-5944-9d4c-6e3d606794bd",
+      "name": "HABITAT_SUCURSALES",
+      "type": "USER_PROJECT"
+    },
+    "aggregatorKey": "e1b6819d-e0ac-5944-9d4c-6e3d606794bd",
+    "registryVersion": 1
+  },
+  "modelType": "REST_TASK",
+  "modelVersion": "20230421",
+  "name": "REST_NOTIFY_ERROR",
+  "objectStatus": 8,
+  "objectVersion": 1,
+  "opConfigValues": {
+    "configParamValues": {
+      "successCondition": {
+        "refValue": {
+          "exprString": "SYS.RESPONSE_STATUS >= 200 AND SYS.RESPONSE_STATUS < 300",
+          "modelType": "EXPRESSION"
+        }
+      }
+    },
+    "parentRef": {
+      "parent": "f12195de-fa50-54a9-8763-ec6325c35c38"
+    }
+  },
+  "outputPorts": [],
+  "parameters": [
+    {
+      "defaultValue": "http://mock-backend.invalid",
+      "isInput": true,
+      "isOutput": false,
+      "key": "54ca38f3-8233-56c2-ab03-21c4fd058829",
+      "modelType": "PARAMETER",
+      "modelVersion": "20200129",
+      "name": "MOCK_BASE_URL",
+      "objectStatus": 1,
+      "parentRef": {
+        "parent": "f12195de-fa50-54a9-8763-ec6325c35c38"
+      },
+      "type": "Seeded:/typeSystems/PLATFORM/dataTypes/STRING",
+      "typeName": "VARCHAR"
+    },
+    {
+      "defaultValue": null,
+      "isInput": true,
+      "isOutput": false,
+      "key": "6749d0d6-05c1-5af5-a810-b86324a24ec7",
+      "modelType": "PARAMETER",
+      "modelVersion": "20200129",
+      "name": "FAILED_STEP",
+      "objectStatus": 1,
+      "parentRef": {
+        "parent": "f12195de-fa50-54a9-8763-ec6325c35c38"
+      },
+      "type": "Seeded:/typeSystems/PLATFORM/dataTypes/STRING",
+      "typeName": "VARCHAR"
+    }
+  ],
+  "typedExpressions": []
+}

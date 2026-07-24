@@ -1,0 +1,101 @@
+{
+  "apiCallMode": "SYNCHRONOUS",
+  "configProviderDelegate": {},
+  "description": "Calls the portable mock endpoint /v1/process/agendamientos",
+  "executeRestCallConfig": {
+    "configValues": {
+      "configParamValues": {
+        "requestPayload": {
+          "refValue": {
+            "configValues": {
+              "configParamValues": {
+                "dataParam": {
+                  "stringValue": "{\"as_of_date\":\"${AS_OF_DATE}\",\"window\":\"current\"}"
+                }
+              }
+            },
+            "modelType": "JSON_TEXT"
+          }
+        },
+        "requestURL": {
+          "stringValue": "${MOCK_BASE_URL}/v1/process/agendamientos"
+        }
+      },
+      "parentRef": {
+        "parent": "ee7bd597-3447-537b-a92a-d5b66228e5cf"
+      }
+    },
+    "methodType": "POST",
+    "requestHeaders": {
+      "Content-Type": "application/json"
+    }
+  },
+  "identifier": "REST_AGENDAMIENTOS_CURRENT",
+  "inputPorts": [],
+  "isConcurrentAllowed": false,
+  "jsonData": "{\"as_of_date\":\"${AS_OF_DATE}\",\"window\":\"current\"}",
+  "key": "ee7bd597-3447-537b-a92a-d5b66228e5cf",
+  "metadata": {
+    "aggregator": {
+      "description": "Portable mock-backed Habitat Sucursales migration",
+      "identifier": "HABITAT_SUCURSALES",
+      "key": "e1b6819d-e0ac-5944-9d4c-6e3d606794bd",
+      "name": "HABITAT_SUCURSALES",
+      "type": "USER_PROJECT"
+    },
+    "aggregatorKey": "e1b6819d-e0ac-5944-9d4c-6e3d606794bd",
+    "registryVersion": 1
+  },
+  "modelType": "REST_TASK",
+  "modelVersion": "20230421",
+  "name": "REST_AGENDAMIENTOS_CURRENT",
+  "objectStatus": 8,
+  "objectVersion": 1,
+  "opConfigValues": {
+    "configParamValues": {
+      "successCondition": {
+        "refValue": {
+          "exprString": "SYS.RESPONSE_STATUS >= 200 AND SYS.RESPONSE_STATUS < 300",
+          "modelType": "EXPRESSION"
+        }
+      }
+    },
+    "parentRef": {
+      "parent": "ee7bd597-3447-537b-a92a-d5b66228e5cf"
+    }
+  },
+  "outputPorts": [],
+  "parameters": [
+    {
+      "defaultValue": "http://mock-backend.invalid",
+      "isInput": true,
+      "isOutput": false,
+      "key": "19723b26-d836-5e3f-92d7-399edf2efb47",
+      "modelType": "PARAMETER",
+      "modelVersion": "20200129",
+      "name": "MOCK_BASE_URL",
+      "objectStatus": 1,
+      "parentRef": {
+        "parent": "ee7bd597-3447-537b-a92a-d5b66228e5cf"
+      },
+      "type": "Seeded:/typeSystems/PLATFORM/dataTypes/STRING",
+      "typeName": "VARCHAR"
+    },
+    {
+      "defaultValue": null,
+      "isInput": true,
+      "isOutput": false,
+      "key": "0e59361c-2194-5d4d-a9f3-6b86d1478e06",
+      "modelType": "PARAMETER",
+      "modelVersion": "20200129",
+      "name": "AS_OF_DATE",
+      "objectStatus": 1,
+      "parentRef": {
+        "parent": "ee7bd597-3447-537b-a92a-d5b66228e5cf"
+      },
+      "type": "Seeded:/typeSystems/PLATFORM/dataTypes/STRING",
+      "typeName": "VARCHAR"
+    }
+  ],
+  "typedExpressions": []
+}

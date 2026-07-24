@@ -4,5 +4,8 @@ __pycache__/
 .venv/
 graphify-out/
 target/
+!habitat-e2e-demo/migrated-pipeline-demo/target/
+!habitat-e2e-demo/migrated-pipeline-demo/target/**
+pytest-of-*/
 ssh-keys
 .DS_Store

@@ -1,0 +1,13 @@
+{
+  "description": "Portable mock-backed Habitat Sucursales migration",
+  "identifier": "HABITAT_SUCURSALES",
+  "key": "e1b6819d-e0ac-5944-9d4c-6e3d606794bd",
+  "metadata": {
+    "registryVersion": 1
+  },
+  "modelType": "USER_PROJECT",
+  "modelVersion": "20200901",
+  "name": "HABITAT_SUCURSALES",
+  "objectStatus": 8,
+  "objectVersion": 1
+}

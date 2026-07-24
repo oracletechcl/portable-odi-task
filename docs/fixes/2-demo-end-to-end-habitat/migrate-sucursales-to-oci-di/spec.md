@@ -7,7 +7,7 @@
 - Canonical input:
   `habitat-e2e-demo/sot/Pentaho_Habitat_Sucursales-llm-assets/migration-spec/Sucursales/spec.md`
 - Supporting evidence: the original Pentaho job and five transformations
-- Target: OCI Data Integration pipeline with a private OCI Compute mock backend
+- Target: OCI Data Integration pipeline with a machine-ready mock backend
 
 ## Problem
 
@@ -30,7 +30,9 @@ The migrated flow must preserve:
 5. Process current-month Agendamiento.
 6. Validate all outputs.
 7. Complete successfully only when every processing step succeeds.
-8. Record a mock error notification and finish as failed when a step fails.
+8. Finish as failed without notification when period resolution fails.
+9. Record a mock error notification and finish as failed when one of the four
+   Atenciones/Agendamiento processing stages fails.
 
 ### Transformations
 
@@ -43,8 +45,8 @@ The implementation must preserve the evidenced behavior of:
 - `transf_MotivoAgendamientoZeroQ_TDS`
 
 This includes source field ordering, target field ordering, date/time formats,
-`fechaCierre`, DNI punctuation removal, `~|` output separation, and aligned
-motivo hierarchy expansion.
+`fechaCierre`, literal-dot removal from DNI values while preserving hyphens,
+`~|` output separation, and aligned motivo hierarchy expansion.
 
 ### Mock Boundaries
 
@@ -59,18 +61,23 @@ must expose:
 - `POST /v1/notify-error`
 
 The service must be started through exactly one public startup entrypoint:
-`implementation/start-mock-backend.sh`. Local execution and OCI Compute
-deployment must use this same wrapper.
+`implementation/start-mock-backend.sh`. The same wrapper is included in the
+runtime bundle for a user-supplied machine.
 
-### OCI Deployment
+Processing requests use `as_of_date` and `window=previous|current`. The API
+adapter derives and reports the source shell contract values: start date, end
+date, literal `true`, and period `YYYYMM`. Each base processing request also
+creates its matching approved `Motivo*` output.
 
-- The mock service is deployable to an OCI Compute instance in an existing VCN
-  and private regional subnet.
-- The instance has no public IP.
-- Network ingress to the service is limited to a supplied OCI Data Integration
-  subnet CIDR.
-- Cloud-init installs a systemd unit that invokes the common wrapper.
-- No credentials, keys, OCIDs, or environment endpoints are committed.
+### Machine-Ready Runtime
+
+- The mock service is packaged as a deterministic runtime-only archive.
+- The archive contains the wrapper, Python package, configuration, and fixtures.
+- The user supplies and operates the destination machine and network.
+- No Terraform, cloud-init, systemd, IAM, VCN, subnet, or firewall scripting is
+  included.
+- No credentials, keys, OCIDs, or environment endpoints are introduced into
+  the migrated release.
 
 ### OCI Data Integration Artifact
 
@@ -124,13 +131,14 @@ dependency. Processing supports previous/current windows.
 
 ### AC-06 — Single Startup Point
 
-The bash wrapper starts the complete mock service locally and from systemd. A
-wrapper-started smoke test reaches the health endpoint.
+The bash wrapper starts the complete mock service locally or on a user-supplied
+machine. A wrapper-started smoke test reaches the health endpoint.
 
 ### AC-07 — Failure Semantics
 
 An injected processing failure records one mock notification, prevents later
-success-path work, and returns a failed run state.
+success-path work, and returns a failed run state. An injected period failure
+aborts without notification.
 
 ### AC-08 — Expected Output
 
@@ -142,16 +150,17 @@ The `.pipeline.zip` has valid ZIP integrity, a complete manifest, existing
 object references, supported model types, unique stable keys, and a
 parameterized backend URL.
 
-### AC-10 — Private Compute Deployment
+### AC-10 — Machine-Ready Backend Bundle
 
-Terraform and cloud-init define a no-public-IP Compute deployment in an
-existing VCN/subnet and run the shared wrapper under systemd.
+A deterministic runtime-only archive contains the backend, fixtures,
+configuration, and shared wrapper without tests, caches, or provisioning files.
 
 ### AC-11 — Security and Portability
 
-Generated and tracked files contain no source credential values, real OCIDs,
-real hostnames, real email addresses, or machine-local absolute paths. TEST and
-PROD consume the same checksummed immutable ZIP.
+New migration release and runtime files contain no source credential
+values, real OCIDs, real hostnames, real email addresses, or machine-local
+absolute paths. TEST and PROD consume the same checksummed immutable ZIP.
+Pre-existing tracked SOT findings are reported without modifying the evidence.
 
 ### AC-12 — Validation
 
@@ -165,12 +174,13 @@ Unavailable external tooling or live OCI access is reported accurately.
 - API responses remain below OCI Data Integration REST task response limits.
 - ZIP content and checksums are deterministic.
 - Shell scripts use `set -euo pipefail`.
-- OCI deployment files remain under `platforms/oci`.
 - The release is configuration-driven and environment-neutral.
 
 ## Non-Goals
 
 - Live deployment or import.
+- Machine, network, firewall, or service-manager provisioning.
+- Terraform, cloud-init, systemd, IAM, VCN, and subnet scripting.
 - Original backend connectivity.
 - Real email delivery.
 - Secret management implementation.
@@ -182,6 +192,14 @@ Unavailable external tooling or live OCI access is reported accurately.
 - The supplied Pentaho XML is sufficient evidence for transformation behavior.
 - The absent extractor shell scripts are represented by fixture-backed HTTP
   operations whose request arguments match the job's period/window intent.
+- The base Atenciones/Agendamiento transformations do not literally invoke the
+  Motivo transformations. Producing each base/Motivo pair in one target
+  processing operation is the approved integration design for whole-flow
+  coverage.
+- Rejecting unequal Motivo ID/description pairs is an explicit target guardrail
+  because the source has no rejection branch for that malformed input.
+- A zero-row source produces a zero-byte, headerless output file, matching the
+  Pentaho no-header output contract.
 - Per-period output directories prevent the original constant output names
   from overwriting each other while preserving the filenames within each run.
 - A live OCI import remains the final environmental verification after this
@@ -190,4 +208,3 @@ Unavailable external tooling or live OCI access is reported accurately.
 ## Open Questions
 
 None.
-

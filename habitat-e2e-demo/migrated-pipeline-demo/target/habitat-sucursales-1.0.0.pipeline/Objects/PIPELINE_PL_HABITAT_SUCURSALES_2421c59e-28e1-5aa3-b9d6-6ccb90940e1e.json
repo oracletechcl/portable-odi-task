@@ -1,0 +1,1292 @@
+{
+  "description": "Pentaho Sucursales topology with mock REST boundaries and processing-stage notification branches",
+  "identifier": "PL_HABITAT_SUCURSALES",
+  "key": "2421c59e-28e1-5aa3-b9d6-6ccb90940e1e",
+  "metadata": {
+    "aggregator": {
+      "description": "Portable mock-backed Habitat Sucursales migration",
+      "identifier": "HABITAT_SUCURSALES",
+      "key": "e1b6819d-e0ac-5944-9d4c-6e3d606794bd",
+      "name": "HABITAT_SUCURSALES",
+      "type": "USER_PROJECT"
+    },
+    "aggregatorKey": "e1b6819d-e0ac-5944-9d4c-6e3d606794bd",
+    "registryVersion": 1
+  },
+  "modelType": "PIPELINE",
+  "modelVersion": "20220124",
+  "name": "PL_HABITAT_SUCURSALES",
+  "nestedDepth": 0,
+  "nodes": [
+    {
+      "inputLinks": [],
+      "key": "f3c772ed-87a3-546e-95cc-2eaaae059796",
+      "modelType": "FLOW_NODE",
+      "modelVersion": "20211031",
+      "name": "START",
+      "operator": {
+        "identifier": "START",
+        "inputPorts": [],
+        "key": "b1a8ce19-8bb7-5d9a-b797-4c290ca39ff6",
+        "modelType": "START_OPERATOR",
+        "modelVersion": "20220523",
+        "name": "START",
+        "objectVersion": 0,
+        "outputPorts": [],
+        "parentRef": {
+          "parent": "f3c772ed-87a3-546e-95cc-2eaaae059796"
+        },
+        "triggerRule": "ALL_SUCCESS"
+      },
+      "outputLinks": [
+        {
+          "key": "390b9f69-614c-5be5-b704-2002acf5f54b",
+          "modelType": "OUTPUT_LINK",
+          "modelVersion": "20211031",
+          "parentRef": {
+            "parent": "f3c772ed-87a3-546e-95cc-2eaaae059796"
+          },
+          "toLinks": [
+            "70921d50-e33e-542d-9bef-cd25c293f09c"
+          ]
+        }
+      ],
+      "parentRef": {
+        "parent": "2421c59e-28e1-5aa3-b9d6-6ccb90940e1e"
+      },
+      "uiProperties": {
+        "coordinateX": 0,
+        "coordinateY": 100,
+        "isExpanded": false,
+        "isInputPortsExpandable": false,
+        "isOutputPortsExpandable": false
+      }
+    },
+    {
+      "inputLinks": [
+        {
+          "fromLink": "390b9f69-614c-5be5-b704-2002acf5f54b",
+          "key": "70921d50-e33e-542d-9bef-cd25c293f09c",
+          "modelType": "INPUT_LINK",
+          "modelVersion": "20211031",
+          "parentRef": {
+            "parent": "8032bc83-63f7-51f3-bc7d-2a7af60238bf"
+          }
+        }
+      ],
+      "key": "8032bc83-63f7-51f3-bc7d-2a7af60238bf",
+      "modelType": "FLOW_NODE",
+      "modelVersion": "20211031",
+      "name": "TASK_PERIODS",
+      "operator": {
+        "configProviderDelegate": {
+          "bindings": {
+            "7a37f4a6-844a-580a-bcfb-bf727bac12e9": {
+              "simpleValue": "${MOCK_BASE_URL}"
+            },
+            "a6c1f2e0-6966-50da-8b47-c1464e8db13e": {
+              "simpleValue": "${AS_OF_DATE}"
+            }
+          }
+        },
+        "identifier": "TASK_PERIODS",
+        "inputPorts": [],
+        "key": "4a2983b2-5d23-5da3-9e5b-9f3a164acf89",
+        "modelType": "TASK_OPERATOR",
+        "modelVersion": "20210408",
+        "name": "TASK_PERIODS",
+        "objectVersion": 0,
+        "outputPorts": [],
+        "parentRef": {
+          "parent": "8032bc83-63f7-51f3-bc7d-2a7af60238bf"
+        },
+        "retryAttempts": 0,
+        "retryDelay": 0,
+        "retryDelayUnit": "SECONDS",
+        "task": {
+          "identifier": "REST_PERIODS",
+          "inputPorts": [],
+          "key": "fcb04644-b3ae-5afe-b6e2-a2ff77a93b8b",
+          "modelType": "REST_TASK",
+          "modelVersion": "20230421",
+          "name": "REST_PERIODS",
+          "objectStatus": 1,
+          "objectVersion": 1,
+          "outputPorts": [],
+          "parameters": [
+            {
+              "defaultValue": "http://mock-backend.invalid",
+              "isInput": true,
+              "isOutput": false,
+              "key": "7a37f4a6-844a-580a-bcfb-bf727bac12e9",
+              "modelType": "PARAMETER",
+              "modelVersion": "20200129",
+              "name": "MOCK_BASE_URL",
+              "objectStatus": 1,
+              "parentRef": {
+                "parent": "fcb04644-b3ae-5afe-b6e2-a2ff77a93b8b"
+              },
+              "type": "Seeded:/typeSystems/PLATFORM/dataTypes/STRING",
+              "typeName": "VARCHAR"
+            },
+            {
+              "defaultValue": null,
+              "isInput": true,
+              "isOutput": false,
+              "key": "a6c1f2e0-6966-50da-8b47-c1464e8db13e",
+              "modelType": "PARAMETER",
+              "modelVersion": "20200129",
+              "name": "AS_OF_DATE",
+              "objectStatus": 1,
+              "parentRef": {
+                "parent": "fcb04644-b3ae-5afe-b6e2-a2ff77a93b8b"
+              },
+              "type": "Seeded:/typeSystems/PLATFORM/dataTypes/STRING",
+              "typeName": "VARCHAR"
+            }
+          ]
+        },
+        "taskType": "REST_TASK",
+        "triggerRule": "ALL_SUCCESS"
+      },
+      "outputLinks": [
+        {
+          "key": "06b1c81f-fb5e-55d9-a4b5-40cb6a61ca61",
+          "modelType": "OUTPUT_LINK",
+          "modelVersion": "20211031",
+          "parentRef": {
+            "parent": "8032bc83-63f7-51f3-bc7d-2a7af60238bf"
+          },
+          "toLinks": [
+            "ed2f4176-eeed-5c02-8cc9-341bdcf9f218"
+          ]
+        }
+      ],
+      "parentRef": {
+        "parent": "2421c59e-28e1-5aa3-b9d6-6ccb90940e1e"
+      },
+      "uiProperties": {
+        "coordinateX": 200.0,
+        "coordinateY": 100,
+        "isExpanded": false,
+        "isInputPortsExpandable": false,
+        "isOutputPortsExpandable": false
+      }
+    },
+    {
+      "inputLinks": [
+        {
+          "fromLink": "06b1c81f-fb5e-55d9-a4b5-40cb6a61ca61",
+          "key": "ed2f4176-eeed-5c02-8cc9-341bdcf9f218",
+          "modelType": "INPUT_LINK",
+          "modelVersion": "20211031",
+          "parentRef": {
+            "parent": "019d691f-bdf3-5b29-b354-26f714c3e00d"
+          }
+        }
+      ],
+      "key": "019d691f-bdf3-5b29-b354-26f714c3e00d",
+      "modelType": "FLOW_NODE",
+      "modelVersion": "20211031",
+      "name": "TASK_ATENCIONES_PREVIOUS",
+      "operator": {
+        "configProviderDelegate": {
+          "bindings": {
+            "b441af16-bdf6-537f-ab54-5ed1ae95d26e": {
+              "simpleValue": "${AS_OF_DATE}"
+            },
+            "f0ca06da-9036-50a7-b619-b93e17d66ed8": {
+              "simpleValue": "${MOCK_BASE_URL}"
+            }
+          }
+        },
+        "identifier": "TASK_ATENCIONES_PREVIOUS",
+        "inputPorts": [],
+        "key": "71bc84c9-fca2-50ca-9edb-0923b78b5da4",
+        "modelType": "TASK_OPERATOR",
+        "modelVersion": "20210408",
+        "name": "TASK_ATENCIONES_PREVIOUS",
+        "objectVersion": 0,
+        "outputPorts": [],
+        "parentRef": {
+          "parent": "019d691f-bdf3-5b29-b354-26f714c3e00d"
+        },
+        "retryAttempts": 0,
+        "retryDelay": 0,
+        "retryDelayUnit": "SECONDS",
+        "task": {
+          "identifier": "REST_ATENCIONES_PREVIOUS",
+          "inputPorts": [],
+          "key": "631ffaed-0809-5d48-8eed-f85c772d8774",
+          "modelType": "REST_TASK",
+          "modelVersion": "20230421",
+          "name": "REST_ATENCIONES_PREVIOUS",
+          "objectStatus": 1,
+          "objectVersion": 1,
+          "outputPorts": [],
+          "parameters": [
+            {
+              "defaultValue": "http://mock-backend.invalid",
+              "isInput": true,
+              "isOutput": false,
+              "key": "f0ca06da-9036-50a7-b619-b93e17d66ed8",
+              "modelType": "PARAMETER",
+              "modelVersion": "20200129",
+              "name": "MOCK_BASE_URL",
+              "objectStatus": 1,
+              "parentRef": {
+                "parent": "631ffaed-0809-5d48-8eed-f85c772d8774"
+              },
+              "type": "Seeded:/typeSystems/PLATFORM/dataTypes/STRING",
+              "typeName": "VARCHAR"
+            },
+            {
+              "defaultValue": null,
+              "isInput": true,
+              "isOutput": false,
+              "key": "b441af16-bdf6-537f-ab54-5ed1ae95d26e",
+              "modelType": "PARAMETER",
+              "modelVersion": "20200129",
+              "name": "AS_OF_DATE",
+              "objectStatus": 1,
+              "parentRef": {
+                "parent": "631ffaed-0809-5d48-8eed-f85c772d8774"
+              },
+              "type": "Seeded:/typeSystems/PLATFORM/dataTypes/STRING",
+              "typeName": "VARCHAR"
+            }
+          ]
+        },
+        "taskType": "REST_TASK",
+        "triggerRule": "ALL_SUCCESS"
+      },
+      "outputLinks": [
+        {
+          "key": "2ac10e53-8748-5f30-b3e4-b65a8e86381d",
+          "modelType": "OUTPUT_LINK",
+          "modelVersion": "20211031",
+          "parentRef": {
+            "parent": "019d691f-bdf3-5b29-b354-26f714c3e00d"
+          },
+          "toLinks": [
+            "8deaf2ac-064e-501c-a8f1-9a933e7d2375",
+            "c9254d19-7961-595e-a790-e245108c5866"
+          ]
+        }
+      ],
+      "parentRef": {
+        "parent": "2421c59e-28e1-5aa3-b9d6-6ccb90940e1e"
+      },
+      "uiProperties": {
+        "coordinateX": 400.0,
+        "coordinateY": 100,
+        "isExpanded": false,
+        "isInputPortsExpandable": false,
+        "isOutputPortsExpandable": false
+      }
+    },
+    {
+      "inputLinks": [
+        {
+          "fromLink": "2ac10e53-8748-5f30-b3e4-b65a8e86381d",
+          "key": "8deaf2ac-064e-501c-a8f1-9a933e7d2375",
+          "modelType": "INPUT_LINK",
+          "modelVersion": "20211031",
+          "parentRef": {
+            "parent": "936e8595-7409-5a70-9e99-c5eb6bca7ea3"
+          }
+        }
+      ],
+      "key": "936e8595-7409-5a70-9e99-c5eb6bca7ea3",
+      "modelType": "FLOW_NODE",
+      "modelVersion": "20211031",
+      "name": "TASK_ATENCIONES_CURRENT",
+      "operator": {
+        "configProviderDelegate": {
+          "bindings": {
+            "a6732eb9-1ced-56c5-835c-e2ef4f17cf97": {
+              "simpleValue": "${MOCK_BASE_URL}"
+            },
+            "e08c7099-5219-509e-bd27-ce525005f04f": {
+              "simpleValue": "${AS_OF_DATE}"
+            }
+          }
+        },
+        "identifier": "TASK_ATENCIONES_CURRENT",
+        "inputPorts": [],
+        "key": "759b10af-2aad-58ed-93be-ef73c8dae48f",
+        "modelType": "TASK_OPERATOR",
+        "modelVersion": "20210408",
+        "name": "TASK_ATENCIONES_CURRENT",
+        "objectVersion": 0,
+        "outputPorts": [],
+        "parentRef": {
+          "parent": "936e8595-7409-5a70-9e99-c5eb6bca7ea3"
+        },
+        "retryAttempts": 0,
+        "retryDelay": 0,
+        "retryDelayUnit": "SECONDS",
+        "task": {
+          "identifier": "REST_ATENCIONES_CURRENT",
+          "inputPorts": [],
+          "key": "d4235f94-6716-5f4b-82e7-af4dc6e228d3",
+          "modelType": "REST_TASK",
+          "modelVersion": "20230421",
+          "name": "REST_ATENCIONES_CURRENT",
+          "objectStatus": 1,
+          "objectVersion": 1,
+          "outputPorts": [],
+          "parameters": [
+            {
+              "defaultValue": "http://mock-backend.invalid",
+              "isInput": true,
+              "isOutput": false,
+              "key": "a6732eb9-1ced-56c5-835c-e2ef4f17cf97",
+              "modelType": "PARAMETER",
+              "modelVersion": "20200129",
+              "name": "MOCK_BASE_URL",
+              "objectStatus": 1,
+              "parentRef": {
+                "parent": "d4235f94-6716-5f4b-82e7-af4dc6e228d3"
+              },
+              "type": "Seeded:/typeSystems/PLATFORM/dataTypes/STRING",
+              "typeName": "VARCHAR"
+            },
+            {
+              "defaultValue": null,
+              "isInput": true,
+              "isOutput": false,
+              "key": "e08c7099-5219-509e-bd27-ce525005f04f",
+              "modelType": "PARAMETER",
+              "modelVersion": "20200129",
+              "name": "AS_OF_DATE",
+              "objectStatus": 1,
+              "parentRef": {
+                "parent": "d4235f94-6716-5f4b-82e7-af4dc6e228d3"
+              },
+              "type": "Seeded:/typeSystems/PLATFORM/dataTypes/STRING",
+              "typeName": "VARCHAR"
+            }
+          ]
+        },
+        "taskType": "REST_TASK",
+        "triggerRule": "ALL_SUCCESS"
+      },
+      "outputLinks": [
+        {
+          "key": "f947e6b9-182e-5332-bf8b-1ede5fed3ed3",
+          "modelType": "OUTPUT_LINK",
+          "modelVersion": "20211031",
+          "parentRef": {
+            "parent": "936e8595-7409-5a70-9e99-c5eb6bca7ea3"
+          },
+          "toLinks": [
+            "661b0839-9588-5cd8-950f-14dcc0a63fcf",
+            "01b345f2-59a0-5558-a597-ff606b7076c3"
+          ]
+        }
+      ],
+      "parentRef": {
+        "parent": "2421c59e-28e1-5aa3-b9d6-6ccb90940e1e"
+      },
+      "uiProperties": {
+        "coordinateX": 600.0,
+        "coordinateY": 100,
+        "isExpanded": false,
+        "isInputPortsExpandable": false,
+        "isOutputPortsExpandable": false
+      }
+    },
+    {
+      "inputLinks": [
+        {
+          "fromLink": "f947e6b9-182e-5332-bf8b-1ede5fed3ed3",
+          "key": "661b0839-9588-5cd8-950f-14dcc0a63fcf",
+          "modelType": "INPUT_LINK",
+          "modelVersion": "20211031",
+          "parentRef": {
+            "parent": "63a42c74-248a-5fc8-b1a6-122b13f69c61"
+          }
+        }
+      ],
+      "key": "63a42c74-248a-5fc8-b1a6-122b13f69c61",
+      "modelType": "FLOW_NODE",
+      "modelVersion": "20211031",
+      "name": "TASK_AGENDAMIENTOS_PREVIOUS",
+      "operator": {
+        "configProviderDelegate": {
+          "bindings": {
+            "522b16b8-53bd-5fec-a3da-072379a74c2c": {
+              "simpleValue": "${MOCK_BASE_URL}"
+            },
+            "c4cded5d-4a52-5b34-9c4d-f32c226b568f": {
+              "simpleValue": "${AS_OF_DATE}"
+            }
+          }
+        },
+        "identifier": "TASK_AGENDAMIENTOS_PREVIOUS",
+        "inputPorts": [],
+        "key": "5444a7d5-f5a2-510c-bb96-f1fea11e9d70",
+        "modelType": "TASK_OPERATOR",
+        "modelVersion": "20210408",
+        "name": "TASK_AGENDAMIENTOS_PREVIOUS",
+        "objectVersion": 0,
+        "outputPorts": [],
+        "parentRef": {
+          "parent": "63a42c74-248a-5fc8-b1a6-122b13f69c61"
+        },
+        "retryAttempts": 0,
+        "retryDelay": 0,
+        "retryDelayUnit": "SECONDS",
+        "task": {
+          "identifier": "REST_AGENDAMIENTOS_PREVIOUS",
+          "inputPorts": [],
+          "key": "d185baee-f8cf-524b-8c51-699bb1108fc2",
+          "modelType": "REST_TASK",
+          "modelVersion": "20230421",
+          "name": "REST_AGENDAMIENTOS_PREVIOUS",
+          "objectStatus": 1,
+          "objectVersion": 1,
+          "outputPorts": [],
+          "parameters": [
+            {
+              "defaultValue": "http://mock-backend.invalid",
+              "isInput": true,
+              "isOutput": false,
+              "key": "522b16b8-53bd-5fec-a3da-072379a74c2c",
+              "modelType": "PARAMETER",
+              "modelVersion": "20200129",
+              "name": "MOCK_BASE_URL",
+              "objectStatus": 1,
+              "parentRef": {
+                "parent": "d185baee-f8cf-524b-8c51-699bb1108fc2"
+              },
+              "type": "Seeded:/typeSystems/PLATFORM/dataTypes/STRING",
+              "typeName": "VARCHAR"
+            },
+            {
+              "defaultValue": null,
+              "isInput": true,
+              "isOutput": false,
+              "key": "c4cded5d-4a52-5b34-9c4d-f32c226b568f",
+              "modelType": "PARAMETER",
+              "modelVersion": "20200129",
+              "name": "AS_OF_DATE",
+              "objectStatus": 1,
+              "parentRef": {
+                "parent": "d185baee-f8cf-524b-8c51-699bb1108fc2"
+              },
+              "type": "Seeded:/typeSystems/PLATFORM/dataTypes/STRING",
+              "typeName": "VARCHAR"
+            }
+          ]
+        },
+        "taskType": "REST_TASK",
+        "triggerRule": "ALL_SUCCESS"
+      },
+      "outputLinks": [
+        {
+          "key": "d936dc40-3d06-531b-9985-1c2a8a91572a",
+          "modelType": "OUTPUT_LINK",
+          "modelVersion": "20211031",
+          "parentRef": {
+            "parent": "63a42c74-248a-5fc8-b1a6-122b13f69c61"
+          },
+          "toLinks": [
+            "f2231354-d5dc-5244-b3e9-d17c6446797d",
+            "b3609f4a-4cb6-55d1-8054-02aef18ab70c"
+          ]
+        }
+      ],
+      "parentRef": {
+        "parent": "2421c59e-28e1-5aa3-b9d6-6ccb90940e1e"
+      },
+      "uiProperties": {
+        "coordinateX": 800.0,
+        "coordinateY": 100,
+        "isExpanded": false,
+        "isInputPortsExpandable": false,
+        "isOutputPortsExpandable": false
+      }
+    },
+    {
+      "inputLinks": [
+        {
+          "fromLink": "d936dc40-3d06-531b-9985-1c2a8a91572a",
+          "key": "f2231354-d5dc-5244-b3e9-d17c6446797d",
+          "modelType": "INPUT_LINK",
+          "modelVersion": "20211031",
+          "parentRef": {
+            "parent": "165b980d-5f5c-58b9-8a85-c127a4eaf3e4"
+          }
+        }
+      ],
+      "key": "165b980d-5f5c-58b9-8a85-c127a4eaf3e4",
+      "modelType": "FLOW_NODE",
+      "modelVersion": "20211031",
+      "name": "TASK_AGENDAMIENTOS_CURRENT",
+      "operator": {
+        "configProviderDelegate": {
+          "bindings": {
+            "0e59361c-2194-5d4d-a9f3-6b86d1478e06": {
+              "simpleValue": "${AS_OF_DATE}"
+            },
+            "19723b26-d836-5e3f-92d7-399edf2efb47": {
+              "simpleValue": "${MOCK_BASE_URL}"
+            }
+          }
+        },
+        "identifier": "TASK_AGENDAMIENTOS_CURRENT",
+        "inputPorts": [],
+        "key": "d8eb320a-a236-5113-b2d1-d7f9541defc2",
+        "modelType": "TASK_OPERATOR",
+        "modelVersion": "20210408",
+        "name": "TASK_AGENDAMIENTOS_CURRENT",
+        "objectVersion": 0,
+        "outputPorts": [],
+        "parentRef": {
+          "parent": "165b980d-5f5c-58b9-8a85-c127a4eaf3e4"
+        },
+        "retryAttempts": 0,
+        "retryDelay": 0,
+        "retryDelayUnit": "SECONDS",
+        "task": {
+          "identifier": "REST_AGENDAMIENTOS_CURRENT",
+          "inputPorts": [],
+          "key": "ee7bd597-3447-537b-a92a-d5b66228e5cf",
+          "modelType": "REST_TASK",
+          "modelVersion": "20230421",
+          "name": "REST_AGENDAMIENTOS_CURRENT",
+          "objectStatus": 1,
+          "objectVersion": 1,
+          "outputPorts": [],
+          "parameters": [
+            {
+              "defaultValue": "http://mock-backend.invalid",
+              "isInput": true,
+              "isOutput": false,
+              "key": "19723b26-d836-5e3f-92d7-399edf2efb47",
+              "modelType": "PARAMETER",
+              "modelVersion": "20200129",
+              "name": "MOCK_BASE_URL",
+              "objectStatus": 1,
+              "parentRef": {
+                "parent": "ee7bd597-3447-537b-a92a-d5b66228e5cf"
+              },
+              "type": "Seeded:/typeSystems/PLATFORM/dataTypes/STRING",
+              "typeName": "VARCHAR"
+            },
+            {
+              "defaultValue": null,
+              "isInput": true,
+              "isOutput": false,
+              "key": "0e59361c-2194-5d4d-a9f3-6b86d1478e06",
+              "modelType": "PARAMETER",
+              "modelVersion": "20200129",
+              "name": "AS_OF_DATE",
+              "objectStatus": 1,
+              "parentRef": {
+                "parent": "ee7bd597-3447-537b-a92a-d5b66228e5cf"
+              },
+              "type": "Seeded:/typeSystems/PLATFORM/dataTypes/STRING",
+              "typeName": "VARCHAR"
+            }
+          ]
+        },
+        "taskType": "REST_TASK",
+        "triggerRule": "ALL_SUCCESS"
+      },
+      "outputLinks": [
+        {
+          "key": "dce600e1-0274-5464-b8ee-8036ba97f219",
+          "modelType": "OUTPUT_LINK",
+          "modelVersion": "20211031",
+          "parentRef": {
+            "parent": "165b980d-5f5c-58b9-8a85-c127a4eaf3e4"
+          },
+          "toLinks": [
+            "df2c1b1c-cf63-5fd0-9c67-5ae3a1fa7e9b",
+            "daa69295-27e8-5e96-a0ca-ee71f5edc938"
+          ]
+        }
+      ],
+      "parentRef": {
+        "parent": "2421c59e-28e1-5aa3-b9d6-6ccb90940e1e"
+      },
+      "uiProperties": {
+        "coordinateX": 1000.0,
+        "coordinateY": 100,
+        "isExpanded": false,
+        "isInputPortsExpandable": false,
+        "isOutputPortsExpandable": false
+      }
+    },
+    {
+      "inputLinks": [
+        {
+          "fromLink": "dce600e1-0274-5464-b8ee-8036ba97f219",
+          "key": "df2c1b1c-cf63-5fd0-9c67-5ae3a1fa7e9b",
+          "modelType": "INPUT_LINK",
+          "modelVersion": "20211031",
+          "parentRef": {
+            "parent": "053a62a9-fc48-5ec0-9fbe-8bc194287de6"
+          }
+        }
+      ],
+      "key": "053a62a9-fc48-5ec0-9fbe-8bc194287de6",
+      "modelType": "FLOW_NODE",
+      "modelVersion": "20211031",
+      "name": "TASK_VALIDATE",
+      "operator": {
+        "configProviderDelegate": {
+          "bindings": {
+            "6054d765-20e8-5f8d-8487-e7cb19aa9172": {
+              "simpleValue": "${MOCK_BASE_URL}"
+            },
+            "ea80ddce-9e12-5103-b223-50bcebc0ffda": {
+              "simpleValue": "${AS_OF_DATE}"
+            }
+          }
+        },
+        "identifier": "TASK_VALIDATE",
+        "inputPorts": [],
+        "key": "790d1713-8a1e-55ba-aa2f-654dbf5f0ebe",
+        "modelType": "TASK_OPERATOR",
+        "modelVersion": "20210408",
+        "name": "TASK_VALIDATE",
+        "objectVersion": 0,
+        "outputPorts": [],
+        "parentRef": {
+          "parent": "053a62a9-fc48-5ec0-9fbe-8bc194287de6"
+        },
+        "retryAttempts": 0,
+        "retryDelay": 0,
+        "retryDelayUnit": "SECONDS",
+        "task": {
+          "identifier": "REST_VALIDATE",
+          "inputPorts": [],
+          "key": "f99e3f89-3240-50fb-9be6-211315d11c4d",
+          "modelType": "REST_TASK",
+          "modelVersion": "20230421",
+          "name": "REST_VALIDATE",
+          "objectStatus": 1,
+          "objectVersion": 1,
+          "outputPorts": [],
+          "parameters": [
+            {
+              "defaultValue": "http://mock-backend.invalid",
+              "isInput": true,
+              "isOutput": false,
+              "key": "6054d765-20e8-5f8d-8487-e7cb19aa9172",
+              "modelType": "PARAMETER",
+              "modelVersion": "20200129",
+              "name": "MOCK_BASE_URL",
+              "objectStatus": 1,
+              "parentRef": {
+                "parent": "f99e3f89-3240-50fb-9be6-211315d11c4d"
+              },
+              "type": "Seeded:/typeSystems/PLATFORM/dataTypes/STRING",
+              "typeName": "VARCHAR"
+            },
+            {
+              "defaultValue": null,
+              "isInput": true,
+              "isOutput": false,
+              "key": "ea80ddce-9e12-5103-b223-50bcebc0ffda",
+              "modelType": "PARAMETER",
+              "modelVersion": "20200129",
+              "name": "AS_OF_DATE",
+              "objectStatus": 1,
+              "parentRef": {
+                "parent": "f99e3f89-3240-50fb-9be6-211315d11c4d"
+              },
+              "type": "Seeded:/typeSystems/PLATFORM/dataTypes/STRING",
+              "typeName": "VARCHAR"
+            }
+          ]
+        },
+        "taskType": "REST_TASK",
+        "triggerRule": "ALL_SUCCESS"
+      },
+      "outputLinks": [
+        {
+          "key": "3fc4c31f-fefd-5ef3-b831-526d80d212d2",
+          "modelType": "OUTPUT_LINK",
+          "modelVersion": "20211031",
+          "parentRef": {
+            "parent": "053a62a9-fc48-5ec0-9fbe-8bc194287de6"
+          },
+          "toLinks": [
+            "2148f04d-ce62-5103-8333-5631892c4d21"
+          ]
+        }
+      ],
+      "parentRef": {
+        "parent": "2421c59e-28e1-5aa3-b9d6-6ccb90940e1e"
+      },
+      "uiProperties": {
+        "coordinateX": 1200.0,
+        "coordinateY": 100,
+        "isExpanded": false,
+        "isInputPortsExpandable": false,
+        "isOutputPortsExpandable": false
+      }
+    },
+    {
+      "inputLinks": [
+        {
+          "fromLink": "2ac10e53-8748-5f30-b3e4-b65a8e86381d",
+          "key": "c9254d19-7961-595e-a790-e245108c5866",
+          "modelType": "INPUT_LINK",
+          "modelVersion": "20211031",
+          "parentRef": {
+            "parent": "990ca98f-f1dc-5605-a355-d56e501cc691"
+          }
+        }
+      ],
+      "key": "990ca98f-f1dc-5605-a355-d56e501cc691",
+      "modelType": "FLOW_NODE",
+      "modelVersion": "20211031",
+      "name": "TASK_NOTIFY_ATENCIONES_PREVIOUS",
+      "operator": {
+        "configProviderDelegate": {
+          "bindings": {
+            "54ca38f3-8233-56c2-ab03-21c4fd058829": {
+              "simpleValue": "${MOCK_BASE_URL}"
+            },
+            "6749d0d6-05c1-5af5-a810-b86324a24ec7": {
+              "simpleValue": "TASK_ATENCIONES_PREVIOUS"
+            }
+          }
+        },
+        "identifier": "TASK_NOTIFY_ATENCIONES_PREVIOUS",
+        "inputPorts": [],
+        "key": "7f71207c-901a-5863-a925-1bee1a78e563",
+        "modelType": "TASK_OPERATOR",
+        "modelVersion": "20210408",
+        "name": "TASK_NOTIFY_ATENCIONES_PREVIOUS",
+        "objectVersion": 0,
+        "outputPorts": [],
+        "parentRef": {
+          "parent": "990ca98f-f1dc-5605-a355-d56e501cc691"
+        },
+        "retryAttempts": 0,
+        "retryDelay": 0,
+        "retryDelayUnit": "SECONDS",
+        "task": {
+          "identifier": "REST_NOTIFY_ERROR",
+          "inputPorts": [],
+          "key": "f12195de-fa50-54a9-8763-ec6325c35c38",
+          "modelType": "REST_TASK",
+          "modelVersion": "20230421",
+          "name": "REST_NOTIFY_ERROR",
+          "objectStatus": 1,
+          "objectVersion": 1,
+          "outputPorts": [],
+          "parameters": [
+            {
+              "defaultValue": "http://mock-backend.invalid",
+              "isInput": true,
+              "isOutput": false,
+              "key": "54ca38f3-8233-56c2-ab03-21c4fd058829",
+              "modelType": "PARAMETER",
+              "modelVersion": "20200129",
+              "name": "MOCK_BASE_URL",
+              "objectStatus": 1,
+              "parentRef": {
+                "parent": "f12195de-fa50-54a9-8763-ec6325c35c38"
+              },
+              "type": "Seeded:/typeSystems/PLATFORM/dataTypes/STRING",
+              "typeName": "VARCHAR"
+            },
+            {
+              "defaultValue": null,
+              "isInput": true,
+              "isOutput": false,
+              "key": "6749d0d6-05c1-5af5-a810-b86324a24ec7",
+              "modelType": "PARAMETER",
+              "modelVersion": "20200129",
+              "name": "FAILED_STEP",
+              "objectStatus": 1,
+              "parentRef": {
+                "parent": "f12195de-fa50-54a9-8763-ec6325c35c38"
+              },
+              "type": "Seeded:/typeSystems/PLATFORM/dataTypes/STRING",
+              "typeName": "VARCHAR"
+            }
+          ]
+        },
+        "taskType": "REST_TASK",
+        "triggerRule": "ALL_FAILED"
+      },
+      "outputLinks": [
+        {
+          "key": "da351f91-3477-5d7f-bbc6-adf8565d9cf7",
+          "modelType": "OUTPUT_LINK",
+          "modelVersion": "20211031",
+          "parentRef": {
+            "parent": "990ca98f-f1dc-5605-a355-d56e501cc691"
+          },
+          "toLinks": [
+            "1d2d1e68-6161-52ad-8f49-ebb0c72c7d7c"
+          ]
+        }
+      ],
+      "parentRef": {
+        "parent": "2421c59e-28e1-5aa3-b9d6-6ccb90940e1e"
+      },
+      "uiProperties": {
+        "coordinateX": 400.0,
+        "coordinateY": 300,
+        "isExpanded": false,
+        "isInputPortsExpandable": false,
+        "isOutputPortsExpandable": false
+      }
+    },
+    {
+      "inputLinks": [
+        {
+          "fromLink": "f947e6b9-182e-5332-bf8b-1ede5fed3ed3",
+          "key": "01b345f2-59a0-5558-a597-ff606b7076c3",
+          "modelType": "INPUT_LINK",
+          "modelVersion": "20211031",
+          "parentRef": {
+            "parent": "710b74e2-3bb5-52cf-aa66-c4ffacb06848"
+          }
+        }
+      ],
+      "key": "710b74e2-3bb5-52cf-aa66-c4ffacb06848",
+      "modelType": "FLOW_NODE",
+      "modelVersion": "20211031",
+      "name": "TASK_NOTIFY_ATENCIONES_CURRENT",
+      "operator": {
+        "configProviderDelegate": {
+          "bindings": {
+            "54ca38f3-8233-56c2-ab03-21c4fd058829": {
+              "simpleValue": "${MOCK_BASE_URL}"
+            },
+            "6749d0d6-05c1-5af5-a810-b86324a24ec7": {
+              "simpleValue": "TASK_ATENCIONES_CURRENT"
+            }
+          }
+        },
+        "identifier": "TASK_NOTIFY_ATENCIONES_CURRENT",
+        "inputPorts": [],
+        "key": "810254ba-652e-5be0-9404-807f5f63ff76",
+        "modelType": "TASK_OPERATOR",
+        "modelVersion": "20210408",
+        "name": "TASK_NOTIFY_ATENCIONES_CURRENT",
+        "objectVersion": 0,
+        "outputPorts": [],
+        "parentRef": {
+          "parent": "710b74e2-3bb5-52cf-aa66-c4ffacb06848"
+        },
+        "retryAttempts": 0,
+        "retryDelay": 0,
+        "retryDelayUnit": "SECONDS",
+        "task": {
+          "identifier": "REST_NOTIFY_ERROR",
+          "inputPorts": [],
+          "key": "f12195de-fa50-54a9-8763-ec6325c35c38",
+          "modelType": "REST_TASK",
+          "modelVersion": "20230421",
+          "name": "REST_NOTIFY_ERROR",
+          "objectStatus": 1,
+          "objectVersion": 1,
+          "outputPorts": [],
+          "parameters": [
+            {
+              "defaultValue": "http://mock-backend.invalid",
+              "isInput": true,
+              "isOutput": false,
+              "key": "54ca38f3-8233-56c2-ab03-21c4fd058829",
+              "modelType": "PARAMETER",
+              "modelVersion": "20200129",
+              "name": "MOCK_BASE_URL",
+              "objectStatus": 1,
+              "parentRef": {
+                "parent": "f12195de-fa50-54a9-8763-ec6325c35c38"
+              },
+              "type": "Seeded:/typeSystems/PLATFORM/dataTypes/STRING",
+              "typeName": "VARCHAR"
+            },
+            {
+              "defaultValue": null,
+              "isInput": true,
+              "isOutput": false,
+              "key": "6749d0d6-05c1-5af5-a810-b86324a24ec7",
+              "modelType": "PARAMETER",
+              "modelVersion": "20200129",
+              "name": "FAILED_STEP",
+              "objectStatus": 1,
+              "parentRef": {
+                "parent": "f12195de-fa50-54a9-8763-ec6325c35c38"
+              },
+              "type": "Seeded:/typeSystems/PLATFORM/dataTypes/STRING",
+              "typeName": "VARCHAR"
+            }
+          ]
+        },
+        "taskType": "REST_TASK",
+        "triggerRule": "ALL_FAILED"
+      },
+      "outputLinks": [
+        {
+          "key": "9c9a8fd8-a4d4-5a8e-88e8-9e71034cf8c8",
+          "modelType": "OUTPUT_LINK",
+          "modelVersion": "20211031",
+          "parentRef": {
+            "parent": "710b74e2-3bb5-52cf-aa66-c4ffacb06848"
+          },
+          "toLinks": [
+            "da7cdb17-138a-57ea-a071-aa6f731ad729"
+          ]
+        }
+      ],
+      "parentRef": {
+        "parent": "2421c59e-28e1-5aa3-b9d6-6ccb90940e1e"
+      },
+      "uiProperties": {
+        "coordinateX": 600.0,
+        "coordinateY": 300,
+        "isExpanded": false,
+        "isInputPortsExpandable": false,
+        "isOutputPortsExpandable": false
+      }
+    },
+    {
+      "inputLinks": [
+        {
+          "fromLink": "d936dc40-3d06-531b-9985-1c2a8a91572a",
+          "key": "b3609f4a-4cb6-55d1-8054-02aef18ab70c",
+          "modelType": "INPUT_LINK",
+          "modelVersion": "20211031",
+          "parentRef": {
+            "parent": "653f6fdf-2051-5033-afa6-8340f45eed85"
+          }
+        }
+      ],
+      "key": "653f6fdf-2051-5033-afa6-8340f45eed85",
+      "modelType": "FLOW_NODE",
+      "modelVersion": "20211031",
+      "name": "TASK_NOTIFY_AGENDAMIENTOS_PREVIOUS",
+      "operator": {
+        "configProviderDelegate": {
+          "bindings": {
+            "54ca38f3-8233-56c2-ab03-21c4fd058829": {
+              "simpleValue": "${MOCK_BASE_URL}"
+            },
+            "6749d0d6-05c1-5af5-a810-b86324a24ec7": {
+              "simpleValue": "TASK_AGENDAMIENTOS_PREVIOUS"
+            }
+          }
+        },
+        "identifier": "TASK_NOTIFY_AGENDAMIENTOS_PREVIOUS",
+        "inputPorts": [],
+        "key": "436cff1c-51bc-5a81-a99d-1986e06a9d3f",
+        "modelType": "TASK_OPERATOR",
+        "modelVersion": "20210408",
+        "name": "TASK_NOTIFY_AGENDAMIENTOS_PREVIOUS",
+        "objectVersion": 0,
+        "outputPorts": [],
+        "parentRef": {
+          "parent": "653f6fdf-2051-5033-afa6-8340f45eed85"
+        },
+        "retryAttempts": 0,
+        "retryDelay": 0,
+        "retryDelayUnit": "SECONDS",
+        "task": {
+          "identifier": "REST_NOTIFY_ERROR",
+          "inputPorts": [],
+          "key": "f12195de-fa50-54a9-8763-ec6325c35c38",
+          "modelType": "REST_TASK",
+          "modelVersion": "20230421",
+          "name": "REST_NOTIFY_ERROR",
+          "objectStatus": 1,
+          "objectVersion": 1,
+          "outputPorts": [],
+          "parameters": [
+            {
+              "defaultValue": "http://mock-backend.invalid",
+              "isInput": true,
+              "isOutput": false,
+              "key": "54ca38f3-8233-56c2-ab03-21c4fd058829",
+              "modelType": "PARAMETER",
+              "modelVersion": "20200129",
+              "name": "MOCK_BASE_URL",
+              "objectStatus": 1,
+              "parentRef": {
+                "parent": "f12195de-fa50-54a9-8763-ec6325c35c38"
+              },
+              "type": "Seeded:/typeSystems/PLATFORM/dataTypes/STRING",
+              "typeName": "VARCHAR"
+            },
+            {
+              "defaultValue": null,
+              "isInput": true,
+              "isOutput": false,
+              "key": "6749d0d6-05c1-5af5-a810-b86324a24ec7",
+              "modelType": "PARAMETER",
+              "modelVersion": "20200129",
+              "name": "FAILED_STEP",
+              "objectStatus": 1,
+              "parentRef": {
+                "parent": "f12195de-fa50-54a9-8763-ec6325c35c38"
+              },
+              "type": "Seeded:/typeSystems/PLATFORM/dataTypes/STRING",
+              "typeName": "VARCHAR"
+            }
+          ]
+        },
+        "taskType": "REST_TASK",
+        "triggerRule": "ALL_FAILED"
+      },
+      "outputLinks": [
+        {
+          "key": "4c8ee23e-31f0-5d09-bb0f-7fab1b7c7c8e",
+          "modelType": "OUTPUT_LINK",
+          "modelVersion": "20211031",
+          "parentRef": {
+            "parent": "653f6fdf-2051-5033-afa6-8340f45eed85"
+          },
+          "toLinks": [
+            "a4a30849-a452-582a-aed9-5ca9d8a703a2"
+          ]
+        }
+      ],
+      "parentRef": {
+        "parent": "2421c59e-28e1-5aa3-b9d6-6ccb90940e1e"
+      },
+      "uiProperties": {
+        "coordinateX": 800.0,
+        "coordinateY": 300,
+        "isExpanded": false,
+        "isInputPortsExpandable": false,
+        "isOutputPortsExpandable": false
+      }
+    },
+    {
+      "inputLinks": [
+        {
+          "fromLink": "dce600e1-0274-5464-b8ee-8036ba97f219",
+          "key": "daa69295-27e8-5e96-a0ca-ee71f5edc938",
+          "modelType": "INPUT_LINK",
+          "modelVersion": "20211031",
+          "parentRef": {
+            "parent": "6e0e2b77-6162-58e2-bd18-23ca5cf309ee"
+          }
+        }
+      ],
+      "key": "6e0e2b77-6162-58e2-bd18-23ca5cf309ee",
+      "modelType": "FLOW_NODE",
+      "modelVersion": "20211031",
+      "name": "TASK_NOTIFY_AGENDAMIENTOS_CURRENT",
+      "operator": {
+        "configProviderDelegate": {
+          "bindings": {
+            "54ca38f3-8233-56c2-ab03-21c4fd058829": {
+              "simpleValue": "${MOCK_BASE_URL}"
+            },
+            "6749d0d6-05c1-5af5-a810-b86324a24ec7": {
+              "simpleValue": "TASK_AGENDAMIENTOS_CURRENT"
+            }
+          }
+        },
+        "identifier": "TASK_NOTIFY_AGENDAMIENTOS_CURRENT",
+        "inputPorts": [],
+        "key": "3c0a8a99-19a7-5d69-ab0a-11495db14a88",
+        "modelType": "TASK_OPERATOR",
+        "modelVersion": "20210408",
+        "name": "TASK_NOTIFY_AGENDAMIENTOS_CURRENT",
+        "objectVersion": 0,
+        "outputPorts": [],
+        "parentRef": {
+          "parent": "6e0e2b77-6162-58e2-bd18-23ca5cf309ee"
+        },
+        "retryAttempts": 0,
+        "retryDelay": 0,
+        "retryDelayUnit": "SECONDS",
+        "task": {
+          "identifier": "REST_NOTIFY_ERROR",
+          "inputPorts": [],
+          "key": "f12195de-fa50-54a9-8763-ec6325c35c38",
+          "modelType": "REST_TASK",
+          "modelVersion": "20230421",
+          "name": "REST_NOTIFY_ERROR",
+          "objectStatus": 1,
+          "objectVersion": 1,
+          "outputPorts": [],
+          "parameters": [
+            {
+              "defaultValue": "http://mock-backend.invalid",
+              "isInput": true,
+              "isOutput": false,
+              "key": "54ca38f3-8233-56c2-ab03-21c4fd058829",
+              "modelType": "PARAMETER",
+              "modelVersion": "20200129",
+              "name": "MOCK_BASE_URL",
+              "objectStatus": 1,
+              "parentRef": {
+                "parent": "f12195de-fa50-54a9-8763-ec6325c35c38"
+              },
+              "type": "Seeded:/typeSystems/PLATFORM/dataTypes/STRING",
+              "typeName": "VARCHAR"
+            },
+            {
+              "defaultValue": null,
+              "isInput": true,
+              "isOutput": false,
+              "key": "6749d0d6-05c1-5af5-a810-b86324a24ec7",
+              "modelType": "PARAMETER",
+              "modelVersion": "20200129",
+              "name": "FAILED_STEP",
+              "objectStatus": 1,
+              "parentRef": {
+                "parent": "f12195de-fa50-54a9-8763-ec6325c35c38"
+              },
+              "type": "Seeded:/typeSystems/PLATFORM/dataTypes/STRING",
+              "typeName": "VARCHAR"
+            }
+          ]
+        },
+        "taskType": "REST_TASK",
+        "triggerRule": "ALL_FAILED"
+      },
+      "outputLinks": [
+        {
+          "key": "5af67082-f558-5726-83a2-683e8782b1ee",
+          "modelType": "OUTPUT_LINK",
+          "modelVersion": "20211031",
+          "parentRef": {
+            "parent": "6e0e2b77-6162-58e2-bd18-23ca5cf309ee"
+          },
+          "toLinks": [
+            "d59e9484-f23b-5068-939e-d749a17e163f"
+          ]
+        }
+      ],
+      "parentRef": {
+        "parent": "2421c59e-28e1-5aa3-b9d6-6ccb90940e1e"
+      },
+      "uiProperties": {
+        "coordinateX": 1000.0,
+        "coordinateY": 300,
+        "isExpanded": false,
+        "isInputPortsExpandable": false,
+        "isOutputPortsExpandable": false
+      }
+    },
+    {
+      "inputLinks": [
+        {
+          "fromLink": "3fc4c31f-fefd-5ef3-b831-526d80d212d2",
+          "key": "2148f04d-ce62-5103-8333-5631892c4d21",
+          "modelType": "INPUT_LINK",
+          "modelVersion": "20211031",
+          "parentRef": {
+            "parent": "6ea06a80-436e-55ff-a2ce-1e98e01d395b"
+          }
+        },
+        {
+          "fromLink": "da351f91-3477-5d7f-bbc6-adf8565d9cf7",
+          "key": "1d2d1e68-6161-52ad-8f49-ebb0c72c7d7c",
+          "modelType": "INPUT_LINK",
+          "modelVersion": "20211031",
+          "parentRef": {
+            "parent": "6ea06a80-436e-55ff-a2ce-1e98e01d395b"
+          }
+        },
+        {
+          "fromLink": "9c9a8fd8-a4d4-5a8e-88e8-9e71034cf8c8",
+          "key": "da7cdb17-138a-57ea-a071-aa6f731ad729",
+          "modelType": "INPUT_LINK",
+          "modelVersion": "20211031",
+          "parentRef": {
+            "parent": "6ea06a80-436e-55ff-a2ce-1e98e01d395b"
+          }
+        },
+        {
+          "fromLink": "4c8ee23e-31f0-5d09-bb0f-7fab1b7c7c8e",
+          "key": "a4a30849-a452-582a-aed9-5ca9d8a703a2",
+          "modelType": "INPUT_LINK",
+          "modelVersion": "20211031",
+          "parentRef": {
+            "parent": "6ea06a80-436e-55ff-a2ce-1e98e01d395b"
+          }
+        },
+        {
+          "fromLink": "5af67082-f558-5726-83a2-683e8782b1ee",
+          "key": "d59e9484-f23b-5068-939e-d749a17e163f",
+          "modelType": "INPUT_LINK",
+          "modelVersion": "20211031",
+          "parentRef": {
+            "parent": "6ea06a80-436e-55ff-a2ce-1e98e01d395b"
+          }
+        }
+      ],
+      "key": "6ea06a80-436e-55ff-a2ce-1e98e01d395b",
+      "modelType": "FLOW_NODE",
+      "modelVersion": "20211031",
+      "name": "END",
+      "operator": {
+        "identifier": "END",
+        "inputPorts": [],
+        "key": "692dac21-d466-5c25-8ec7-d3fb00d98307",
+        "modelType": "END_OPERATOR",
+        "modelVersion": "20220523",
+        "name": "END",
+        "objectVersion": 0,
+        "outputPorts": [],
+        "parentRef": {
+          "parent": "6ea06a80-436e-55ff-a2ce-1e98e01d395b"
+        },
+        "triggerRule": "ALL_SUCCESS"
+      },
+      "outputLinks": [],
+      "parentRef": {
+        "parent": "2421c59e-28e1-5aa3-b9d6-6ccb90940e1e"
+      },
+      "uiProperties": {
+        "coordinateX": 1400,
+        "coordinateY": 100,
+        "isExpanded": false,
+        "isInputPortsExpandable": false,
+        "isOutputPortsExpandable": false
+      }
+    }
+  ],
+  "objectStatus": 8,
+  "objectVersion": 1,
+  "parameters": [
+    {
+      "defaultValue": "http://mock-backend.invalid",
+      "isInput": true,
+      "isOutput": false,
+      "key": "eaf8a64f-8746-59b6-8a84-8be5cdf31d33",
+      "modelType": "PARAMETER",
+      "modelVersion": "20200129",
+      "name": "MOCK_BASE_URL",
+      "objectStatus": 1,
+      "parentRef": {
+        "parent": "2421c59e-28e1-5aa3-b9d6-6ccb90940e1e"
+      },
+      "type": "Seeded:/typeSystems/PLATFORM/dataTypes/STRING",
+      "typeName": "VARCHAR"
+    },
+    {
+      "defaultValue": null,
+      "isInput": true,
+      "isOutput": false,
+      "key": "3b14e660-314b-5ca6-b5b3-aba14d179984",
+      "modelType": "PARAMETER",
+      "modelVersion": "20200129",
+      "name": "AS_OF_DATE",
+      "objectStatus": 1,
+      "parentRef": {
+        "parent": "2421c59e-28e1-5aa3-b9d6-6ccb90940e1e"
+      },
+      "type": "Seeded:/typeSystems/PLATFORM/dataTypes/STRING",
+      "typeName": "VARCHAR"
+    }
+  ]
+}
