@@ -6,7 +6,10 @@
 - Branch: `2-demo-end-to-end-habitat`
 - Base branch: `main`
 - Task: `migrate-sucursales-to-oci-di`
-- Tracking pull request: pending
+- Initial tracking commit: `8f3d5e0`
+- Tracking pull request:
+  `https://github.com/oracletechcl/portable-odi-task/pull/3`
+- Pull request state: draft
 - Spec-driven development: enabled
 - Test-driven development: Red → Green → Refactor
 
@@ -274,4 +277,3 @@ terraform validate
 If Terraform is unavailable, record that environment limitation without
 claiming the command passed. Live OCI import is out of scope because no tenancy
 access is available; offline import compatibility remains mandatory.
-
