@@ -1,14 +1,5 @@
 {
-  "configProviderDelegate": {
-    "bindings": {
-      "3b14e660-314b-5ca6-b5b3-aba14d179984": {
-        "simpleValue": "${AS_OF_DATE}"
-      },
-      "eaf8a64f-8746-59b6-8a84-8be5cdf31d33": {
-        "simpleValue": "${MOCK_BASE_URL}"
-      }
-    }
-  },
+  "configProviderDelegate": {},
   "description": "Runnable task for the Habitat Sucursales pipeline",
   "identifier": "TASK_RUN_HABITAT_SUCURSALES",
   "inputPorts": [],
@@ -31,38 +22,7 @@
   "objectStatus": 8,
   "objectVersion": 1,
   "outputPorts": [],
-  "parameters": [
-    {
-      "defaultValue": "http://mock-backend.invalid",
-      "isInput": true,
-      "isOutput": false,
-      "key": "9c4ae8b9-92fa-5b69-9f3c-9199b97bcda1",
-      "modelType": "PARAMETER",
-      "modelVersion": "20200129",
-      "name": "MOCK_BASE_URL",
-      "objectStatus": 1,
-      "parentRef": {
-        "parent": "88560655-5474-52cd-aa79-cfee4eaf272e"
-      },
-      "type": "Seeded:/typeSystems/PLATFORM/dataTypes/STRING",
-      "typeName": "VARCHAR"
-    },
-    {
-      "defaultValue": null,
-      "isInput": true,
-      "isOutput": false,
-      "key": "e7d0ccaf-e6e6-5c93-8446-87d1bfb866ac",
-      "modelType": "PARAMETER",
-      "modelVersion": "20200129",
-      "name": "AS_OF_DATE",
-      "objectStatus": 1,
-      "parentRef": {
-        "parent": "88560655-5474-52cd-aa79-cfee4eaf272e"
-      },
-      "type": "Seeded:/typeSystems/PLATFORM/dataTypes/STRING",
-      "typeName": "VARCHAR"
-    }
-  ],
+  "parameters": [],
   "pipeline": {
     "identifier": "PL_HABITAT_SUCURSALES",
     "key": "2421c59e-28e1-5aa3-b9d6-6ccb90940e1e",

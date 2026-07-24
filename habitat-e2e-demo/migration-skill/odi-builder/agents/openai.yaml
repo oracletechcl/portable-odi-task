@@ -1,0 +1,4 @@
+interface:
+  display_name: "ODI Builder"
+  short_description: "Migrate Pentaho projects to OCI Data Integration"
+  default_prompt: "Use $odi-builder to migrate this Pentaho project to OCI Data Integration end to end."

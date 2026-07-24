@@ -1,7 +1,7 @@
 {
   "apiCallMode": "SYNCHRONOUS",
   "configProviderDelegate": {},
-  "description": "Calls the portable mock endpoint /v1/process/agendamientos",
+  "description": "Calls the portable mock endpoint /v1/notify-error",
   "executeRestCallConfig": {
     "configValues": {
       "configParamValues": {
@@ -10,7 +10,7 @@
             "configValues": {
               "configParamValues": {
                 "dataParam": {
-                  "stringValue": "{\"as_of_date\":\"${AS_OF_DATE}\",\"window\":\"current\"}"
+                  "stringValue": "{\"message\":\"OCI Data Integration processing task failed\",\"status\":\"error\",\"step\":\"TASK_AGENDAMIENTOS_CURRENT\"}"
                 }
               }
             },
@@ -18,11 +18,11 @@
           }
         },
         "requestURL": {
-          "stringValue": "http://mock-backend.invalid/v1/process/agendamientos"
+          "stringValue": "http://mock-backend.invalid/v1/notify-error"
         }
       },
       "parentRef": {
-        "parent": "ee7bd597-3447-537b-a92a-d5b66228e5cf"
+        "parent": "5b8e0372-9a84-5d5a-90ed-c3b0bed3260e"
       }
     },
     "methodType": "POST",
@@ -30,11 +30,11 @@
       "Content-Type": "application/json"
     }
   },
-  "identifier": "REST_AGENDAMIENTOS_CURRENT",
+  "identifier": "REST_NOTIFY_AGENDAMIENTOS_CURRENT",
   "inputPorts": [],
   "isConcurrentAllowed": false,
-  "jsonData": "{\"as_of_date\":\"${AS_OF_DATE}\",\"window\":\"current\"}",
-  "key": "ee7bd597-3447-537b-a92a-d5b66228e5cf",
+  "jsonData": "{\"message\":\"OCI Data Integration processing task failed\",\"status\":\"error\",\"step\":\"TASK_AGENDAMIENTOS_CURRENT\"}",
+  "key": "5b8e0372-9a84-5d5a-90ed-c3b0bed3260e",
   "metadata": {
     "aggregator": {
       "description": "Portable mock-backed Habitat Sucursales migration",
@@ -48,7 +48,7 @@
   },
   "modelType": "REST_TASK",
   "modelVersion": "20230421",
-  "name": "REST_AGENDAMIENTOS_CURRENT",
+  "name": "REST_NOTIFY_AGENDAMIENTOS_CURRENT",
   "objectStatus": 8,
   "objectVersion": 1,
   "outputPorts": [],

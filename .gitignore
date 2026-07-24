@@ -8,4 +8,5 @@ target/
 !habitat-e2e-demo/migrated-pipeline-demo/target/**
 pytest-of-*/
 ssh-keys
+.demo-deploy.env
 .DS_Store

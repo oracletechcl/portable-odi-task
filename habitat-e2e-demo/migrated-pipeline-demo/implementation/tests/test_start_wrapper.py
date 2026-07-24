@@ -184,26 +184,43 @@ def test_package_backend_cli_writes_bundle_and_checksum(
 def test_readme_documents_the_entire_compute_vm_to_oci_demo() -> None:
     readme = (IMPLEMENTATION_ROOT.parent / "README.md").read_text(encoding="utf-8")
 
-    required_runbook_content = (
-        "## Quick Start: Run the Mock and Trigger OCI Data Integration",
-        "odi-portability-demo",
-        "HABITAT_SUCURSALES.project.zip",
-        "habitat-sucursales-mock-backend-1.0.0.tar.gz",
-        "start-mock-backend.sh",
-        "habitat-sucursales-mock.service",
-        "/opt/habitat-sucursales/current",
-        "/var/lib/habitat-sucursales/output",
-        "<vm-public-ip>",
-        "<vm-private-ip>",
-        "TCP 8080",
-        "/health",
+    required_operator_steps = (
+        "## How the POC works",
+        "```mermaid",
+        "flowchart TB",
+        "POST /v1/periods",
+        "POST /v1/process/atenciones",
+        "POST /v1/process/agendamientos",
+        "POST /v1/validate",
+        "/v1/notify-error",
+        "Eight CSV outputs",
+        "## 1. Deploy everything",
+        "deploy-habitat-sucursales-demo.sh",
+        "--app-name HABITAT_SUCURSALES_DEMO",
+        "--as-of-date 2026-07-15",
+        "## What the script does",
+        "uses the application name you pass",
+        "verifies the release checksum",
+        "installs and starts the mock",
+        "restricts TCP 8080",
+        "creates the application",
+        "publishes the task",
+        "## 2. Open the application",
+        "Page 2",
+        "Filter by name",
+        "## 3. Click Run",
         "HABITAT_SUCURSALES_DEMO",
         "TASK_RUN_HABITAT_SUCURSALES",
-        "MOCK_BASE_URL",
         "AS_OF_DATE",
-        "target/expected-output",
-        "systemctl",
+        "Do not enter parameters",
+        "/var/lib/habitat-sucursales/output",
     )
 
-    for expected in required_runbook_content:
+    for expected in required_operator_steps:
         assert expected in readme
+
+    assert "GET /v1/periods" not in readme
+    assert len(readme.splitlines()) <= 130
+    assert "## Release Assets" not in readme
+    assert "## Local Mock" not in readme
+    assert "## Build and Test" not in readme

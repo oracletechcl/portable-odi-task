@@ -1,155 +1,113 @@
-# Habitat Sucursales OCI Data Integration Demo
+# Habitat Sucursales Demo
 
-This demo replaces the unavailable Pentaho dependencies with a deterministic
-Python mock and runs the migrated flow in OCI Data Integration.
+One script prepares the VM mock and publishes the OCI Data Integration task.
+After it finishes, open the application and click Run.
 
-## Quick Start: Run the Mock and Trigger OCI Data Integration
+## How the POC works
 
-The supplied Compute VM is already prepared:
+```mermaid
+flowchart TB
+    OP["Operator"] -->|"Runs one-stop script with app name and run date"| DEPLOY["Generic deployment script"]
 
-- Login user: `opc`
-- SSH key: `../ssh-keys/ssh-key-2026-07-24.key`
-- Service: `habitat-sucursales-mock.service`
-- Runtime: `/opt/habitat-sucursales/current`
-- Output: `/var/lib/habitat-sucursales/output`
-- Backend entrypoint:
-  `/opt/habitat-sucursales/current/implementation/start-mock-backend.sh`
-- Runtime version: Python 3.11
-- Network: TCP 8080 is allowed only from the OCI Data Integration workspace
-  subnet.
+    DEPLOY -->|"Uploads HABITAT_SUCURSALES.project.zip"| OS["OCI Object Storage"]
+    OS -->|"Imports project"| PROJECT["OCI Data Integration project<br/>HABITAT_SUCURSALES"]
+    PROJECT -->|"Publishes task and dependencies"| APP["OCI Data Integration Application<br/>user-supplied name"]
+    APP -->|"Run"| RUN["TASK_RUN_HABITAT_SUCURSALES"]
+    RUN --> PIPE["PL_HABITAT_SUCURSALES"]
 
-Repository policy does not allow real environment endpoints in tracked files.
-Replace the two placeholders below with the supplied VM addresses.
+    DEPLOY -->|"Installs service, fixtures, firewall, and health check"| API
 
-### 1. Connect to the VM
+    subgraph ODI["OCI Data Integration execution"]
+        PIPE --> PERIODS["REST_PERIODS<br/>POST /v1/periods"]
+        PERIODS -->|success| AP["REST_ATENCIONES_PREVIOUS<br/>POST /v1/process/atenciones"]
+        AP -->|success| AC["REST_ATENCIONES_CURRENT<br/>POST /v1/process/atenciones"]
+        AC -->|success| GP["REST_AGENDAMIENTOS_PREVIOUS<br/>POST /v1/process/agendamientos"]
+        GP -->|success| GC["REST_AGENDAMIENTOS_CURRENT<br/>POST /v1/process/agendamientos"]
+        GC -->|success| VALIDATE["REST_VALIDATE<br/>POST /v1/validate"]
+        VALIDATE -->|success| END["Succeeded"]
 
-From this directory:
+        AP -. failure .-> NAP["REST_NOTIFY_ATENCIONES_PREVIOUS"]
+        AC -. failure .-> NAC["REST_NOTIFY_ATENCIONES_CURRENT"]
+        GP -. failure .-> NGP["REST_NOTIFY_AGENDAMIENTOS_PREVIOUS"]
+        GC -. failure .-> NGC["REST_NOTIFY_AGENDAMIENTOS_CURRENT"]
+    end
+
+    subgraph VM["Compute VM mock backend on the private VCN"]
+        API["Mock HTTP service"]
+        FIX["CSV fixtures<br/>previous and current periods"] --> API
+        API -->|"process routes"| TRANSFORM["Pure Python transformations<br/>testable without OCI"]
+        TRANSFORM --> OUT["Eight CSV outputs<br/>Atenciones, MotivoAtencion,<br/>Agendamiento, MotivoAgendamiento<br/>for previous and current periods"]
+        OUT --> CHECK["Output validation"]
+        API -->|"validate route"| CHECK
+        API -->|"notification route"| FAILLOG["Mock failure-notification log"]
+    end
+
+    PERIODS -->|"/v1/periods"| API
+    AP -->|"/v1/process/atenciones"| API
+    AC -->|"/v1/process/atenciones"| API
+    GP -->|"/v1/process/agendamientos"| API
+    GC -->|"/v1/process/agendamientos"| API
+    VALIDATE -->|"POST /v1/validate"| API
+    NAP -->|"POST /v1/notify-error"| API
+    NAC -->|"POST /v1/notify-error"| API
+    NGP -->|"POST /v1/notify-error"| API
+    NGC -->|"POST /v1/notify-error"| API
+```
+
+## 1. Deploy everything
+
+Run once from the repository root:
 
 ```bash
-export VM_PUBLIC_IP="<vm-public-ip>"
-export VM_PRIVATE_IP="<vm-private-ip>"
-export SSH_KEY="../ssh-keys/ssh-key-2026-07-24.key"
-
-chmod 600 "${SSH_KEY}"
-ssh -i "${SSH_KEY}" "opc@${VM_PUBLIC_IP}"
+./platforms/oci/scripts/deploy-habitat-sucursales-demo.sh \
+  --app-name HABITAT_SUCURSALES_DEMO \
+  --as-of-date 2026-07-15
 ```
 
-### 2. Start and check the mock
+Wait for `READY`.
 
-On the VM:
-
-```bash
-sudo systemctl enable --now habitat-sucursales-mock.service
-sudo systemctl status habitat-sucursales-mock.service --no-pager
-curl --fail http://127.0.0.1:8080/health
-```
-
-Expected response:
-
-```json
-{"service":"habitat-sucursales-mock","status":"ok"}
-```
-
-The service is already configured to listen on `0.0.0.0:8080` and to write
-results under `/var/lib/habitat-sucursales/output`.
-
-### 3. Publish the imported task once
-
-The project is already imported. In the OCI Console:
-
-1. Open **Data Integration** → **Workspaces** → the target workspace.
-2. Under **Applications**, create `HABITAT_SUCURSALES_DEMO` if it does not
-   exist.
-3. Open **Projects** → `HABITAT_SUCURSALES` → **Tasks**.
-4. Select `TASK_RUN_HABITAT_SUCURSALES`.
-5. Publish it to `HABITAT_SUCURSALES_DEMO`, including referenced objects.
-
-### 4. Run the OCI Data Integration task
-
-1. Open **Applications** → `HABITAT_SUCURSALES_DEMO` → **Tasks**.
-2. Select `TASK_RUN_HABITAT_SUCURSALES` and choose **Run**.
-3. Override:
+The script reads the local, untracked configuration from:
 
 ```text
-MOCK_BASE_URL = http://<vm-private-ip>:8080
-AS_OF_DATE    = 2026-07-15
+habitat-e2e-demo/migrated-pipeline-demo/.demo-deploy.env
 ```
 
-4. Start the run and wait for **Succeeded** under **Runs**.
+## What the script does
 
-Use the VM private IP in `MOCK_BASE_URL`, not its public IP. The packaged
-`.invalid` URL is deliberately unusable.
+- verifies the release checksum;
+- uses the application name you pass; there is no default application;
+- installs and starts the mock on the Compute VM;
+- registers and enables `habitat-sucursales-mock.service`;
+- restricts TCP 8080 to the Data Integration workspace subnet;
+- performs the `/health` check;
+- uploads the project ZIP to the configured Object Storage bucket;
+- imports or replaces the OCI Data Integration project;
+- puts the VM private URL and `AS_OF_DATE` into the REST tasks;
+- creates the application name you pass when missing;
+- finds the imported task `TASK_RUN_HABITAT_SUCURSALES`; and
+- publishes the task and stops immediately if OCI rejects the patch.
 
-### 5. Check the result
+Run it again with another `--app-name` to reuse the same deployment in another
+application.
 
-On the VM:
+## 2. Open the application
 
-```bash
-sudo find /var/lib/habitat-sucursales/output \
-  -type f -name '*.csv' -print | sort
-```
+In the OCI Console:
 
-A successful `2026-07-15` run creates eight CSV files: four under `202606/`
-and four under `202607/`. Their deterministic reference is in
-`target/expected-output`.
+1. Open **Data Integration** → **Workspaces** → the target workspace.
+2. Open **Applications** → `HABITAT_SUCURSALES_DEMO`.
+3. Open **Tasks**. Page 1 contains the ten REST dependencies.
+4. Click **Page 2**, or use **Filter by name** for
+   `TASK_RUN_HABITAT_SUCURSALES`.
+5. Open `TASK_RUN_HABITAT_SUCURSALES`.
 
-### 6. Logs, restart, and stop
+## 3. Click Run
 
-```bash
-sudo journalctl -u habitat-sucursales-mock.service -f
-sudo systemctl restart habitat-sucursales-mock.service
-sudo systemctl stop habitat-sucursales-mock.service
-```
+Choose **Run**. Do not enter parameters: the script already materialized the
+mock URL and run date. Start the run and wait for **Succeeded** under **Runs**.
 
-If OCI reports a connection timeout, verify the private IP, TCP 8080 route,
-workspace subnet, and VM firewall. If the run uses `mock-backend.invalid`,
-`MOCK_BASE_URL` was not overridden.
+The eight result CSVs are written on the VM under:
 
-## Release Assets
-
-- `target/HABITAT_SUCURSALES.project.zip` — importable OCI project.
-- `target/HABITAT_SUCURSALES.project.zip.sha256` — project checksum.
-- `target/habitat-sucursales-mock-backend-1.0.0.tar.gz` — mock VM runtime.
-- `target/habitat-sucursales-mock-backend-1.0.0.tar.gz.sha256` — runtime
-  checksum.
-- `target/expected-output/` — reference output for `2026-07-15`.
-
-The OCI project is also stored in bucket `odi-portability-demo` as
-`releases/HABITAT_SUCURSALES.project.zip`.
-
-For a clean workspace, upload/import `HABITAT_SUCURSALES.project.zip`, then
-follow steps 3–5 above.
-
-## Local Mock
-
-Python 3.10 or newer is required.
-
-```bash
-cd implementation
-MOCK_HOST=0.0.0.0 MOCK_PORT=8080 ./start-mock-backend.sh
-```
-
-Endpoints:
-
-- `GET /health`
-- `POST /v1/periods`
-- `POST /v1/process/atenciones`
-- `POST /v1/process/agendamientos`
-- `POST /v1/validate`
-- `POST /v1/notify-error`
-
-## Build and Test
-
-```bash
-cd implementation
-python3 -m pytest -q
-bash -n start-mock-backend.sh
-
-python3 -m habitat_sucursales package-oci \
-  --export-dir ../target/HABITAT_SUCURSALES.project \
-  --zip-path ../target/HABITAT_SUCURSALES.project.zip
-
-python3 -m habitat_sucursales package-backend \
-  --implementation-dir . \
-  --tar-path ../target/habitat-sucursales-mock-backend-1.0.0.tar.gz
+```text
+/var/lib/habitat-sucursales/output
 ```

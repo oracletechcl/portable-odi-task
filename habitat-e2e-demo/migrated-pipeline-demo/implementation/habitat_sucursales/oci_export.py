@@ -61,14 +61,17 @@ TASK_DEFINITIONS = (
         _processing_body("current"),
     ),
     ("REST_VALIDATE", "/v1/validate", {"as_of_date": "${AS_OF_DATE}"}),
-    (
-        "REST_NOTIFY_ERROR",
-        "/v1/notify-error",
-        {
-            "message": "OCI Data Integration processing task failed",
-            "status": "error",
-            "step": "${FAILED_STEP}",
-        },
+    *(
+        (
+            processing_name.replace("TASK_", "REST_NOTIFY_", 1),
+            "/v1/notify-error",
+            {
+                "message": "OCI Data Integration processing task failed",
+                "status": "error",
+                "step": processing_name,
+            },
+        )
+        for processing_name in PROCESSING_NODE_NAMES
     ),
 )
 
@@ -82,26 +85,6 @@ def _identifier(value: str) -> str:
     if not normalized[0].isalpha() and normalized[0] != "_":
         normalized = f"_{normalized}"
     return normalized
-
-
-def _parameter(parent_key: str, name: str) -> dict[str, object]:
-    return {
-        "defaultValue": (
-            "http://mock-backend.invalid"
-            if name == "MOCK_BASE_URL"
-            else None
-        ),
-        "isInput": True,
-        "isOutput": False,
-        "key": _key(f"{parent_key}:parameter:{name}"),
-        "modelType": "PARAMETER",
-        "modelVersion": "20200129",
-        "name": name,
-        "objectStatus": 1,
-        "parentRef": {"parent": parent_key},
-        "type": "Seeded:/typeSystems/PLATFORM/dataTypes/STRING",
-        "typeName": "VARCHAR",
-    }
 
 
 def _child_metadata(project: dict[str, object]) -> dict[str, object]:
@@ -160,20 +143,6 @@ def _rest_task_object(
 ) -> dict[str, object]:
     project_key = str(project["key"])
     task_key = _key(f"rest-task:{identifier}")
-    body_text = json.dumps(body, ensure_ascii=False, sort_keys=True)
-    referenced_parameters = set(
-        re.findall(
-            r"\$\{([A-Z0-9_]+)\}",
-            f"${{MOCK_BASE_URL}}{route}{body_text}",
-        )
-    )
-    parameter_names = [
-        "MOCK_BASE_URL",
-        *sorted(referenced_parameters - {"MOCK_BASE_URL"}),
-    ]
-    parameters = [
-        _parameter(task_key, name) for name in parameter_names
-    ]
     return {
         "apiCallMode": "SYNCHRONOUS",
         "configProviderDelegate": {},
@@ -183,7 +152,7 @@ def _rest_task_object(
                 "configParamValues": {
                     "requestPayload": _request_payload(body),
                     "requestURL": {
-                        "stringValue": f"${{MOCK_BASE_URL}}{route}"
+                        "stringValue": f"http://mock-backend.invalid{route}"
                     },
                 },
                 "parentRef": {"parent": task_key},
@@ -206,22 +175,8 @@ def _rest_task_object(
         "name": identifier,
         "objectStatus": 8,
         "objectVersion": 1,
-        "opConfigValues": {
-            "configParamValues": {
-                "successCondition": {
-                    "refValue": {
-                        "exprString": (
-                            "SYS.RESPONSE_STATUS >= 200 "
-                            "AND SYS.RESPONSE_STATUS < 300"
-                        ),
-                        "modelType": "EXPRESSION",
-                    }
-                }
-            },
-            "parentRef": {"parent": task_key},
-        },
         "outputPorts": [],
-        "parameters": parameters,
+        "parameters": [],
         "metadata": _child_metadata(project),
         "typedExpressions": [],
     }
@@ -248,7 +203,6 @@ def _flow_node(
     *,
     task: dict[str, object] | None = None,
     trigger_rule: str = "ALL_SUCCESS",
-    bindings: dict[str, str] | None = None,
     coordinate_x: float = 0,
     coordinate_y: float = 0,
 ) -> dict[str, object]:
@@ -280,18 +234,9 @@ def _flow_node(
         "triggerRule": trigger_rule,
     }
     if task is not None:
-        parameter_keys = {
-            parameter["name"]: parameter["key"]
-            for parameter in task["parameters"]
-        }
         operator.update(
             {
-                "configProviderDelegate": {
-                    "bindings": {
-                        parameter_keys[parameter]: {"simpleValue": value}
-                        for parameter, value in sorted((bindings or {}).items())
-                    }
-                },
+                "configProviderDelegate": {},
                 "retryAttempts": 0,
                 "retryDelay": 0,
                 "retryDelayUnit": "SECONDS",
@@ -377,10 +322,6 @@ def _pipeline_object(
             pipeline_key,
             name,
             task=task,
-            bindings={
-                "AS_OF_DATE": "${AS_OF_DATE}",
-                "MOCK_BASE_URL": "${MOCK_BASE_URL}",
-            },
             coordinate_x=float((index + 1) * 200),
             coordinate_y=100,
         )
@@ -390,12 +331,10 @@ def _pipeline_object(
         processing_name: _flow_node(
             pipeline_key,
             processing_name.replace("TASK_", "TASK_NOTIFY_", 1),
-            task=rest_tasks["REST_NOTIFY_ERROR"],
+            task=rest_tasks[
+                processing_name.replace("TASK_", "REST_NOTIFY_", 1)
+            ],
             trigger_rule="ALL_FAILED",
-            bindings={
-                "FAILED_STEP": processing_name,
-                "MOCK_BASE_URL": "${MOCK_BASE_URL}",
-            },
             coordinate_x=float((index + 2) * 200),
             coordinate_y=300,
         )
@@ -468,10 +407,7 @@ def _pipeline_object(
         "nodes": nodes,
         "objectStatus": 8,
         "objectVersion": 1,
-        "parameters": [
-            _parameter(pipeline_key, "MOCK_BASE_URL"),
-            _parameter(pipeline_key, "AS_OF_DATE"),
-        ],
+        "parameters": [],
         "metadata": _child_metadata(project),
     }
 
@@ -480,19 +416,8 @@ def _pipeline_task_object(
     project: dict[str, object], pipeline: dict[str, object]
 ) -> dict[str, object]:
     task_key = _key("pipeline-task:TASK_RUN_HABITAT_SUCURSALES")
-    task_parameters = [
-        _parameter(task_key, "MOCK_BASE_URL"),
-        _parameter(task_key, "AS_OF_DATE"),
-    ]
     return {
-        "configProviderDelegate": {
-            "bindings": {
-                parameter["key"]: {
-                    "simpleValue": f"${{{parameter['name']}}}"
-                }
-                for parameter in pipeline["parameters"]
-            }
-        },
+        "configProviderDelegate": {},
         "description": "Runnable task for the Habitat Sucursales pipeline",
         "identifier": "TASK_RUN_HABITAT_SUCURSALES",
         "inputPorts": [],
@@ -504,7 +429,7 @@ def _pipeline_task_object(
         "objectStatus": 8,
         "objectVersion": 1,
         "outputPorts": [],
-        "parameters": task_parameters,
+        "parameters": [],
         "pipeline": {
             "identifier": pipeline["identifier"],
             "key": pipeline["key"],

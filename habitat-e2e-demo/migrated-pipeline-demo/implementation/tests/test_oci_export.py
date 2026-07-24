@@ -59,7 +59,7 @@ def test_export_documents_match_import_bundle_contract() -> None:
     assert documents["manifest.json"]["version"] == "V1"
     assert documents["manifest.json"]["exportedWorkspaceOcid"] == ""
     objects = _objects(documents)
-    assert len(objects) == 10
+    assert len(objects) == 13
     assert len({item["key"] for item in objects}) == len(objects)
     assert {item["modelType"] for item in objects} == {
         "USER_PROJECT",
@@ -89,13 +89,13 @@ def test_export_documents_match_import_bundle_contract() -> None:
         }
 
 
-def test_rest_tasks_use_current_sync_json_contract_and_required_base_url() -> None:
+def test_rest_tasks_use_publishable_parameter_free_mock_contract() -> None:
     documents = build_export_documents()
     rest_tasks = [
         item for item in _objects(documents) if item["modelType"] == "REST_TASK"
     ]
 
-    assert len(rest_tasks) == 7
+    assert len(rest_tasks) == 10
     routes: set[str] = set()
     for task in rest_tasks:
         assert task["apiCallMode"] == "SYNCHRONOUS"
@@ -107,21 +107,11 @@ def test_rest_tasks_use_current_sync_json_contract_and_required_base_url() -> No
         }
         request_config = call_config["configValues"]["configParamValues"]
         endpoint = request_config["requestURL"]["stringValue"]
-        assert endpoint.startswith("${MOCK_BASE_URL}")
-        success = task["opConfigValues"]["configParamValues"]["successCondition"]
-        assert success["refValue"]["exprString"] == (
-            "SYS.RESPONSE_STATUS >= 200 AND SYS.RESPONSE_STATUS < 300"
-        )
-        base_url_parameter = task["parameters"][0]
-        assert base_url_parameter["modelType"] == "PARAMETER"
-        assert base_url_parameter["name"] == "MOCK_BASE_URL"
-        assert base_url_parameter["type"] == (
-            "Seeded:/typeSystems/PLATFORM/dataTypes/STRING"
-        )
-        assert base_url_parameter["isInput"] is True
-        assert base_url_parameter["defaultValue"] == "http://mock-backend.invalid"
+        assert endpoint.startswith("http://mock-backend.invalid")
+        assert "opConfigValues" not in task
+        assert task["parameters"] == []
         assert task["isConcurrentAllowed"] is False
-        routes.add(endpoint.removeprefix("${MOCK_BASE_URL}"))
+        routes.add(endpoint.removeprefix("http://mock-backend.invalid"))
 
     assert routes == EXPECTED_ROUTES
 
@@ -151,7 +141,15 @@ def test_pipeline_preserves_order_and_explicit_failure_notification() -> None:
     ]
     assert all(node["operator"]["triggerRule"] == "ALL_FAILED" for node in notify_nodes)
     assert all(node["operator"]["taskType"] == "REST_TASK" for node in notify_nodes)
-    assert len({node["operator"]["task"]["key"] for node in notify_nodes}) == 1
+    assert len({node["operator"]["task"]["key"] for node in notify_nodes}) == 4
+    assert {
+        node["operator"]["task"]["identifier"] for node in notify_nodes
+    } == {
+        "REST_NOTIFY_ATENCIONES_PREVIOUS",
+        "REST_NOTIFY_ATENCIONES_CURRENT",
+        "REST_NOTIFY_AGENDAMIENTOS_PREVIOUS",
+        "REST_NOTIFY_AGENDAMIENTOS_CURRENT",
+    }
 
     input_owner = {
         link["key"]: node["name"]
@@ -195,34 +193,22 @@ def test_pipeline_preserves_order_and_explicit_failure_notification() -> None:
     assert end_nodes[0]["operator"]["triggerRule"] == "ALL_SUCCESS"
 
 
-def test_pipeline_task_binds_runtime_inputs_to_pipeline_parameters() -> None:
+def test_pipeline_task_is_ready_to_run_without_runtime_parameters() -> None:
     documents = build_export_documents()
     objects = _objects(documents)
     pipeline = next(item for item in objects if item["modelType"] == "PIPELINE")
     pipeline_task = next(
         item for item in objects if item["modelType"] == "PIPELINE_TASK"
     )
-    pipeline_parameters = {
-        parameter["name"]: parameter for parameter in pipeline["parameters"]
-    }
-    task_parameters = {
-        parameter["name"]: parameter for parameter in pipeline_task["parameters"]
-    }
-
-    assert set(task_parameters) == set(pipeline_parameters) == {
-        "AS_OF_DATE",
-        "MOCK_BASE_URL",
-    }
-    assert pipeline_task["configProviderDelegate"]["bindings"] == {
-        pipeline_parameter["key"]: {"simpleValue": f"${{{name}}}"}
-        for name, pipeline_parameter in pipeline_parameters.items()
-    }
+    assert pipeline["parameters"] == []
+    assert pipeline_task["parameters"] == []
+    assert pipeline_task["configProviderDelegate"] == {}
     assert pipeline_task["pipeline"]["nestedDepth"] == 0
     assert pipeline_task["pipeline"]["nodes"] == []
     assert pipeline_task["pipeline"]["parameters"] == []
 
 
-def test_pipeline_links_are_bidirectional_and_bindings_use_parameter_keys() -> None:
+def test_pipeline_links_are_bidirectional_and_tasks_need_no_bindings() -> None:
     documents = build_export_documents()
     pipeline = next(
         item for item in _objects(documents) if item["modelType"] == "PIPELINE"
@@ -249,12 +235,8 @@ def test_pipeline_links_are_bidirectional_and_bindings_use_parameter_keys() -> N
         operator = node["operator"]
         if operator["modelType"] != "TASK_OPERATOR":
             continue
-        parameter_keys = {
-            parameter["key"] for parameter in operator["task"]["parameters"]
-        }
-        bindings = operator["configProviderDelegate"]["bindings"]
-        assert set(bindings).issubset(parameter_keys)
-        assert all(set(value) == {"simpleValue"} for value in bindings.values())
+        assert operator["task"]["parameters"] == []
+        assert operator["configProviderDelegate"] == {}
 
 
 def test_processing_tasks_use_only_declared_request_parameters() -> None:
@@ -283,7 +265,7 @@ def test_processing_tasks_use_only_declared_request_parameters() -> None:
         assert body["window"] in {"previous", "current"}
 
 
-def test_every_rest_task_declares_exactly_its_url_and_body_parameters() -> None:
+def test_every_rest_task_is_materialized_by_deploy_without_declared_parameters() -> None:
     documents = build_export_documents()
     rest_tasks = [
         item for item in _objects(documents) if item["modelType"] == "REST_TASK"
@@ -299,9 +281,8 @@ def test_every_rest_task_declares_exactly_its_url_and_body_parameters() -> None:
             "configValues"
         ]["configParamValues"]["dataParam"]["stringValue"]
         referenced = set(placeholder.findall(request_url + request_body))
-        declared = {parameter["name"] for parameter in task["parameters"]}
-
-        assert declared == referenced
+        assert task["parameters"] == []
+        assert referenced.issubset({"AS_OF_DATE"})
 
 
 def test_write_and_package_are_byte_deterministic(tmp_path: Path) -> None:

@@ -15,9 +15,7 @@ from habitat_sucursales.oci_export import build_export_documents
 SECRET_ASSIGNMENT = re.compile(
     r"(?i)(password|private[_-]?key|client[_-]?secret)\s*[:=]\s*[\"'][^$<{][^\"']+"
 )
-REAL_ENDPOINT = re.compile(
-    r"https?://(?!\$\{MOCK_BASE_URL\}|mock-backend\.invalid)"
-)
+REAL_ENDPOINT = re.compile(r"https?://(?!mock-backend\.invalid)")
 
 
 def test_generated_export_has_no_ocids_secrets_or_real_endpoints() -> None:
@@ -26,7 +24,8 @@ def test_generated_export_has_no_ocids_secrets_or_real_endpoints() -> None:
     assert "ocid1." not in serialized
     assert SECRET_ASSIGNMENT.search(serialized) is None
     assert REAL_ENDPOINT.search(serialized) is None
-    assert "${MOCK_BASE_URL}" in serialized
+    assert "http://mock-backend.invalid" in serialized
+    assert "${MOCK_BASE_URL}" not in serialized
 
 
 def test_owned_runtime_files_have_no_embedded_secrets() -> None:

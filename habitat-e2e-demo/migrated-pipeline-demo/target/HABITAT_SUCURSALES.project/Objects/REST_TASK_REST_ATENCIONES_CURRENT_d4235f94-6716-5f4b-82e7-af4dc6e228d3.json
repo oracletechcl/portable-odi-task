@@ -18,7 +18,7 @@
           }
         },
         "requestURL": {
-          "stringValue": "${MOCK_BASE_URL}/v1/process/atenciones"
+          "stringValue": "http://mock-backend.invalid/v1/process/atenciones"
         }
       },
       "parentRef": {
@@ -51,51 +51,7 @@
   "name": "REST_ATENCIONES_CURRENT",
   "objectStatus": 8,
   "objectVersion": 1,
-  "opConfigValues": {
-    "configParamValues": {
-      "successCondition": {
-        "refValue": {
-          "exprString": "SYS.RESPONSE_STATUS >= 200 AND SYS.RESPONSE_STATUS < 300",
-          "modelType": "EXPRESSION"
-        }
-      }
-    },
-    "parentRef": {
-      "parent": "d4235f94-6716-5f4b-82e7-af4dc6e228d3"
-    }
-  },
   "outputPorts": [],
-  "parameters": [
-    {
-      "defaultValue": "http://mock-backend.invalid",
-      "isInput": true,
-      "isOutput": false,
-      "key": "a6732eb9-1ced-56c5-835c-e2ef4f17cf97",
-      "modelType": "PARAMETER",
-      "modelVersion": "20200129",
-      "name": "MOCK_BASE_URL",
-      "objectStatus": 1,
-      "parentRef": {
-        "parent": "d4235f94-6716-5f4b-82e7-af4dc6e228d3"
-      },
-      "type": "Seeded:/typeSystems/PLATFORM/dataTypes/STRING",
-      "typeName": "VARCHAR"
-    },
-    {
-      "defaultValue": null,
-      "isInput": true,
-      "isOutput": false,
-      "key": "e08c7099-5219-509e-bd27-ce525005f04f",
-      "modelType": "PARAMETER",
-      "modelVersion": "20200129",
-      "name": "AS_OF_DATE",
-      "objectStatus": 1,
-      "parentRef": {
-        "parent": "d4235f94-6716-5f4b-82e7-af4dc6e228d3"
-      },
-      "type": "Seeded:/typeSystems/PLATFORM/dataTypes/STRING",
-      "typeName": "VARCHAR"
-    }
-  ],
+  "parameters": [],
   "typedExpressions": []
 }

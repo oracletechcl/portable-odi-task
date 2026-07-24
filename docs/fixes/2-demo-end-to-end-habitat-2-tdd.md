@@ -117,6 +117,25 @@ steps. Its revised acceptance test passed, the endpoint-safety scan found no
 tracked environment values, and the migrated suite passed 68 tests in 5.08
 seconds.
 
+The one-stop deployment cycle then entered Red in four evidence-backed stages:
+
+- the script had no mandatory reusable `--app-name` or `--as-of-date` inputs;
+- live publication failed because imported parameters became unnamed/null and
+  the parameterized REST URL and success expression did not validate;
+- the first live run sent empty REST bodies because OCI ignored a plain string
+  payload instead of a `JSON_TEXT` reference; and
+- the runnable pipeline appeared missing because the Console showed only the
+  first page of ten REST dependencies.
+
+Green removed runtime parameters, created one concrete notification REST task
+per failure branch, added deterministic placeholder materialization, made the
+project import and application publication part of the script, used OCI
+`JSON_TEXT` request payloads, and documented the Console's second task page.
+The focused OCI/deployment/documentation suite passed 18 tests. The exact
+one-stop command reached `READY`; a zero-parameter published-task smoke run
+completed `SUCCESS`, and the VM validation endpoint reported all eight expected
+CSV outputs.
+
 ## Refactor
 
 Complete. Shared metadata, parameter, checksum, and packaging helpers remove
@@ -152,8 +171,8 @@ only for orchestration.
 
 ## Remaining Risks
 
-- Executing the imported pipeline still requires the mock backend to be
-  deployed and `MOCK_BASE_URL` to be set.
+- The one-stop script requires working OCI CLI credentials, SSH access to the
+  supplied Compute VM, and the ignored local deployment configuration.
 - The source extractor shell scripts are absent.
 - Pre-existing SOT contains environment metadata outside this task's change
   scope.
@@ -167,7 +186,8 @@ Promote the same checksummed project ZIP to TEST and PROD.
 ## Final Resolution
 
 Complete. The requested code, mock backend, expected output, machine-ready
-runtime archive, import-oriented OCI project ZIP, and end-to-end Compute
-VM-to-OCI operator runbook are delivered. Live OCI import completed
-successfully with all 10 objects present in the target workspace. No unverified
-`REST_TASK` registry value was invented.
+runtime archive, import-oriented OCI project ZIP, and one-stop Compute
+VM-to-OCI deployment are delivered. Live OCI import and publication completed;
+the Application contains ten REST tasks plus
+`TASK_RUN_HABITAT_SUCURSALES` on task page 2. A live zero-parameter run
+completed successfully and produced all eight expected outputs.
