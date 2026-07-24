@@ -265,8 +265,8 @@ mvn -q -DskipTests package
 find platforms/oci -name "*.sh" -exec bash -n {} \;
 ```
 
-Live OCI import is out of scope because no tenancy access is available;
-offline structural compatibility remains mandatory. Security scans cover the
+Live OCI import is required and completed successfully with all 10 project
+objects present in the target workspace. Security scans cover the
 new migration release and machine-ready runtime files;
 pre-existing tracked SOT risks are reported separately and not rewritten by
 this task.

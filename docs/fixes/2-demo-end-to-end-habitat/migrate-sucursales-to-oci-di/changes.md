@@ -48,26 +48,35 @@ provisioning were removed when the user excluded infrastructure scripting.
 
 ## Summary
 
-- Added the portable implementation, fixtures, 67 tests, configuration, and
+- Added the portable implementation, fixtures, 68 tests, configuration, and
   single startup wrapper under `migrated-pipeline-demo/implementation`.
 - Added eight deterministic CSVs and a checksummed run manifest for
   `2026-07-15`.
 - Added the OCI project staging directory and deterministic
   `HABITAT_SUCURSALES.project.zip`.
 - Added the deterministic machine-ready backend tar and checksum.
-- Added operator instructions and SDD/TDD/traceability records.
+- Added a complete Compute VM-to-OCI operator runbook covering systemd,
+  private-network access, import, publication, execution, output comparison,
+  and service operation.
+- Added SDD/TDD/traceability records for the runbook acceptance contract.
 
 ## Validation
 
-- Migrated implementation: 67 tests passed in 5.21 seconds in the no-cache
-  run; an independent audit also passed all 67.
+- Migrated implementation: 68 tests passed in 5.33 seconds in the final
+  no-cache run; the preceding independent audit passed all 67 implementation
+  tests that existed before the runbook acceptance test.
 - Implementation and repository `compileall`: passed.
 - Maven package: passed with only a JDK `Unsafe` deprecation warning.
 - Existing OCI scripts and the new mock wrapper: `bash -n` passed.
-- OCI project ZIP: 11 entries, valid integrity, complete references,
-  `USER_PROJECT` export root, deterministic checksum, canonical-project-shaped
-  metadata, and no unresolved request placeholders.
+- OCI project ZIP: 13 entries, including the canonical project and `Objects/`
+  directory envelope, valid integrity, complete references, `USER_PROJECT`
+  export root, deterministic checksum, canonical-project-shaped metadata, and
+  no unresolved request placeholders.
 - Backend tar: deterministic checksum, executable wrapper, no tests or caches.
+- End-to-end README: Red/Green acceptance test passed; documented release,
+  Compute VM, private-network, OCI import/publish/run, output verification, and
+  service lifecycle commands were audited against the delivered artifacts and
+  installed OCI CLI.
 - Expected output: eight files; every hash, size, and row count matches the run
   manifest; encoding, delimiter, and line-ending checks passed.
 - Security scan: no OCIDs, private keys, secret assignments, real endpoints, or
@@ -79,7 +88,8 @@ equivalent `python3 -m pytest` reached collection but the pre-existing
 `tests/test_customer_transform.py` requires unavailable `pyspark`. This is a
 baseline environment dependency, not a migrated-suite failure.
 
-Live OCI project import is not claimed because no tenancy is available. The
-supplied canonical project establishes the export layout but does not expose
-OCI's internal manifest registry ID for `REST_TASK`; no guessed value was
-added.
+Live OCI import request `148d9419-b097-4c3b-8f84-9ca05b51ab3d` completed
+`SUCCESSFUL` with 10 imported objects. Workspace verification returned project
+`HABITAT_SUCURSALES`, pipeline `PL_HABITAT_SUCURSALES`, seven REST tasks, and
+the runnable pipeline task, all with object status `8`. OCI accepted the REST
+tasks without any invented manifest registry value.

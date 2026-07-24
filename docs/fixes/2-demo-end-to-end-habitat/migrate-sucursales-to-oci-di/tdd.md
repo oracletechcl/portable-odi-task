@@ -83,10 +83,26 @@ production code. All four failed as expected: the manifest exported the
 Focused Green changed the export root to `USER_PROJECT` and enforced
 `.project` plus `.project.zip`. Result: 4 passed in 0.07 seconds.
 
-The full migrated suite remained Green: 67 passed in 5.21 seconds. The
-generated project asset has 11 ZIP entries, 10 object documents, one
+The full migrated suite remained Green: 67 passed in 5.12 seconds. The
+generated project asset has 13 ZIP entries, 10 object documents, one
 `USER_PROJECT` export root, byte-identical staging content, and a matching
 SHA-256 checksum.
+
+### Iteration 6: Live OCI Import Envelope
+
+Status: Red confirmed on 2026-07-24.
+
+The manual OCI import request
+`2330c9bb-3565-4538-85ba-108f2cff4559` failed before parsing any objects:
+`Unable to read archive contents ... Unknown format or the file structure was
+tampered`. Object Storage held the expected 15,056-byte ZIP, so transport was
+not the failure.
+
+Comparison with `sot/zip/canonical-project.project.zip` exposed the missing
+archive envelope. The canonical ZIP contains an explicit top-level
+`PROJECT-NAME.project/` entry and nested `Objects/` directory; the generated
+ZIP placed `manifest.json` directly at its root. The deterministic packaging
+test was changed first and failed on that exact first-entry mismatch.
 
 ## Green
 
@@ -190,6 +206,38 @@ Green:
 Result: 67 passed in 5.57 seconds in the owner run; independent no-cache reruns
 passed 67 tests in 4.95 and 5.33 seconds.
 
+### Iteration 7: Complete Compute VM-to-OCI Runbook
+
+Status: Green on 2026-07-24.
+
+Red:
+
+```bash
+python3 -m pytest -q -p no:cacheprovider \
+  tests/test_start_wrapper.py::test_readme_documents_the_entire_compute_vm_to_oci_demo
+```
+
+Result: expected Red, 1 failed in 0.04 seconds because the README did not yet
+contain a complete end-to-end section.
+
+Green:
+
+- Added release checksum verification.
+- Added Compute VM archive transfer, extraction, systemd deployment, health,
+  logs, restart, and stop instructions while retaining
+  `start-mock-backend.sh` as the single backend entrypoint.
+- Added private VCN, NSG/security-list, and host-firewall guidance for TCP 8080.
+- Added Object Storage upload and OCI Data Integration import/polling commands.
+- Added application creation, task publication, runtime overrides, run
+  monitoring, and deterministic output comparison.
+- Recorded that the live target workspace has no application yet, making
+  publication a required first-run step.
+
+Focused Green: 1 passed in 0.04 seconds.
+
+Full migrated suite: 68 passed in 4.94 seconds. Both release checksum commands
+reported `OK`.
+
 ## Refactor
 
 Status: complete.
@@ -205,9 +253,10 @@ Status: complete with one baseline dependency limitation.
 
 | Command | Result |
 | --- | --- |
-| Migrated implementation no-cache suite | Passed: 67 tests in 5.33 seconds |
+| Migrated implementation no-cache suite | Passed: 68 tests in 4.94 seconds |
 | `python3 -m compileall -q habitat-e2e-demo/migrated-pipeline-demo/implementation/habitat_sucursales` | Passed |
-| `python -m compileall src` | Passed |
+| `python -m compileall src` | Could not start: `python` is not installed in the shell |
+| `python3 -m compileall src` | Passed |
 | `pytest -q` | Could not start: command is not installed in the shell |
 | `python3 -m pytest -q -p no:cacheprovider` from repository root | Baseline collection blocked: `pyspark` is not installed |
 | `mvn -q -DskipTests package` | Passed; emitted only a JDK `Unsafe` deprecation warning |
@@ -220,7 +269,7 @@ Status: complete with one baseline dependency limitation.
 
 ## Risks
 
-- Offline schema checks cannot replace a live OCI import request.
+- Runtime execution requires the mock backend machine and OCI task parameters.
 - The original extractor shell scripts were not supplied, so their network
   calls are modeled from job arguments and fixture-backed behavior.
 - Source evidence is already tracked in the task baseline and contains
@@ -233,8 +282,7 @@ Status: complete with one baseline dependency limitation.
 ## Final Status
 
 Complete. The complete mock-backed migration, expected output, deterministic
-backend bundle, and OCI `HABITAT_SUCURSALES.project.zip` are generated. Offline
-canonical-project structure and integrity are verified. Live OCI project
-import remains unproven because no tenancy is available, and the supplied
-evidence does not expose the internal manifest registry ID for `REST_TASK`; no
-unsupported value was invented.
+backend bundle, and OCI `HABITAT_SUCURSALES.project.zip` are generated. The
+canonical project structure and integrity are verified. Live OCI import
+request `148d9419-b097-4c3b-8f84-9ca05b51ab3d` completed `SUCCESSFUL` with all
+10 objects present in project `HABITAT_SUCURSALES`.

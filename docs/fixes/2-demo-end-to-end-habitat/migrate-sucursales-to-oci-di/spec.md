@@ -73,9 +73,10 @@ creates its matching approved `Motivo*` output.
 
 - The mock service is packaged as a deterministic runtime-only archive.
 - The archive contains the wrapper, Python package, configuration, and fixtures.
-- The user supplies and operates the destination machine and network.
-- No Terraform, cloud-init, systemd, IAM, VCN, subnet, or firewall scripting is
-  included.
+- The user supplies and operates the destination machine and network; the
+  README documents their manual runtime configuration.
+- No Terraform, cloud-init, IAM, VCN, subnet, or firewall provisioning
+  automation is included.
 - No credentials, keys, OCIDs, or environment endpoints are introduced into
   the migrated release.
 
@@ -150,7 +151,9 @@ A fixed run produces eight deterministic CSV files and a checksummed manifest.
 
 The `HABITAT_SUCURSALES.project.zip` has valid ZIP integrity, a complete
 manifest rooted at `USER_PROJECT`, existing object references, supported model
-types, unique stable keys, and a parameterized backend URL.
+types, unique stable keys, a canonical top-level project directory envelope,
+and a parameterized backend URL. A live OCI import must complete successfully
+and report all 10 project objects imported.
 
 ### AC-10 — Machine-Ready Backend Bundle
 
@@ -169,6 +172,13 @@ Pre-existing tracked SOT findings are reported without modifying the evidence.
 Focused tests and all repository completion commands run and are recorded.
 Unavailable external tooling or live OCI access is reported accurately.
 
+### AC-13 — End-to-End Operator Runbook
+
+The migrated demo README documents a complete operator path from immutable
+release verification through mock-backend deployment on a supplied Compute VM,
+private VCN access, project import, application publication, parameterized task
+execution, deterministic output comparison, and service operation.
+
 ## Non-Functional Requirements
 
 - Pure transformation functions must run without OCI services.
@@ -180,9 +190,9 @@ Unavailable external tooling or live OCI access is reported accurately.
 
 ## Non-Goals
 
-- Live deployment or import.
-- Machine, network, firewall, or service-manager provisioning.
-- Terraform, cloud-init, systemd, IAM, VCN, and subnet scripting.
+- Machine creation or infrastructure provisioning.
+- Terraform, cloud-init, or automated VCN construction.
+- Deployment to a user Compute VM that has not been supplied.
 - Original backend connectivity.
 - Real email delivery.
 - Secret management implementation.

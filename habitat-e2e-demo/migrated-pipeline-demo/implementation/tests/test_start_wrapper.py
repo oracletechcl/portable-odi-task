@@ -179,3 +179,26 @@ def test_package_backend_cli_writes_bundle_and_checksum(
     assert archive.is_file()
     assert checksum_path.read_text().split()[0] == sha256_file(archive)
     assert result["sha256"] == sha256_file(archive)
+
+
+def test_readme_documents_the_entire_compute_vm_to_oci_demo() -> None:
+    readme = (IMPLEMENTATION_ROOT.parent / "README.md").read_text(encoding="utf-8")
+
+    required_runbook_content = (
+        "## Run the Entire End-to-End Demo",
+        "odi-portability-demo",
+        "HABITAT_SUCURSALES.project.zip",
+        "habitat-sucursales-mock-backend-1.0.0.tar.gz",
+        "start-mock-backend.sh",
+        "TCP 8080",
+        "/health",
+        "HABITAT_SUCURSALES_DEMO",
+        "TASK_RUN_HABITAT_SUCURSALES",
+        "MOCK_BASE_URL",
+        "AS_OF_DATE",
+        "target/expected-output",
+        "systemctl",
+    )
+
+    for expected in required_runbook_content:
+        assert expected in readme

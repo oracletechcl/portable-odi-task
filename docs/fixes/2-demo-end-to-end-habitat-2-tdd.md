@@ -9,7 +9,7 @@
   `docs/fixes/2-demo-end-to-end-habitat/migrate-sucursales-to-oci-di/tdd.md`
 - Specification:
   `docs/fixes/2-demo-end-to-end-habitat/migrate-sucursales-to-oci-di/spec.md`
-- Status: complete; offline OCI structure verified
+- Status: complete; live OCI import verified
 
 ## Problem Statement
 
@@ -24,8 +24,8 @@ with deterministic mocks and a machine-ready runtime bundle.
 - Pentaho XML resolves missing behavioral detail.
 - The absent extractor shell scripts are represented by fixture-backed REST
   operations.
-- A live OCI import cannot be run in this environment; offline structural
-  compatibility and ZIP integrity are required.
+- The final project export must pass both offline structure checks and a live
+  OCI Data Integration import.
 - The pre-existing tracked SOT contains environment metadata and is not
   modified or copied into the release.
 
@@ -94,11 +94,23 @@ writer and packager still required `.pipeline` and `.pipeline.zip`. The new
 contract roots `objectKeysProvidedForExport` at `USER_PROJECT` and requires
 `.project` plus `PROJECT-NAME.project.zip`.
 
+The first live OCI import then failed at archive parsing with zero imported
+objects. A canonical-ZIP comparison showed that the package was missing the
+required top-level `PROJECT-NAME.project/` envelope and explicit `Objects/`
+directory entry. The revised packaging test failed on that exact mismatch
+before the packager was changed.
+
 The hardened Green includes exact placeholder-derived parameters,
 canonical-project-shaped first-class objects, complete bidirectional graph links,
 pipeline-task bindings, zero-row consistency, and deterministic OCI/backend
 packaging. The project-export Green passed all four focused tests in 0.07
-seconds. The final migrated suite passed 67 tests in 5.21 seconds.
+seconds.
+
+The operator-runbook cycle then entered Red with one expected failure because
+the README did not contain a complete Compute VM-to-OCI procedure. Green added
+release verification, wrapper-backed systemd deployment, private VCN rules,
+OCI import/publication/execution, deterministic result comparison, and service
+operations. The final migrated suite passed 68 tests in 5.33 seconds.
 
 ## Refactor
 
@@ -114,7 +126,12 @@ provisioning were removed from scope and from the tree.
 - OCI scripts and mock wrapper syntax: passed.
 - Project ZIP/tar integrity and checksums: passed.
 - Project manifest: sole export root is the `USER_PROJECT`; 10 referenced
-  objects and staging bytes match the 11-entry ZIP.
+  objects and staging bytes match the 13-entry canonical-envelope ZIP.
+- Live OCI import: request `148d9419-b097-4c3b-8f84-9ca05b51ab3d` completed
+  `SUCCESSFUL` with all 10 objects imported.
+- Workspace inventory: one `HABITAT_SUCURSALES` project, one
+  `PL_HABITAT_SUCURSALES` pipeline, seven REST tasks, and one runnable pipeline
+  task, all status `8`.
 - Eight output hashes, sizes, row counts, ISO-8859-1 decoding, `~|`, and LF:
   passed.
 - New release/archive security scan: passed.
@@ -130,23 +147,22 @@ only for orchestration.
 
 ## Remaining Risks
 
-- A handcrafted export cannot be called live-import proven without an OCI
-  import request.
+- Executing the imported pipeline still requires the mock backend to be
+  deployed and `MOCK_BASE_URL` to be set.
 - The source extractor shell scripts are absent.
 - Pre-existing SOT contains environment metadata outside this task's change
   scope.
 
 ## Next Recommended Step
 
-Upload `HABITAT_SUCURSALES.project.zip` to Object Storage, import it into OCI
-Data Integration, set `MOCK_BASE_URL` and `AS_OF_DATE`, and record the live
-import result. The same checksummed asset should then be promoted to TEST and
-PROD.
+Deploy the mock backend on the supplied machine, set `MOCK_BASE_URL` and
+`AS_OF_DATE` on `TASK_RUN_HABITAT_SUCURSALES`, and run the imported pipeline.
+Promote the same checksummed project ZIP to TEST and PROD.
 
 ## Final Resolution
 
 Complete. The requested code, mock backend, expected output, machine-ready
-runtime archive, and import-oriented OCI project ZIP are delivered. Live OCI
-project import is not claimed because this environment has no tenancy access.
-The supplied offline evidence also omits the internal `REST_TASK` manifest
-registry ID, so no unverified registry value was invented.
+runtime archive, import-oriented OCI project ZIP, and end-to-end Compute
+VM-to-OCI operator runbook are delivered. Live OCI import completed
+successfully with all 10 objects present in the target workspace. No unverified
+`REST_TASK` registry value was invented.

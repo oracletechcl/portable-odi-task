@@ -305,21 +305,33 @@ def test_every_rest_task_declares_exactly_its_url_and_body_parameters() -> None:
 
 
 def test_write_and_package_are_byte_deterministic(tmp_path: Path) -> None:
-    first_dir = write_export(tmp_path / "first.project")
-    second_dir = write_export(tmp_path / "second.project")
-    first_zip = package_export(first_dir, tmp_path / "first.project.zip")
-    second_zip = package_export(second_dir, tmp_path / "second.project.zip")
+    project_name = "HABITAT_SUCURSALES.project"
+    first_dir = write_export(tmp_path / "first" / project_name)
+    second_dir = write_export(tmp_path / "second" / project_name)
+    first_zip = package_export(
+        first_dir, tmp_path / "first" / "HABITAT_SUCURSALES.project.zip"
+    )
+    second_zip = package_export(
+        second_dir, tmp_path / "second" / "HABITAT_SUCURSALES.project.zip"
+    )
 
     assert first_zip.read_bytes() == second_zip.read_bytes()
     assert sha256_file(first_zip) == hashlib.sha256(first_zip.read_bytes()).hexdigest()
     with zipfile.ZipFile(first_zip) as archive:
         assert archive.testzip() is None
-        assert archive.namelist()[0] == "manifest.json"
+        project_root = f"{project_name}/"
+        assert archive.namelist()[:2] == [
+            project_root,
+            f"{project_root}Objects/",
+        ]
         assert all(info.date_time == (1980, 1, 1, 0, 0, 0) for info in archive.infolist())
-        manifest = json.loads(archive.read("manifest.json"))
+        manifest_path = f"{project_root}manifest.json"
+        manifest = json.loads(archive.read(manifest_path))
         assert set(archive.namelist()) == {
-            "manifest.json",
-            *(path.lstrip("/") for path in manifest["objects"]),
+            project_root,
+            f"{project_root}Objects/",
+            manifest_path,
+            *(f"{project_root}{path.lstrip('/')}" for path in manifest["objects"]),
         }
 
 

@@ -592,9 +592,10 @@ def package_export(
         raise ValueError("OCI project import asset must use the .project.zip suffix")
     manifest_path = export_path / "manifest.json"
     manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+    project_root = f"{export_path.name}/"
     relative_paths = [
-        "manifest.json",
         *(path.lstrip("/") for path in manifest["objects"]),
+        "manifest.json",
     ]
     archive_path.parent.mkdir(parents=True, exist_ok=True)
     with zipfile.ZipFile(
@@ -603,12 +604,21 @@ def package_export(
         compression=zipfile.ZIP_DEFLATED,
         compresslevel=9,
     ) as archive:
+        for directory in (project_root, f"{project_root}Objects/"):
+            info = zipfile.ZipInfo(directory, date_time=(1980, 1, 1, 0, 0, 0))
+            info.compress_type = zipfile.ZIP_DEFLATED
+            info.create_system = 0
+            info.external_attr = 0
+            archive.writestr(info, b"", compresslevel=9)
         for relative_path in relative_paths:
             source = export_path / relative_path
-            info = zipfile.ZipInfo(relative_path, date_time=(1980, 1, 1, 0, 0, 0))
+            info = zipfile.ZipInfo(
+                f"{project_root}{relative_path}",
+                date_time=(1980, 1, 1, 0, 0, 0),
+            )
             info.compress_type = zipfile.ZIP_DEFLATED
-            info.create_system = 3
-            info.external_attr = 0o100644 << 16
+            info.create_system = 0
+            info.external_attr = 0
             archive.writestr(info, source.read_bytes(), compresslevel=9)
     return archive_path
 
