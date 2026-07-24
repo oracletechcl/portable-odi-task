@@ -6,9 +6,9 @@ deterministic Python mock backend.
 
 ## Release Assets
 
-- `target/habitat-sucursales-1.0.0.pipeline.zip` — OCI Data Integration
-  import-oriented pipeline bundle.
-- `target/habitat-sucursales-1.0.0.pipeline.zip.sha256` — pipeline bundle
+- `target/HABITAT_SUCURSALES.project.zip` — OCI Data Integration
+  import-oriented project bundle.
+- `target/HABITAT_SUCURSALES.project.zip.sha256` — project bundle
   checksum.
 - `target/habitat-sucursales-mock-backend-1.0.0.tar.gz` — runtime-only backend
   bundle for a user-supplied machine.
@@ -16,9 +16,10 @@ deterministic Python mock backend.
   checksum.
 - `target/expected-output/` — deterministic output for `2026-07-15`.
 
-The `.pipeline.zip` is structurally checked against the supplied OCI export
-shape. A live OCI import is not claimed because this workspace has no tenancy
-access.
+The `.project.zip` is structurally checked against
+`sot/canonical-project.project`. Its manifest exports the `USER_PROJECT` root
+and includes the pipeline, runnable pipeline task, and referenced REST tasks. A
+live OCI import is not claimed because this workspace has no tenancy access.
 
 ## Start Every Mock Endpoint
 
@@ -79,7 +80,7 @@ systemd are intentionally out of scope.
 
 ## Import and Configure OCI Data Integration
 
-Import `target/habitat-sucursales-1.0.0.pipeline.zip` into the OCI Data
+Import `target/HABITAT_SUCURSALES.project.zip` into the OCI Data
 Integration workspace. Configure these runtime parameters:
 
 - `MOCK_BASE_URL` — reachable backend URL, for example
@@ -97,8 +98,8 @@ change.
 ```bash
 cd implementation
 python3 -m habitat_sucursales package-oci \
-  --export-dir ../target/habitat-sucursales-1.0.0.pipeline \
-  --zip-path ../target/habitat-sucursales-1.0.0.pipeline.zip
+  --export-dir ../target/HABITAT_SUCURSALES.project \
+  --zip-path ../target/HABITAT_SUCURSALES.project.zip
 ```
 
 Rebuild the machine-ready backend:

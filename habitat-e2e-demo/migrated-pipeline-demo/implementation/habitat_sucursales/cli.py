@@ -67,7 +67,7 @@ def build_parser() -> argparse.ArgumentParser:
     run.add_argument("--fail-at")
 
     package = subparsers.add_parser(
-        "package-oci", help="write and package the OCI import asset"
+        "package-oci", help="write and package the OCI project import asset"
     )
     package.add_argument("--export-dir", type=Path, required=True)
     package.add_argument("--zip-path", type=Path, required=True)

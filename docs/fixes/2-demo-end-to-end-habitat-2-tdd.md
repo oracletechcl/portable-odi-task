@@ -88,10 +88,17 @@ expected failures: supplied-sample object metadata envelopes, undeclared REST
 payload placeholders, and zero-row output validation. Detailed evidence is in
 the task TDD log.
 
+The project-packaging specification change then entered Red with four expected
+failures. The manifest still rooted the export at `PIPELINE_TASK`, while the
+writer and packager still required `.pipeline` and `.pipeline.zip`. The new
+contract roots `objectKeysProvidedForExport` at `USER_PROJECT` and requires
+`.project` plus `PROJECT-NAME.project.zip`.
+
 The hardened Green includes exact placeholder-derived parameters,
-sample-shaped first-class objects, complete bidirectional graph links,
+canonical-project-shaped first-class objects, complete bidirectional graph links,
 pipeline-task bindings, zero-row consistency, and deterministic OCI/backend
-packaging. The final migrated suite passed 67 tests.
+packaging. The project-export Green passed all four focused tests in 0.07
+seconds. The final migrated suite passed 67 tests in 5.21 seconds.
 
 ## Refactor
 
@@ -105,7 +112,9 @@ provisioning were removed from scope and from the tree.
 - Package and source compileall: passed.
 - Maven package: passed with a JDK deprecation warning.
 - OCI scripts and mock wrapper syntax: passed.
-- ZIP/tar integrity and checksums: passed.
+- Project ZIP/tar integrity and checksums: passed.
+- Project manifest: sole export root is the `USER_PROJECT`; 10 referenced
+  objects and staging bytes match the 11-entry ZIP.
 - Eight output hashes, sizes, row counts, ISO-8859-1 decoding, `~|`, and LF:
   passed.
 - New release/archive security scan: passed.
@@ -129,14 +138,15 @@ only for orchestration.
 
 ## Next Recommended Step
 
-Upload the `.pipeline.zip` to Object Storage, import it into OCI Data
-Integration, set `MOCK_BASE_URL` and `AS_OF_DATE`, and record the live import
-result. The same checksummed asset should then be promoted to TEST and PROD.
+Upload `HABITAT_SUCURSALES.project.zip` to Object Storage, import it into OCI
+Data Integration, set `MOCK_BASE_URL` and `AS_OF_DATE`, and record the live
+import result. The same checksummed asset should then be promoted to TEST and
+PROD.
 
 ## Final Resolution
 
 Complete. The requested code, mock backend, expected output, machine-ready
-runtime archive, and import-oriented OCI pipeline ZIP are delivered. Live OCI
-import is not claimed because this environment has no tenancy access. The
-supplied offline evidence also omits the internal `REST_TASK` manifest registry
-ID, so no unverified registry value was invented.
+runtime archive, and import-oriented OCI project ZIP are delivered. Live OCI
+project import is not claimed because this environment has no tenancy access.
+The supplied offline evidence also omits the internal `REST_TASK` manifest
+registry ID, so no unverified registry value was invented.

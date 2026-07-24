@@ -10,7 +10,7 @@
 | AC-06 | Use one bash startup point | `start-mock-backend.sh` | `test_start_wrapper.py`, `bash -n` | Passed: lifecycle, arbitrary-CWD, and shell checks |
 | AC-07 | Preserve period-abort and processing notification/abort behavior | `pipeline.py`, `mock_api.py`, OCI failure nodes | `test_pipeline.py`, `test_mock_api.py`, `test_oci_export.py` | Passed: local and OCI graph failure paths |
 | AC-08 | Produce deterministic expected output | `pipeline.py`, fixtures, target output | `test_pipeline.py`, manifest hash/row verification | Passed: eight CSVs plus canonical manifest |
-| AC-09 | Package an import-oriented `.pipeline.zip` | `oci_export.py`, generated OCI objects | `test_oci_export.py`, ZIP integrity check | Passed offline structural and integrity checks |
+| AC-09 | Package `HABITAT_SUCURSALES.project.zip` with a `USER_PROJECT` export root | `oci_export.py`, generated OCI objects | `test_oci_export.py`, ZIP integrity and manifest-root checks | Passed offline canonical-project structural and integrity checks |
 | AC-10 | Package a machine-ready mock backend | deterministic runtime archive | `test_start_wrapper.py`, archive-content checks | Passed: runtime-only tar and checksum |
 | AC-11 | Exclude secrets and promote one artifact | `.gitignore`, parameterized config, checksums | `test_security.py`, checksum verification | Passed on new release and both archives |
 | AC-12 | Pass completion gates | All task files | Compile, pytest, Maven, shell commands | Completed; root pytest blocked by missing baseline `pyspark`, recorded in TDD |

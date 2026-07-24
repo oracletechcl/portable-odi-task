@@ -52,20 +52,21 @@ provisioning were removed when the user excluded infrastructure scripting.
   single startup wrapper under `migrated-pipeline-demo/implementation`.
 - Added eight deterministic CSVs and a checksummed run manifest for
   `2026-07-15`.
-- Added the OCI staging directory and deterministic
-  `habitat-sucursales-1.0.0.pipeline.zip`.
+- Added the OCI project staging directory and deterministic
+  `HABITAT_SUCURSALES.project.zip`.
 - Added the deterministic machine-ready backend tar and checksum.
 - Added operator instructions and SDD/TDD/traceability records.
 
 ## Validation
 
-- Migrated implementation: 67 tests passed in the root no-cache run; an
-  independent audit also passed all 67.
+- Migrated implementation: 67 tests passed in 5.21 seconds in the no-cache
+  run; an independent audit also passed all 67.
 - Implementation and repository `compileall`: passed.
 - Maven package: passed with only a JDK `Unsafe` deprecation warning.
 - Existing OCI scripts and the new mock wrapper: `bash -n` passed.
-- OCI ZIP: 11 entries, valid integrity, complete references, deterministic
-  checksum, sample-shaped metadata, and no unresolved request placeholders.
+- OCI project ZIP: 11 entries, valid integrity, complete references,
+  `USER_PROJECT` export root, deterministic checksum, canonical-project-shaped
+  metadata, and no unresolved request placeholders.
 - Backend tar: deterministic checksum, executable wrapper, no tests or caches.
 - Expected output: eight files; every hash, size, and row count matches the run
   manifest; encoding, delimiter, and line-ending checks passed.
@@ -78,6 +79,7 @@ equivalent `python3 -m pytest` reached collection but the pre-existing
 `tests/test_customer_transform.py` requires unavailable `pyspark`. This is a
 baseline environment dependency, not a migrated-suite failure.
 
-Live OCI import is not claimed because no tenancy is available. The supplied
-sample establishes the export layout but does not expose OCI's internal
-manifest registry ID for `REST_TASK`; no guessed value was added.
+Live OCI project import is not claimed because no tenancy is available. The
+supplied canonical project establishes the export layout but does not expose
+OCI's internal manifest registry ID for `REST_TASK`; no guessed value was
+added.

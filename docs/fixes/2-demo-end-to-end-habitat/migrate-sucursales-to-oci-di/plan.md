@@ -25,15 +25,16 @@ The final release must include:
 1. A locally executable mock-backed implementation.
 2. Expected output for a fixed demonstration date.
 3. A deterministic, machine-ready mock backend bundle.
-4. A deterministic OCI Data Integration `.pipeline.zip` import artifact.
+4. A deterministic OCI Data Integration `PROJECT-NAME.project.zip` import
+   artifact.
 
 ## Sources of Truth
 
 1. `habitat-e2e-demo/sot/Pentaho_Habitat_Sucursales-llm-assets/migration-spec/Sucursales/spec.md`
 2. Pentaho job and transformation files under
    `habitat-e2e-demo/sot/Pentaho_Habitat_Sucursales-llm-assets/source-code/Sucursales/`
-3. `habitat-e2e-demo/sot/customer-portability-demo-1.0.0.pipeline/` for OCI
-   export structure
+3. `habitat-e2e-demo/sot/canonical-project.project/` for the OCI project
+   export envelope and project-root manifest semantics
 4. Current OCI Data Integration REST-task, pipeline, and import contracts
 
 Source-of-truth inputs are evidence only. They are part of the pre-existing
@@ -59,7 +60,7 @@ task must not modify them or copy their values into the migrated release.
 - Orchestrate it with OCI Data Integration synchronous REST tasks.
 - Produce deterministic expected CSV outputs and checksums.
 - Package the OCI export as
-  `habitat-e2e-demo/migrated-pipeline-demo/target/habitat-sucursales-1.0.0.pipeline.zip`.
+  `habitat-e2e-demo/migrated-pipeline-demo/target/HABITAT_SUCURSALES.project.zip`.
 
 ## Non-Goals
 
@@ -156,13 +157,13 @@ Green:
 
 - Implement the orchestrator, API, CLI, and single bash entrypoint.
 
-### Iteration 4 — OCI Export and Machine-Ready Runtime
+### Iteration 4 — OCI Project Export and Machine-Ready Runtime
 
 Red:
 
 - Complete manifest references, valid object types, unique stable keys,
-  parameterized private endpoint, deterministic ZIP, and `.pipeline.zip`
-  suffix.
+  project-root `objectKeysProvidedForExport`, parameterized private endpoint,
+  deterministic ZIP, and `.project.zip` suffix.
 - No credentials, real OCIDs, or real endpoints.
 - Runtime-only deterministic backend archive and single-wrapper contract.
 
@@ -223,9 +224,9 @@ Green:
   `habitat-e2e-demo/migrated-pipeline-demo/target/expected-output/{202606,202607}/`
 - `habitat-e2e-demo/migrated-pipeline-demo/target/expected-output/run-manifest.json`
 - OCI manifest plus ten object JSON files under
-  `habitat-e2e-demo/migrated-pipeline-demo/target/habitat-sucursales-1.0.0.pipeline/`
-- `habitat-e2e-demo/migrated-pipeline-demo/target/habitat-sucursales-1.0.0.pipeline.zip`
-- `habitat-e2e-demo/migrated-pipeline-demo/target/habitat-sucursales-1.0.0.pipeline.zip.sha256`
+  `habitat-e2e-demo/migrated-pipeline-demo/target/HABITAT_SUCURSALES.project/`
+- `habitat-e2e-demo/migrated-pipeline-demo/target/HABITAT_SUCURSALES.project.zip`
+- `habitat-e2e-demo/migrated-pipeline-demo/target/HABITAT_SUCURSALES.project.zip.sha256`
 - `habitat-e2e-demo/migrated-pipeline-demo/target/habitat-sucursales-mock-backend-1.0.0.tar.gz`
 - `habitat-e2e-demo/migrated-pipeline-demo/target/habitat-sucursales-mock-backend-1.0.0.tar.gz.sha256`
 

@@ -58,8 +58,6 @@ def test_export_documents_match_import_bundle_contract() -> None:
     assert all(path.startswith("/Objects/") for path in documents["manifest.json"]["objects"])
     assert documents["manifest.json"]["version"] == "V1"
     assert documents["manifest.json"]["exportedWorkspaceOcid"] == ""
-    assert len(documents["manifest.json"]["objectKeysProvidedForExport"]) == 1
-
     objects = _objects(documents)
     assert len(objects) == 10
     assert len({item["key"] for item in objects}) == len(objects)
@@ -71,6 +69,9 @@ def test_export_documents_match_import_bundle_contract() -> None:
     }
     assert all(item["objectStatus"] == 8 for item in objects)
     project = next(item for item in objects if item["modelType"] == "USER_PROJECT")
+    assert documents["manifest.json"]["objectKeysProvidedForExport"] == [
+        project["key"]
+    ]
     assert project["metadata"] == {"registryVersion": 1}
     for item in objects:
         assert "registryMetadata" not in item
@@ -304,10 +305,10 @@ def test_every_rest_task_declares_exactly_its_url_and_body_parameters() -> None:
 
 
 def test_write_and_package_are_byte_deterministic(tmp_path: Path) -> None:
-    first_dir = write_export(tmp_path / "first.pipeline")
-    second_dir = write_export(tmp_path / "second.pipeline")
-    first_zip = package_export(first_dir, tmp_path / "first.pipeline.zip")
-    second_zip = package_export(second_dir, tmp_path / "second.pipeline.zip")
+    first_dir = write_export(tmp_path / "first.project")
+    second_dir = write_export(tmp_path / "second.project")
+    first_zip = package_export(first_dir, tmp_path / "first.project.zip")
+    second_zip = package_export(second_dir, tmp_path / "second.project.zip")
 
     assert first_zip.read_bytes() == second_zip.read_bytes()
     assert sha256_file(first_zip) == hashlib.sha256(first_zip.read_bytes()).hexdigest()
@@ -322,18 +323,18 @@ def test_write_and_package_are_byte_deterministic(tmp_path: Path) -> None:
         }
 
 
-def test_package_requires_pipeline_zip_suffix(tmp_path: Path) -> None:
-    export_dir = write_export(tmp_path / "bundle.pipeline")
+def test_package_requires_project_zip_suffix(tmp_path: Path) -> None:
+    export_dir = write_export(tmp_path / "bundle.project")
 
-    with pytest.raises(ValueError, match=r"\.pipeline\.zip"):
-        package_export(export_dir, tmp_path / "bundle.zip")
+    with pytest.raises(ValueError, match=r"\.project\.zip"):
+        package_export(export_dir, tmp_path / "bundle.pipeline.zip")
 
 
 def test_package_cli_writes_import_asset_and_checksum(
     tmp_path: Path, capsys
 ) -> None:
-    export_dir = tmp_path / "habitat-sucursales-1.0.0.pipeline"
-    archive = tmp_path / "habitat-sucursales-1.0.0.pipeline.zip"
+    export_dir = tmp_path / "HABITAT_SUCURSALES.project"
+    archive = tmp_path / "HABITAT_SUCURSALES.project.zip"
 
     status = main(
         [

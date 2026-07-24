@@ -3,7 +3,8 @@
 ## Task
 
 Build a mock-backed OCI Data Integration migration of the complete Pentaho
-Sucursales flow and package it as a deterministic `.pipeline.zip`.
+Sucursales flow and package it as a deterministic
+`HABITAT_SUCURSALES.project.zip`.
 
 ## Initial State
 
@@ -67,6 +68,25 @@ errors for the missing `habitat_sucursales.mock_api` and
 The initial Red also included a Compute provisioning contract. The user then
 removed Terraform and machine provisioning from scope, so that test and all
 provisioning artifacts were deleted before Green.
+
+### Iteration 5: Project Export Contract
+
+Status: Red confirmed on 2026-07-24.
+
+The revised specification requires a whole-project export shaped by
+`habitat-e2e-demo/sot/canonical-project.project`, with a
+`PROJECT-NAME.project.zip` deliverable. Four focused tests were changed before
+production code. All four failed as expected: the manifest exported the
+`PIPELINE_TASK` key, and the writer/packager accepted only `.pipeline` and
+`.pipeline.zip`.
+
+Focused Green changed the export root to `USER_PROJECT` and enforced
+`.project` plus `.project.zip`. Result: 4 passed in 0.07 seconds.
+
+The full migrated suite remained Green: 67 passed in 5.21 seconds. The
+generated project asset has 11 ZIP entries, 10 object documents, one
+`USER_PROJECT` export root, byte-identical staging content, and a matching
+SHA-256 checksum.
 
 ## Green
 
@@ -213,7 +233,8 @@ Status: complete with one baseline dependency limitation.
 ## Final Status
 
 Complete. The complete mock-backed migration, expected output, deterministic
-backend bundle, and OCI `.pipeline.zip` are generated. Offline structure and
-integrity are verified. Live OCI import remains unproven because no tenancy is
-available, and the supplied evidence does not expose the internal manifest
-registry ID for `REST_TASK`; no unsupported value was invented.
+backend bundle, and OCI `HABITAT_SUCURSALES.project.zip` are generated. Offline
+canonical-project structure and integrity are verified. Live OCI project
+import remains unproven because no tenancy is available, and the supplied
+evidence does not expose the internal manifest registry ID for `REST_TASK`; no
+unsupported value was invented.

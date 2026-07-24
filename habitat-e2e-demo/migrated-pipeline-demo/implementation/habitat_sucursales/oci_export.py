@@ -550,7 +550,7 @@ def build_export_documents() -> dict[str, dict[str, object]]:
             "788": PIPELINE_MODEL_VERSION,
             "17230268181": REST_MODEL_VERSION,
         },
-        "objectKeysProvidedForExport": [pipeline_task["key"]],
+        "objectKeysProvidedForExport": [project["key"]],
         "objects": [f"/{path}" for path in object_documents],
         "referencedObjectsList": [],
         "version": "V1",
@@ -562,8 +562,8 @@ def write_export(export_dir: Path | str) -> Path:
     """Write the deterministic OCI object directory."""
 
     export_path = Path(export_dir)
-    if export_path.suffix != ".pipeline":
-        raise ValueError("export directory must use the .pipeline suffix")
+    if export_path.suffix != ".project":
+        raise ValueError("export directory must use the .project suffix")
     documents = build_export_documents()
     for relative_path, document in documents.items():
         destination = export_path / relative_path
@@ -584,12 +584,12 @@ def write_export(export_dir: Path | str) -> Path:
 def package_export(
     export_dir: Path | str, zip_path: Path | str
 ) -> Path:
-    """Create a deterministic ``.pipeline.zip`` from a written export."""
+    """Create a deterministic ``.project.zip`` from a written export."""
 
     export_path = Path(export_dir)
     archive_path = Path(zip_path)
-    if not archive_path.name.endswith(".pipeline.zip"):
-        raise ValueError("OCI import asset must use the .pipeline.zip suffix")
+    if not archive_path.name.endswith(".project.zip"):
+        raise ValueError("OCI project import asset must use the .project.zip suffix")
     manifest_path = export_path / "manifest.json"
     manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
     relative_paths = [

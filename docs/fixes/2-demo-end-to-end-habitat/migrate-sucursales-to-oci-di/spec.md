@@ -86,9 +86,11 @@ creates its matching approved `Motivo*` output.
 - Success and failure branches reflect the Pentaho job contract.
 - Referenced REST tasks are included in the export.
 - The final asset is a deterministic ZIP named
-  `habitat-sucursales-1.0.0.pipeline.zip`.
-- The ZIP uses the manifest/object layout of an OCI Data Integration pipeline
-  export and passes offline structural validation.
+  `HABITAT_SUCURSALES.project.zip`.
+- The ZIP uses the manifest/object layout of
+  `habitat-e2e-demo/sot/canonical-project.project`, roots
+  `objectKeysProvidedForExport` at the `USER_PROJECT`, and passes offline
+  structural validation.
 
 ### Expected Output
 
@@ -146,9 +148,9 @@ A fixed run produces eight deterministic CSV files and a checksummed manifest.
 
 ### AC-09 — OCI Import Asset
 
-The `.pipeline.zip` has valid ZIP integrity, a complete manifest, existing
-object references, supported model types, unique stable keys, and a
-parameterized backend URL.
+The `HABITAT_SUCURSALES.project.zip` has valid ZIP integrity, a complete
+manifest rooted at `USER_PROJECT`, existing object references, supported model
+types, unique stable keys, and a parameterized backend URL.
 
 ### AC-10 — Machine-Ready Backend Bundle
 
