@@ -1,0 +1,114 @@
+{
+  "modelType" : "OCI_DATAFLOW_TASK",
+  "key" : "816bf5d7-83ce-430d-9ada-7c94580afdc3",
+  "name" : "TASK_CUSTOMER_TRANSFORM",
+  "objectVersion" : 1,
+  "identifier" : "TASK_CUSTOMER_TRANSFORM",
+  "inputPorts" : [ ],
+  "outputPorts" : [ ],
+  "configProviderDelegate" : { },
+  "parameters" : [ {
+    "modelType" : "PARAMETER",
+    "key" : "4ac3ecbc-bdfc-4ea7-a352-3dbb8c858754",
+    "parentRef" : {
+      "parent" : "816bf5d7-83ce-430d-9ada-7c94580afdc3"
+    },
+    "type" : "Seeded:/typeSystems/PLATFORM/dataTypes/FLOAT",
+    "isInput" : false,
+    "isOutput" : true,
+    "modelVersion" : "20210705",
+    "name" : "bytesWritten",
+    "typeName" : "FLOAT"
+  }, {
+    "modelType" : "PARAMETER",
+    "key" : "f62d94f3-ff42-4632-b9b4-316b855bcbd0",
+    "parentRef" : {
+      "parent" : "816bf5d7-83ce-430d-9ada-7c94580afdc3"
+    },
+    "type" : {
+      "modelType" : "JAVA_TYPE",
+      "key" : "b8863389-0877-47ba-844b-68f9c60ee671",
+      "parentRef" : {
+        "parent" : "f62d94f3-ff42-4632-b9b4-316b855bcbd0"
+      },
+      "javaTypeName" : "com.oracle.dos.task.model.customparameter.Arguments",
+      "modelVersion" : "20190228"
+    },
+    "isInput" : false,
+    "isOutput" : true,
+    "modelVersion" : "20210705",
+    "name" : "args",
+    "typeName" : "com.oracle.dos.task.model.customparameter.Arguments"
+  }, {
+    "modelType" : "PARAMETER",
+    "key" : "2e9d17e3-c2c9-4fdf-957b-750a2581dade",
+    "parentRef" : {
+      "parent" : "816bf5d7-83ce-430d-9ada-7c94580afdc3"
+    },
+    "type" : "Seeded:/typeSystems/PLATFORM/dataTypes/STRING",
+    "isInput" : false,
+    "isOutput" : true,
+    "modelVersion" : "20210705",
+    "name" : "displayName",
+    "typeName" : "STRING"
+  }, {
+    "modelType" : "PARAMETER",
+    "key" : "384b9a34-bbe5-4e1f-9f1a-3c2092c7ba99",
+    "parentRef" : {
+      "parent" : "816bf5d7-83ce-430d-9ada-7c94580afdc3"
+    },
+    "type" : "Seeded:/typeSystems/PLATFORM/dataTypes/COMPLEX",
+    "isInput" : false,
+    "isOutput" : true,
+    "modelVersion" : "20210705",
+    "name" : "arguments",
+    "typeName" : "COMPLEX"
+  }, {
+    "modelType" : "PARAMETER",
+    "key" : "f62e19d9-504d-42b7-813c-13463fd3dcf5",
+    "parentRef" : {
+      "parent" : "816bf5d7-83ce-430d-9ada-7c94580afdc3"
+    },
+    "type" : "Seeded:/typeSystems/PLATFORM/dataTypes/STRING",
+    "isInput" : false,
+    "isOutput" : true,
+    "modelVersion" : "20210705",
+    "name" : "applicationId",
+    "typeName" : "STRING"
+  }, {
+    "modelType" : "PARAMETER",
+    "key" : "63efecd0-0072-4911-b86e-2b6be415a577",
+    "parentRef" : {
+      "parent" : "816bf5d7-83ce-430d-9ada-7c94580afdc3"
+    },
+    "type" : "Seeded:/typeSystems/PLATFORM/dataTypes/FLOAT",
+    "isInput" : false,
+    "isOutput" : true,
+    "modelVersion" : "20210705",
+    "name" : "bytesProcessed",
+    "typeName" : "FLOAT"
+  } ],
+  "modelVersion" : "20230421",
+  "objectStatus" : 8,
+  "metadata" : {
+    "createdBy" : "ocid1.user.oc1..aaaaaaaajpizqlfu7yhwkjvqyeobcd6zggh4bke5pb76toqpglisleyqv2sa",
+    "createdByName" : "Denny Alquinta",
+    "updatedBy" : "ocid1.user.oc1..aaaaaaaajpizqlfu7yhwkjvqyeobcd6zggh4bke5pb76toqpglisleyqv2sa",
+    "updatedByName" : "Denny Alquinta",
+    "timeCreated" : "2026-07-13T16:57:43.035Z",
+    "timeUpdated" : "2026-07-13T16:57:43.035Z",
+    "aggregatorKey" : "9a43adfb-70d9-4097-889e-df7cae272c52",
+    "registryVersion" : 1,
+    "aggregator" : {
+      "type" : "USER_PROJECT",
+      "key" : "9a43adfb-70d9-4097-889e-df7cae272c52",
+      "name" : "PORTABILITY_DEMO",
+      "identifier" : "PORTABILITY_DEMO",
+      "description" : "Portable PySpark CI/CD proof of concept"
+    }
+  },
+  "dataflowApplication" : {
+    "applicationId" : "ocid1.dataflowapplication.oc1.us-sanjose-1.anzwuljrfioir7iajlysl73h5h74zpq7z5oklekfwcrkqrqtwqql5y5dupia",
+    "compartmentId" : "ocid1.compartment.oc1..aaaaaaaal7vn7wsy3qgizklrlfgo2vllfta3wkqlnfkvykoroite3lzxbnna"
+  }
+}
