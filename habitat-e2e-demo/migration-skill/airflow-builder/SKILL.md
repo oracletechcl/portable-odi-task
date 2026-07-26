@@ -68,6 +68,28 @@ The internal engine must:
    without a health probe or lifecycle action; and
 5. print `READY` only after the DAG is visible, import-clean, and ready to run.
 
+Keep every target-specific value in the ignored deployment config: instance OCID,
+host/IP, SSH user, local key-file path, Airflow home, binary, DAG folder, DAG ID,
+and variable names. The deployer and skill templates must accept those values as
+config inputs; never hardcode a specific environment or credential.
+Resolve a relative local key-file path from the config file's directory, not the
+operator's current working directory.
+Validate the remote DAG folder as the Airflow service user: the SSH login user
+may correctly be denied traversal of the Airflow home directory.
+When parsing Airflow CLI `--output json`, isolate the JSON payload from incidental
+CLI/plugin log lines before evaluating it. A literal `[]` is a clean import-error
+result; never fail deployment because preceding non-JSON log text was captured.
+For an `external-reuse` mock, never probe it from deployment. Configure its URL
+from the runtime topology rather than a source assumption: a co-hosted mock can
+use a loopback address and its actual service port. When a user-authorized run
+reports connection refusal, diagnose by comparing the Airflow Variable value with
+the host listener, then update both ignored config and the Airflow Variable.
+If a public Airflow URL and UI user are supplied in ignored config, print them at
+successful handoff. Never infer an Airflow URL from a host port without verifying
+its service. Keep passwords in ignored config and never hardcode or recover them.
+Print a local password only when the user explicitly authorizes it and config sets
+`AIRFLOW_PRINT_UI_PASSWORD=yes`; otherwise report only that it is configured.
+
 Do not leave a scaffold wrapper whose internal deployer is absent. Run `bash -n`
 on both scripts and execute root `--dry-run` before handoff. Keep all config local,
 ignored, explicit, and secret-free in tracked examples.
@@ -86,6 +108,11 @@ For every fix, update this skill or a directly referenced contract, add a
 deterministic validator/template guardrail when structural, add a regression test,
 and record the failure signature and prevention rule in TDD evidence. Never use an
 untested nested JSON/shell payload; build it in importable code and unit test it.
+Use migration-unique pytest and implementation module names (for example,
+`test_airflow_APP_transformations.py` and `airflow_APP_transformations.py`) or
+package each migration. Do not use generic names such as `test_transformations.py`
+or `transformations.py` in a shared repository, because pytest imports same-named
+modules globally during full-suite collection.
 
 ## Handoff
 

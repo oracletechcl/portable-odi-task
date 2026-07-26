@@ -11,4 +11,6 @@ target/
 pytest-of-*/
 ssh-keys
 .demo-deploy.env
+.deploy.env
+.env
 .DS_Store

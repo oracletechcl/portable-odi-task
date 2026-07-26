@@ -21,9 +21,9 @@ def carga_archivo_externo():
         date_value = (logical_date or datetime.now()).date().isoformat()
         return _post("/v1/periods", {"as_of_date": date_value})["periods"]
     @task
-    def atenciones(periods_value, window: str): return _post("/v1/process/atenciones", {"as_of_date": periods_value[window]["start_date"], "window": window})
+    def atenciones(periods_value, window: str): return _post("/v1/process/atenciones", {"as_of_date": periods_value["as_of_date"], "window": window})
     @task
-    def agendamientos(periods_value, window: str): return _post("/v1/process/agendamientos", {"as_of_date": periods_value[window]["start_date"], "window": window})
+    def agendamientos(periods_value, window: str): return _post("/v1/process/agendamientos", {"as_of_date": periods_value["as_of_date"], "window": window})
     @task(trigger_rule=TriggerRule.ALL_FAILED)
     def notificar_error(step: str): return _post("/v1/notify-error", {"status": "error", "step": step, "message": "Pentaho-equivalent task failed"})
     windows = obtener_periodos(); at_prev = atenciones(windows, "previous"); at_cur = atenciones(windows, "current"); ag_prev = agendamientos(windows, "previous"); ag_cur = agendamientos(windows, "current")
