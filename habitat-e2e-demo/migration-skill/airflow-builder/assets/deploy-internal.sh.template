@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Replace this generated scaffold before handoff. Implement --config, --app-name,
+# and --dry-run; validate DAG/checksum/config; atomically copy the DAG to the
+# supplied Airflow host; verify remote checksum, no import errors, exact DAG ID,
+# and ready-to-run state. Require target values only from ignored config. Resolve
+# a relative key file from the config directory. Verify the configured absolute
+# Airflow binary, AIRFLOW_HOME, and live dags_folder as the airflow service user
+# with sudo -n and a deterministic PATH. Validate the DAG directory as that user,
+# wait for asynchronous indexing, and isolate JSON CLI payloads from log lines.
+# For external-reuse mocks, materialize URL only: never curl, probe, install,
+# start, stop, transfer, or mutate the mock.
+echo 'ERROR: implement this migration-specific Airflow deployment engine.' >&2
+exit 2

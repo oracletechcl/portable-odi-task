@@ -1,0 +1,53 @@
+title: Profile 1 - Target Architecture
+customer: Code Introspector
+narrative: 'OCI ODI using Running on OCI ODI. Families: Pentaho Data Integration.'
+topology: single_region
+stencil_sources:
+  reference_library: processing-files/programmatic-pipeline/assets/diagram/OCI Library.xml
+tenant_components: []
+regions:
+- id: primary-region
+  label: OCI
+  role: primary
+  components:
+  - id: target-runtime
+    logical_key: soa marketplace iaas
+    label: OCI ODI
+    subtitle: Running on OCI ODI; OCI; 1 canonical apps
+    oci_services:
+    - Marketplace on IaaS
+    - Compute
+    subnet: private
+    flow_rank: 30
+  - id: shared-storage
+    logical_key: file storage
+    label: OCI File Storage
+    subtitle: Shared binaries and middleware state
+    oci_services:
+    - File Storage
+    subnet: private
+    flow_rank: 55
+  - id: block-storage
+    logical_key: block storage
+    label: OCI Block Storage
+    subtitle: Persistent volumes for runtime assets
+    oci_services:
+    - Block Storage
+    subnet: private
+    flow_rank: 56
+external_nodes:
+- id: internet-users
+  label: Channels and Upstream Systems
+  subtitle: 1 canonical apps
+  style: external
+connections:
+- from: target-runtime
+  to: shared-storage
+  label: Shared storage
+  type: standard
+  render_label: false
+- from: target-runtime
+  to: block-storage
+  label: Persistent volumes
+  type: standard
+  render_label: false

@@ -1,0 +1,38 @@
+{
+  "configProviderDelegate": {},
+  "description": "Runnable task for the Habitat Sucursales pipeline",
+  "identifier": "TASK_RUN_HABITAT_SUCURSALES",
+  "inputPorts": [],
+  "isConcurrentAllowed": false,
+  "key": "88560655-5474-52cd-aa79-cfee4eaf272e",
+  "metadata": {
+    "aggregator": {
+      "description": "Portable mock-backed Habitat Sucursales migration",
+      "identifier": "HABITAT_SUCURSALES",
+      "key": "e1b6819d-e0ac-5944-9d4c-6e3d606794bd",
+      "name": "HABITAT_SUCURSALES",
+      "type": "USER_PROJECT"
+    },
+    "aggregatorKey": "e1b6819d-e0ac-5944-9d4c-6e3d606794bd",
+    "registryVersion": 1
+  },
+  "modelType": "PIPELINE_TASK",
+  "modelVersion": "20230421",
+  "name": "TASK_RUN_HABITAT_SUCURSALES",
+  "objectStatus": 8,
+  "objectVersion": 1,
+  "outputPorts": [],
+  "parameters": [],
+  "pipeline": {
+    "identifier": "PL_HABITAT_SUCURSALES",
+    "key": "2421c59e-28e1-5aa3-b9d6-6ccb90940e1e",
+    "modelType": "PIPELINE",
+    "modelVersion": "20220124",
+    "name": "PL_HABITAT_SUCURSALES",
+    "nestedDepth": 0,
+    "nodes": [],
+    "objectStatus": 1,
+    "objectVersion": 1,
+    "parameters": []
+  }
+}

@@ -1,0 +1,22 @@
+source_root: <output-root>
+source_of_truth:
+  stage_06_overview: cloud-native-architecture/README.md
+  stage_06_to_be_root: cloud-native-architecture/canonical-app-to-be
+  stage_08_root: coliving-strategy
+diagram_count: 2
+profiles:
+- profile_index: 1
+  target_stack: OCI ODI
+  target_platform: OCI
+  target_runtime: Running on OCI ODI
+  deployment_model: OCI deployment
+  canonical_apps: 1
+  families:
+  - Pentaho Data Integration
+  strategy_counts:
+    Strangler Fig Incremental: 1
+  directory: cloud-native-architecture/solutions-architecture-diagram/01-oci-odi
+  target_drawio: cloud-native-architecture/solutions-architecture-diagram/01-oci-odi/target-architecture.drawio
+  target_png: cloud-native-architecture/solutions-architecture-diagram/01-oci-odi/target-architecture.png
+  coliving_drawio: cloud-native-architecture/solutions-architecture-diagram/01-oci-odi/coliving-architecture.drawio
+  coliving_png: cloud-native-architecture/solutions-architecture-diagram/01-oci-odi/coliving-architecture.png

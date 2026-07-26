@@ -1,0 +1,17 @@
+version: 1
+pipeline:
+  identifier: PL_HABITAT_SUCURSALES
+  mock_base_url:
+    environment: MOCK_BASE_URL
+    required: true
+  request_content_type: application/json
+  stages:
+    - periods
+    - atenciones_previous
+    - atenciones_current
+    - agendamientos_previous
+    - agendamientos_current
+    - validate
+  failure:
+    periods: abort
+    processing: notify_then_abort

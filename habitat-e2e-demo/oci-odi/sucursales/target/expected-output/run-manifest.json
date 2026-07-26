@@ -1,0 +1,80 @@
+{
+  "as_of_date": "2026-07-15",
+  "files": [
+    {
+      "path": "202606/AgendamientoZeroQ.csv",
+      "rows": 1,
+      "sha256": "5c4db22b6c91a0cfc86477be842c9edd1e357b045eb003a774080109814ddee9",
+      "size": 363
+    },
+    {
+      "path": "202606/AtencionesZeroQ.csv",
+      "rows": 1,
+      "sha256": "e236d9d8a377c2fee790e36e05616fa10a6cf15ef5ac0dbffc98d30ddfe248fc",
+      "size": 264
+    },
+    {
+      "path": "202606/MotivoAgendamientoZeroQ.csv",
+      "rows": 1,
+      "sha256": "9c7c79c1e381155b8428cd9dcad5870bd15642819828251fa24fdf5098ac3b68",
+      "size": 77
+    },
+    {
+      "path": "202606/MotivoAtencionZeroQ.csv",
+      "rows": 2,
+      "sha256": "b6362afc652ee47e69141d76f7ee06e06b5f3aa2b379c3dfefc49c59b6a3dc30",
+      "size": 135
+    },
+    {
+      "path": "202607/AgendamientoZeroQ.csv",
+      "rows": 1,
+      "sha256": "0048dc24d6788e675cd6081bd9acd29920b09e6fd1945f9f50f70e68d2660b54",
+      "size": 365
+    },
+    {
+      "path": "202607/AtencionesZeroQ.csv",
+      "rows": 1,
+      "sha256": "93ca2b862b09ebfda3bff8d8caeaaeaad75e4bc774a094ca09550f45e123ab96",
+      "size": 265
+    },
+    {
+      "path": "202607/MotivoAgendamientoZeroQ.csv",
+      "rows": 2,
+      "sha256": "7a6a877fb841c0dcb12113b92278eb51bbb34cd379b4bdc77e9afa8455925bbf",
+      "size": 145
+    },
+    {
+      "path": "202607/MotivoAtencionZeroQ.csv",
+      "rows": 1,
+      "sha256": "71fa70c056419550dc63b980cff97469555b640be59fb796ee3de65eea5497fa",
+      "size": 62
+    }
+  ],
+  "periods": {
+    "current": "202607",
+    "current_end_date": "2026-07-31",
+    "current_start_date": "2026-07-01",
+    "previous": "202606",
+    "previous_end_date": "2026-06-30",
+    "previous_start_date": "2026-06-01"
+  },
+  "status": "SUCCEEDED",
+  "task_status": {
+    "agendamientos_current": "SUCCEEDED",
+    "agendamientos_previous": "SUCCEEDED",
+    "atenciones_current": "SUCCEEDED",
+    "atenciones_previous": "SUCCEEDED",
+    "periods": "SUCCEEDED",
+    "success": "SUCCEEDED",
+    "validate": "SUCCEEDED"
+  },
+  "steps": [
+    "periods",
+    "atenciones_previous",
+    "atenciones_current",
+    "agendamientos_previous",
+    "agendamientos_current",
+    "validate",
+    "success"
+  ]
+}

@@ -1,0 +1,230 @@
+{
+  "modelType" : "PIPELINE",
+  "key" : "11abd998-ed40-4b4a-90eb-b244bd600039",
+  "name" : "PL_CUSTOMER_PORTABILITY_DEMO",
+  "identifier" : "PL_CUSTOMER_PORTABILITY_DEMO",
+  "modelVersion" : "20220124",
+  "objectVersion" : 2,
+  "nodes" : [ {
+    "modelType" : "FLOW_NODE",
+    "key" : "e150a43e-e6f4-434c-8ef8-1a04d50e7ed4",
+    "operator" : {
+      "modelType" : "START_OPERATOR",
+      "key" : "d13d1e36-a50b-404e-8edc-0ecb47a5be3f",
+      "name" : "START",
+      "identifier" : "START",
+      "inputPorts" : [ ],
+      "outputPorts" : [ ],
+      "parentRef" : {
+        "parent" : "e150a43e-e6f4-434c-8ef8-1a04d50e7ed4"
+      },
+      "objectVersion" : 0,
+      "modelVersion" : "20220523"
+    },
+    "inputLinks" : [ ],
+    "outputLinks" : [ {
+      "modelType" : "OUTPUT_LINK",
+      "key" : "7d6957e4-0765-461f-92e0-3e43f9635749",
+      "parentRef" : {
+        "parent" : "e150a43e-e6f4-434c-8ef8-1a04d50e7ed4"
+      },
+      "toLinks" : [ "8d521fe5-732a-4573-b32a-79a05c2e022f" ],
+      "modelVersion" : "20211031"
+    } ],
+    "parentRef" : {
+      "parent" : "11abd998-ed40-4b4a-90eb-b244bd600039"
+    },
+    "name" : "START",
+    "uiProperties" : {
+      "isExpanded" : false,
+      "isOutputPortsExpandable" : false,
+      "isInputPortsExpandable" : false,
+      "coordinateX" : 0.0,
+      "coordinateY" : 0.0
+    },
+    "modelVersion" : "20211031"
+  }, {
+    "modelType" : "FLOW_NODE",
+    "key" : "35f8b5b2-3391-46a7-acfe-440d9d44f09d",
+    "operator" : {
+      "modelType" : "TASK_OPERATOR",
+      "key" : "4a84bbc4-052a-4a30-bb9e-e3c7374a96e3",
+      "name" : "TASK_CUSTOMER_TRANSFORM",
+      "identifier" : "TRANSFORM_CUSTOMERS",
+      "inputPorts" : [ ],
+      "outputPorts" : [ ],
+      "parentRef" : {
+        "parent" : "35f8b5b2-3391-46a7-acfe-440d9d44f09d"
+      },
+      "objectVersion" : 0,
+      "retryDelayUnit" : "SECONDS",
+      "task" : {
+        "modelType" : "OCI_DATAFLOW_TASK",
+        "key" : "816bf5d7-83ce-430d-9ada-7c94580afdc3",
+        "name" : "TASK_CUSTOMER_TRANSFORM",
+        "objectVersion" : 1,
+        "identifier" : "TASK_CUSTOMER_TRANSFORM",
+        "inputPorts" : [ ],
+        "outputPorts" : [ ],
+        "configProviderDelegate" : { },
+        "modelVersion" : "20230421",
+        "objectStatus" : 1
+      },
+      "configProviderDelegate" : { },
+      "modelVersion" : "20210408",
+      "triggerRule" : "ALL_SUCCESS",
+      "taskType" : "OCI_DATAFLOW_TASK"
+    },
+    "inputLinks" : [ {
+      "modelType" : "INPUT_LINK",
+      "key" : "8d521fe5-732a-4573-b32a-79a05c2e022f",
+      "parentRef" : {
+        "parent" : "35f8b5b2-3391-46a7-acfe-440d9d44f09d"
+      },
+      "fromLink" : "7d6957e4-0765-461f-92e0-3e43f9635749",
+      "modelVersion" : "20211031"
+    } ],
+    "outputLinks" : [ {
+      "modelType" : "OUTPUT_LINK",
+      "key" : "a9ae3bbc-d8f0-4479-9078-2ab447eeecd7",
+      "parentRef" : {
+        "parent" : "35f8b5b2-3391-46a7-acfe-440d9d44f09d"
+      },
+      "toLinks" : [ "fdcff5b0-8c49-42b5-a1d0-b20547ac4831" ],
+      "modelVersion" : "20211031"
+    } ],
+    "parentRef" : {
+      "parent" : "11abd998-ed40-4b4a-90eb-b244bd600039"
+    },
+    "name" : "TASK_CUSTOMER_TRANSFORM",
+    "uiProperties" : {
+      "isExpanded" : false,
+      "isOutputPortsExpandable" : false,
+      "isInputPortsExpandable" : false,
+      "coordinateX" : 0.0,
+      "coordinateY" : 0.0
+    },
+    "modelVersion" : "20211031"
+  }, {
+    "modelType" : "FLOW_NODE",
+    "key" : "cd890d98-f477-4d0a-a708-1211d8c82a39",
+    "operator" : {
+      "modelType" : "TASK_OPERATOR",
+      "key" : "1c061ef5-f4d3-4e29-86bb-bd42c991fcde",
+      "name" : "TASK_VALIDATE_CUSTOMERS",
+      "identifier" : "VALIDATE_CUSTOMERS",
+      "inputPorts" : [ ],
+      "outputPorts" : [ ],
+      "parentRef" : {
+        "parent" : "cd890d98-f477-4d0a-a708-1211d8c82a39"
+      },
+      "objectVersion" : 0,
+      "retryDelayUnit" : "SECONDS",
+      "task" : {
+        "modelType" : "OCI_DATAFLOW_TASK",
+        "key" : "611236f4-c350-4411-937b-97c4b9028ca1",
+        "name" : "TASK_VALIDATE_CUSTOMERS",
+        "objectVersion" : 1,
+        "identifier" : "TASK_VALIDATE_CUSTOMERS",
+        "inputPorts" : [ ],
+        "outputPorts" : [ ],
+        "configProviderDelegate" : { },
+        "modelVersion" : "20230421",
+        "objectStatus" : 1
+      },
+      "configProviderDelegate" : { },
+      "modelVersion" : "20210408",
+      "triggerRule" : "ALL_SUCCESS",
+      "taskType" : "OCI_DATAFLOW_TASK"
+    },
+    "inputLinks" : [ {
+      "modelType" : "INPUT_LINK",
+      "key" : "fdcff5b0-8c49-42b5-a1d0-b20547ac4831",
+      "parentRef" : {
+        "parent" : "cd890d98-f477-4d0a-a708-1211d8c82a39"
+      },
+      "fromLink" : "a9ae3bbc-d8f0-4479-9078-2ab447eeecd7",
+      "modelVersion" : "20211031"
+    } ],
+    "outputLinks" : [ {
+      "modelType" : "OUTPUT_LINK",
+      "key" : "ca8f6fdf-9739-4d69-89a4-93887f52bd68",
+      "parentRef" : {
+        "parent" : "cd890d98-f477-4d0a-a708-1211d8c82a39"
+      },
+      "toLinks" : [ "e26fd622-f482-4531-a9d4-816a820d9df9" ],
+      "modelVersion" : "20211031"
+    } ],
+    "parentRef" : {
+      "parent" : "11abd998-ed40-4b4a-90eb-b244bd600039"
+    },
+    "name" : "TASK_VALIDATE_CUSTOMERS",
+    "uiProperties" : {
+      "isExpanded" : false,
+      "isOutputPortsExpandable" : false,
+      "isInputPortsExpandable" : false,
+      "coordinateX" : 0.0,
+      "coordinateY" : 0.0
+    },
+    "modelVersion" : "20211031"
+  }, {
+    "modelType" : "FLOW_NODE",
+    "key" : "ad33de83-1a9e-4b7f-bb8a-b75748682413",
+    "operator" : {
+      "modelType" : "END_OPERATOR",
+      "key" : "69afc2fe-5bf8-4b07-b8dd-c98ee18c807f",
+      "name" : "END",
+      "identifier" : "END",
+      "inputPorts" : [ ],
+      "outputPorts" : [ ],
+      "parentRef" : {
+        "parent" : "ad33de83-1a9e-4b7f-bb8a-b75748682413"
+      },
+      "objectVersion" : 0,
+      "modelVersion" : "20220523",
+      "triggerRule" : "ALL_SUCCESS"
+    },
+    "inputLinks" : [ {
+      "modelType" : "INPUT_LINK",
+      "key" : "e26fd622-f482-4531-a9d4-816a820d9df9",
+      "parentRef" : {
+        "parent" : "ad33de83-1a9e-4b7f-bb8a-b75748682413"
+      },
+      "fromLink" : "ca8f6fdf-9739-4d69-89a4-93887f52bd68",
+      "modelVersion" : "20211031"
+    } ],
+    "outputLinks" : [ ],
+    "parentRef" : {
+      "parent" : "11abd998-ed40-4b4a-90eb-b244bd600039"
+    },
+    "name" : "END",
+    "uiProperties" : {
+      "isExpanded" : false,
+      "isOutputPortsExpandable" : false,
+      "isInputPortsExpandable" : false,
+      "coordinateX" : 0.0,
+      "coordinateY" : 0.0
+    },
+    "modelVersion" : "20211031"
+  } ],
+  "parameters" : [ ],
+  "nestedDepth" : 0,
+  "objectStatus" : 8,
+  "metadata" : {
+    "createdBy" : "ocid1.user.oc1..aaaaaaaajpizqlfu7yhwkjvqyeobcd6zggh4bke5pb76toqpglisleyqv2sa",
+    "createdByName" : "Denny Alquinta",
+    "updatedBy" : "ocid1.user.oc1..aaaaaaaajpizqlfu7yhwkjvqyeobcd6zggh4bke5pb76toqpglisleyqv2sa",
+    "updatedByName" : "Denny Alquinta",
+    "timeCreated" : "2026-07-13T17:03:48.681Z",
+    "timeUpdated" : "2026-07-13T17:12:44.061Z",
+    "aggregatorKey" : "9a43adfb-70d9-4097-889e-df7cae272c52",
+    "registryVersion" : 1,
+    "aggregator" : {
+      "type" : "USER_PROJECT",
+      "key" : "9a43adfb-70d9-4097-889e-df7cae272c52",
+      "name" : "PORTABILITY_DEMO",
+      "identifier" : "PORTABILITY_DEMO",
+      "description" : "Portable PySpark CI/CD proof of concept"
+    }
+  }
+}

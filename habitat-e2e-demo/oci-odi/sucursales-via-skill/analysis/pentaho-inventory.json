@@ -1,0 +1,3595 @@
+{
+  "document_count": 6,
+  "documents": [
+    {
+      "connections": [
+        {
+          "access": "Native",
+          "database": "<redacted>",
+          "name": "AgileBI",
+          "password": "<redacted>",
+          "server": "<redacted>",
+          "type": "MONETDB",
+          "username": "<redacted>"
+        },
+        {
+          "access": "Native",
+          "database": "<redacted>",
+          "name": "Bonobo",
+          "password": "<redacted>",
+          "server": "<redacted>",
+          "type": "MYSQL",
+          "username": "<redacted>"
+        },
+        {
+          "access": "Native",
+          "database": "<redacted>",
+          "name": "FUGA",
+          "password": "<redacted>",
+          "server": "<redacted>",
+          "type": "ORACLE",
+          "username": "<redacted>"
+        },
+        {
+          "access": "Native",
+          "database": "<redacted>",
+          "name": "Kettle",
+          "password": "<redacted>",
+          "server": "<redacted>",
+          "type": "ORACLE",
+          "username": "<redacted>"
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "MsSQLServer_JNDI@TotalPack(Datawarehouse)",
+          "password": "<redacted>",
+          "server": "",
+          "type": "ORACLE",
+          "username": ""
+        },
+        {
+          "access": "Native",
+          "database": "<redacted>",
+          "name": "MySQL5",
+          "password": "<redacted>",
+          "server": "<redacted>",
+          "type": "MYSQL",
+          "username": "<redacted>"
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "MySQL_JNDI@SGC(Datawarehouse)",
+          "password": "<redacted>",
+          "server": "<redacted>",
+          "type": "MYSQL",
+          "username": ""
+        },
+        {
+          "access": "Native",
+          "database": "<redacted>",
+          "name": "OracleJDBC@CERTRTC(Datawarehouse)",
+          "password": "<redacted>",
+          "server": "",
+          "type": "ORACLE",
+          "username": "<redacted>"
+        },
+        {
+          "access": "Native",
+          "database": "<redacted>",
+          "name": "OracleJDBC@CERTRTP(Datawarehouse)",
+          "password": "<redacted>",
+          "server": "",
+          "type": "ORACLE",
+          "username": "<redacted>"
+        },
+        {
+          "access": "Native",
+          "database": "<redacted>",
+          "name": "OracleJDBC@DESARTC(Datawarehouse)",
+          "password": "<redacted>",
+          "server": "",
+          "type": "ORACLE",
+          "username": "<redacted>"
+        },
+        {
+          "access": "Native",
+          "database": "<redacted>",
+          "name": "OracleJDBC@DESARTP(Datawarehouse)",
+          "password": "<redacted>",
+          "server": "",
+          "type": "ORACLE",
+          "username": "<redacted>"
+        },
+        {
+          "access": "Native",
+          "database": "<redacted>",
+          "name": "OracleJDBC@DESARTP(OWN_TRIBUTARIO)",
+          "password": "<redacted>",
+          "server": "",
+          "type": "ORACLE",
+          "username": "<redacted>"
+        },
+        {
+          "access": "Native",
+          "database": "<redacted>",
+          "name": "OracleJDBC@PRODCAR(AHERMOSI)",
+          "password": "<redacted>",
+          "server": "",
+          "type": "ORACLE",
+          "username": "<redacted>"
+        },
+        {
+          "access": "Native",
+          "database": "<redacted>",
+          "name": "Oracle_JDBC@DESA_RTP(Datawarehouse)",
+          "password": "<redacted>",
+          "server": "",
+          "type": "ORACLE",
+          "username": "<redacted>"
+        },
+        {
+          "access": "Native",
+          "database": "<redacted>",
+          "name": "Oracle_JDBC@DESA_RTP(IPINCHEI)",
+          "password": "<redacted>",
+          "server": "",
+          "type": "ORACLE",
+          "username": "<redacted>"
+        },
+        {
+          "access": "Native",
+          "database": "<redacted>",
+          "name": "Oracle_JNDI@DESA_RTP(IPINCHEI)",
+          "password": "<redacted>",
+          "server": "",
+          "type": "ORACLE",
+          "username": "<redacted>"
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "Oracle_JNDI@DOCUWARE(Datawarehouse)",
+          "password": "<redacted>",
+          "server": "",
+          "type": "ORACLE",
+          "username": ""
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "Oracle_JNDI@EXPL10G2(Datawarehouse)",
+          "password": "<redacted>",
+          "server": "<redacted>",
+          "type": "ORACLE",
+          "username": ""
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "Oracle_JNDI@FINPRD(Datawarehouse)",
+          "password": "<redacted>",
+          "server": "",
+          "type": "ORACLE",
+          "username": ""
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "Oracle_JNDI@HABITAT(Cierre_Mes)",
+          "password": "<redacted>",
+          "server": "<redacted>",
+          "type": "ORACLE",
+          "username": ""
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "Oracle_JNDI@PRDINV(Datawarehouse)",
+          "password": "<redacted>",
+          "server": "",
+          "type": "ORACLE",
+          "username": ""
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "Oracle_JNDI@PROD11G(Datawarehouse)",
+          "password": "<redacted>",
+          "server": "",
+          "type": "ORACLE",
+          "username": ""
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "Oracle_JNDI@PRODAFP(Datawarehouse)",
+          "password": "<redacted>",
+          "server": "",
+          "type": "ORACLE",
+          "username": ""
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "Oracle_JNDI@PRODWINV(Datawarehouse)",
+          "password": "<redacted>",
+          "server": "<redacted>",
+          "type": "ORACLE",
+          "username": ""
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "Oracle_JNDI@RTCHabitat(Datawarehouse)",
+          "password": "<redacted>",
+          "server": "<redacted>",
+          "type": "ORACLE",
+          "username": ""
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "PostgreSQL_JNDI@JiraLEAN(bigdata)",
+          "password": "<redacted>",
+          "server": "<redacted>",
+          "type": "POSTGRESQL",
+          "username": ""
+        },
+        {
+          "access": "Native",
+          "database": "<redacted>",
+          "name": "SampleData",
+          "password": "<redacted>",
+          "server": "<redacted>",
+          "type": "HYPERSONIC",
+          "username": "<redacted>"
+        },
+        {
+          "access": "Native",
+          "database": "<redacted>",
+          "name": "SybaseIQ_JDBC@habitat(DMGestion)",
+          "password": "<redacted>",
+          "server": "<redacted>",
+          "type": "SYBASEIQ",
+          "username": "<redacted>"
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "SybaseIQ_JNDI@habitat(AFC)",
+          "password": "<redacted>",
+          "server": "<redacted>",
+          "type": "SYBASEIQ",
+          "username": ""
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "SybaseIQ_JNDI@habitat(Auditoria)",
+          "password": "<redacted>",
+          "server": "",
+          "type": "SYBASEIQ",
+          "username": ""
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "SybaseIQ_JNDI@habitat(BonoCargoFiscal)",
+          "password": "<redacted>",
+          "server": "",
+          "type": "SYBASEIQ",
+          "username": ""
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "SybaseIQ_JNDI@habitat(Circular119)",
+          "password": "<redacted>",
+          "server": "",
+          "type": "SYBASEIQ",
+          "username": ""
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "SybaseIQ_JNDI@habitat(Circular1509)",
+          "password": "<redacted>",
+          "server": "<redacted>",
+          "type": "SYBASEIQ",
+          "username": ""
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "SybaseIQ_JNDI@habitat(Circular1532)",
+          "password": "<redacted>",
+          "server": "",
+          "type": "SYBASEIQ",
+          "username": ""
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "SybaseIQ_JNDI@habitat(Circular1536)",
+          "password": "<redacted>",
+          "server": "<redacted>",
+          "type": "SYBASEIQ",
+          "username": ""
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "SybaseIQ_JNDI@habitat(Circular1661V1)",
+          "password": "<redacted>",
+          "server": "<redacted>",
+          "type": "SYBASEIQ",
+          "username": ""
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "SybaseIQ_JNDI@habitat(ControlProcesos)",
+          "password": "<redacted>",
+          "server": "",
+          "type": "SYBASEIQ",
+          "username": ""
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "SybaseIQ_JNDI@habitat(DDS)",
+          "password": "<redacted>",
+          "server": "<redacted>",
+          "type": "GENERIC",
+          "username": ""
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "SybaseIQ_JNDI@habitat(DMGestion)",
+          "password": "<redacted>",
+          "server": "<redacted>",
+          "type": "SYBASEIQ",
+          "username": ""
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "SybaseIQ_JNDI@habitat(Datawarehouse)",
+          "password": "<redacted>",
+          "server": "<redacted>",
+          "type": "SYBASEIQ",
+          "username": ""
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "SybaseIQ_JNDI@habitat(Interfaz)",
+          "password": "<redacted>",
+          "server": "",
+          "type": "SYBASEIQ",
+          "username": ""
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "SybaseIQ_JNDI@habitat(LavadoActivos)",
+          "password": "<redacted>",
+          "server": "",
+          "type": "SYBASEIQ",
+          "username": ""
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "SybaseIQ_JNDI@habitat(MAC)",
+          "password": "<redacted>",
+          "server": "<redacted>",
+          "type": "SYBASEIQ",
+          "username": ""
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "SybaseIQ_JNDI@habitat(PAET)",
+          "password": "<redacted>",
+          "server": "",
+          "type": "SYBASEIQ",
+          "username": ""
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "SybaseIQ_JNDI@habitat(PowerBI)",
+          "password": "<redacted>",
+          "server": "",
+          "type": "SYBASEIQ",
+          "username": ""
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "SybaseIQ_JNDI@habitat(Retiro10)",
+          "password": "<redacted>",
+          "server": "",
+          "type": "SYBASEIQ",
+          "username": ""
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "SybaseIQ_JNDI@habitat(SalesForce)",
+          "password": "<redacted>",
+          "server": "",
+          "type": "SYBASEIQ",
+          "username": ""
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "SybaseIQ_JNDI@habitat(TDS)",
+          "password": "<redacted>",
+          "server": "",
+          "type": "SYBASEIQ",
+          "username": ""
+        },
+        {
+          "access": "Native",
+          "database": "<redacted>",
+          "name": "TotalPackV24",
+          "password": "<redacted>",
+          "server": "<redacted>",
+          "type": "MSSQL",
+          "username": "<redacted>"
+        },
+        {
+          "access": "Native",
+          "database": "<redacted>",
+          "name": "cnTower",
+          "password": "<redacted>",
+          "server": "<redacted>",
+          "type": "MSSQL",
+          "username": "<redacted>"
+        },
+        {
+          "access": "Native",
+          "database": "<redacted>",
+          "name": "testOracle@HABITAT",
+          "password": "<redacted>",
+          "server": "",
+          "type": "ORACLE",
+          "username": "<redacted>"
+        },
+        {
+          "access": "Native",
+          "database": "<redacted>",
+          "name": "testOracle@PRODAFP",
+          "password": "<redacted>",
+          "server": "",
+          "type": "ORACLE",
+          "username": "<redacted>"
+        },
+        {
+          "access": "Native",
+          "database": "<redacted>",
+          "name": "testSybase@IQProd",
+          "password": "<redacted>",
+          "server": "<redacted>",
+          "type": "SYBASEIQ",
+          "username": "<redacted>"
+        },
+        {
+          "access": "Native",
+          "database": "<redacted>",
+          "name": "testSybase@IQProd(16.1)",
+          "password": "<redacted>",
+          "server": "<redacted>",
+          "type": "SYBASEIQ",
+          "username": "<redacted>"
+        }
+      ],
+      "entries": [
+        {
+          "filename": "",
+          "name": "Aborta 01 - Proceso Carga Archivo Externo",
+          "type": "ABORT"
+        },
+        {
+          "filename": "${atensucu.ruta.shell}descargarAgendamientoZeroQ.sh",
+          "name": "Agendamiento ZeroQ - Mes Actual",
+          "type": "SHELL"
+        },
+        {
+          "filename": "${atensucu.ruta.shell}descargarAgendamientoZeroQ.sh",
+          "name": "Agendamiento ZeroQ - Mes Anterior",
+          "type": "SHELL"
+        },
+        {
+          "filename": "",
+          "name": "Archivo Externo \"Atencion Sucursal\", Exitoso",
+          "type": "SUCCESS"
+        },
+        {
+          "filename": "${atensucu.ruta.shell}descargarAtencionesZeroQ.sh",
+          "name": "Atenciones ZeroQ - Mes Actual",
+          "type": "SHELL"
+        },
+        {
+          "filename": "${atensucu.ruta.shell}descargarAtencionesZeroQ.sh",
+          "name": "Atenciones ZeroQ - Mes Anterior",
+          "type": "SHELL"
+        },
+        {
+          "filename": "",
+          "name": "Notificacion Error",
+          "type": "MAIL"
+        },
+        {
+          "filename": "",
+          "name": "Obtiene Periodo Extraer",
+          "type": "TRANS"
+        },
+        {
+          "filename": "",
+          "name": "START",
+          "type": "SPECIAL"
+        }
+      ],
+      "hops": [
+        {
+          "enabled": "Y",
+          "evaluation": "Y",
+          "from": "Agendamiento ZeroQ - Mes Actual",
+          "to": "Archivo Externo \"Atencion Sucursal\", Exitoso",
+          "unconditional": "N"
+        },
+        {
+          "enabled": "Y",
+          "evaluation": "N",
+          "from": "Agendamiento ZeroQ - Mes Actual",
+          "to": "Notificacion Error",
+          "unconditional": "N"
+        },
+        {
+          "enabled": "Y",
+          "evaluation": "Y",
+          "from": "Agendamiento ZeroQ - Mes Anterior",
+          "to": "Agendamiento ZeroQ - Mes Actual",
+          "unconditional": "N"
+        },
+        {
+          "enabled": "Y",
+          "evaluation": "N",
+          "from": "Agendamiento ZeroQ - Mes Anterior",
+          "to": "Notificacion Error",
+          "unconditional": "N"
+        },
+        {
+          "enabled": "Y",
+          "evaluation": "Y",
+          "from": "Atenciones ZeroQ - Mes Actual",
+          "to": "Agendamiento ZeroQ - Mes Anterior",
+          "unconditional": "N"
+        },
+        {
+          "enabled": "Y",
+          "evaluation": "N",
+          "from": "Atenciones ZeroQ - Mes Actual",
+          "to": "Notificacion Error",
+          "unconditional": "N"
+        },
+        {
+          "enabled": "Y",
+          "evaluation": "Y",
+          "from": "Atenciones ZeroQ - Mes Anterior",
+          "to": "Atenciones ZeroQ - Mes Actual",
+          "unconditional": "N"
+        },
+        {
+          "enabled": "Y",
+          "evaluation": "N",
+          "from": "Atenciones ZeroQ - Mes Anterior",
+          "to": "Notificacion Error",
+          "unconditional": "N"
+        },
+        {
+          "enabled": "Y",
+          "evaluation": "Y",
+          "from": "Notificacion Error",
+          "to": "Aborta 01 - Proceso Carga Archivo Externo",
+          "unconditional": "Y"
+        },
+        {
+          "enabled": "Y",
+          "evaluation": "N",
+          "from": "Obtiene Periodo Extraer",
+          "to": "Aborta 01 - Proceso Carga Archivo Externo",
+          "unconditional": "N"
+        },
+        {
+          "enabled": "Y",
+          "evaluation": "Y",
+          "from": "Obtiene Periodo Extraer",
+          "to": "Atenciones ZeroQ - Mes Anterior",
+          "unconditional": "N"
+        },
+        {
+          "enabled": "Y",
+          "evaluation": "Y",
+          "from": "START",
+          "to": "Obtiene Periodo Extraer",
+          "unconditional": "Y"
+        }
+      ],
+      "kind": "kjb",
+      "name": "cargaArchivoExterno",
+      "parameters": [],
+      "path": "cargaArchivoExterno.kjb",
+      "referenced_files": [
+        "${atensucu.ruta.shell}descargarAgendamientoZeroQ.sh",
+        "${atensucu.ruta.shell}descargarAtencionesZeroQ.sh"
+      ],
+      "variables": [
+        "${Internal.Entry.Current.Directory}",
+        "${Internal.Job.Name}",
+        "${ServidorCierreMes}",
+        "${ServidorSybaseIQ}",
+        "${atensucu.ruta.shell}",
+        "${contacto.persona}",
+        "${contacto.telefono}",
+        "${correo.copia.destino.operador}",
+        "${correo.destino.operador}",
+        "${correo.logo.firma}",
+        "${puerto.SybaseIQ}",
+        "${puerto.base.Oracle}",
+        "${sender.address}",
+        "${sender.name}",
+        "${smtp.port}",
+        "${smtp.server}",
+        "${v_atensucu_fechaFinDesde}",
+        "${v_atensucu_fechaFinHasta}",
+        "${v_atensucu_fechaIniDesde}",
+        "${v_atensucu_fechaIniHasta}",
+        "${v_atensucu_periodoDesde}",
+        "${v_atensucu_periodoHasta}",
+        "${vpd.codigoNotifProcesoDiario}",
+        "${vpd.nombreProcesoDiario}"
+      ]
+    },
+    {
+      "connections": [
+        {
+          "access": "Native",
+          "database": "<redacted>",
+          "name": "AgileBI",
+          "password": "<redacted>",
+          "server": "<redacted>",
+          "type": "MONETDB",
+          "username": "<redacted>"
+        },
+        {
+          "access": "Native",
+          "database": "<redacted>",
+          "name": "Bonobo",
+          "password": "<redacted>",
+          "server": "<redacted>",
+          "type": "MYSQL",
+          "username": "<redacted>"
+        },
+        {
+          "access": "Native",
+          "database": "<redacted>",
+          "name": "FUGA",
+          "password": "<redacted>",
+          "server": "<redacted>",
+          "type": "ORACLE",
+          "username": "<redacted>"
+        },
+        {
+          "access": "Native",
+          "database": "<redacted>",
+          "name": "Kettle",
+          "password": "<redacted>",
+          "server": "<redacted>",
+          "type": "ORACLE",
+          "username": "<redacted>"
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "MsSQLServer_JNDI@TotalPack(Datawarehouse)",
+          "password": "<redacted>",
+          "server": "",
+          "type": "ORACLE",
+          "username": ""
+        },
+        {
+          "access": "Native",
+          "database": "<redacted>",
+          "name": "MySQL5",
+          "password": "<redacted>",
+          "server": "<redacted>",
+          "type": "MYSQL",
+          "username": "<redacted>"
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "MySQL_JNDI@SGC(Datawarehouse)",
+          "password": "<redacted>",
+          "server": "<redacted>",
+          "type": "MYSQL",
+          "username": ""
+        },
+        {
+          "access": "Native",
+          "database": "<redacted>",
+          "name": "OracleJDBC@CERTRTC(Datawarehouse)",
+          "password": "<redacted>",
+          "server": "",
+          "type": "ORACLE",
+          "username": "<redacted>"
+        },
+        {
+          "access": "Native",
+          "database": "<redacted>",
+          "name": "OracleJDBC@CERTRTP(Datawarehouse)",
+          "password": "<redacted>",
+          "server": "",
+          "type": "ORACLE",
+          "username": "<redacted>"
+        },
+        {
+          "access": "Native",
+          "database": "<redacted>",
+          "name": "OracleJDBC@DESARTC(Datawarehouse)",
+          "password": "<redacted>",
+          "server": "",
+          "type": "ORACLE",
+          "username": "<redacted>"
+        },
+        {
+          "access": "Native",
+          "database": "<redacted>",
+          "name": "OracleJDBC@DESARTP(Datawarehouse)",
+          "password": "<redacted>",
+          "server": "",
+          "type": "ORACLE",
+          "username": "<redacted>"
+        },
+        {
+          "access": "Native",
+          "database": "<redacted>",
+          "name": "OracleJDBC@DESARTP(OWN_TRIBUTARIO)",
+          "password": "<redacted>",
+          "server": "",
+          "type": "ORACLE",
+          "username": "<redacted>"
+        },
+        {
+          "access": "Native",
+          "database": "<redacted>",
+          "name": "OracleJDBC@PRODCAR(AHERMOSI)",
+          "password": "<redacted>",
+          "server": "",
+          "type": "ORACLE",
+          "username": "<redacted>"
+        },
+        {
+          "access": "Native",
+          "database": "<redacted>",
+          "name": "Oracle_JDBC@DESA_RTP(Datawarehouse)",
+          "password": "<redacted>",
+          "server": "",
+          "type": "ORACLE",
+          "username": "<redacted>"
+        },
+        {
+          "access": "Native",
+          "database": "<redacted>",
+          "name": "Oracle_JDBC@DESA_RTP(IPINCHEI)",
+          "password": "<redacted>",
+          "server": "",
+          "type": "ORACLE",
+          "username": "<redacted>"
+        },
+        {
+          "access": "Native",
+          "database": "<redacted>",
+          "name": "Oracle_JNDI@DESA_RTP(IPINCHEI)",
+          "password": "<redacted>",
+          "server": "",
+          "type": "ORACLE",
+          "username": "<redacted>"
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "Oracle_JNDI@DOCUWARE(Datawarehouse)",
+          "password": "<redacted>",
+          "server": "",
+          "type": "ORACLE",
+          "username": ""
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "Oracle_JNDI@EXPL10G2(Datawarehouse)",
+          "password": "<redacted>",
+          "server": "<redacted>",
+          "type": "ORACLE",
+          "username": ""
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "Oracle_JNDI@FINPRD(Datawarehouse)",
+          "password": "<redacted>",
+          "server": "",
+          "type": "ORACLE",
+          "username": ""
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "Oracle_JNDI@HABITAT(Cierre_Mes)",
+          "password": "<redacted>",
+          "server": "<redacted>",
+          "type": "ORACLE",
+          "username": ""
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "Oracle_JNDI@PRDINV(Datawarehouse)",
+          "password": "<redacted>",
+          "server": "",
+          "type": "ORACLE",
+          "username": ""
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "Oracle_JNDI@PROD11G(Datawarehouse)",
+          "password": "<redacted>",
+          "server": "",
+          "type": "ORACLE",
+          "username": ""
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "Oracle_JNDI@PRODAFP(Datawarehouse)",
+          "password": "<redacted>",
+          "server": "",
+          "type": "ORACLE",
+          "username": ""
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "Oracle_JNDI@PRODWINV(Datawarehouse)",
+          "password": "<redacted>",
+          "server": "<redacted>",
+          "type": "ORACLE",
+          "username": ""
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "Oracle_JNDI@RTCHabitat(Datawarehouse)",
+          "password": "<redacted>",
+          "server": "<redacted>",
+          "type": "ORACLE",
+          "username": ""
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "PostgreSQL_JNDI@JiraLEAN(bigdata)",
+          "password": "<redacted>",
+          "server": "<redacted>",
+          "type": "POSTGRESQL",
+          "username": ""
+        },
+        {
+          "access": "Native",
+          "database": "<redacted>",
+          "name": "SampleData",
+          "password": "<redacted>",
+          "server": "<redacted>",
+          "type": "HYPERSONIC",
+          "username": "<redacted>"
+        },
+        {
+          "access": "Native",
+          "database": "<redacted>",
+          "name": "SybaseIQ_JDBC@habitat(DMGestion)",
+          "password": "<redacted>",
+          "server": "<redacted>",
+          "type": "SYBASEIQ",
+          "username": "<redacted>"
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "SybaseIQ_JNDI@habitat(AFC)",
+          "password": "<redacted>",
+          "server": "<redacted>",
+          "type": "SYBASEIQ",
+          "username": ""
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "SybaseIQ_JNDI@habitat(Auditoria)",
+          "password": "<redacted>",
+          "server": "",
+          "type": "SYBASEIQ",
+          "username": ""
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "SybaseIQ_JNDI@habitat(BonoCargoFiscal)",
+          "password": "<redacted>",
+          "server": "",
+          "type": "SYBASEIQ",
+          "username": ""
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "SybaseIQ_JNDI@habitat(Circular119)",
+          "password": "<redacted>",
+          "server": "",
+          "type": "SYBASEIQ",
+          "username": ""
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "SybaseIQ_JNDI@habitat(Circular1509)",
+          "password": "<redacted>",
+          "server": "<redacted>",
+          "type": "SYBASEIQ",
+          "username": ""
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "SybaseIQ_JNDI@habitat(Circular1532)",
+          "password": "<redacted>",
+          "server": "",
+          "type": "SYBASEIQ",
+          "username": ""
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "SybaseIQ_JNDI@habitat(Circular1536)",
+          "password": "<redacted>",
+          "server": "<redacted>",
+          "type": "SYBASEIQ",
+          "username": ""
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "SybaseIQ_JNDI@habitat(Circular1661V1)",
+          "password": "<redacted>",
+          "server": "<redacted>",
+          "type": "SYBASEIQ",
+          "username": ""
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "SybaseIQ_JNDI@habitat(ControlProcesos)",
+          "password": "<redacted>",
+          "server": "",
+          "type": "SYBASEIQ",
+          "username": ""
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "SybaseIQ_JNDI@habitat(DDS)",
+          "password": "<redacted>",
+          "server": "<redacted>",
+          "type": "GENERIC",
+          "username": ""
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "SybaseIQ_JNDI@habitat(DMGestion)",
+          "password": "<redacted>",
+          "server": "<redacted>",
+          "type": "SYBASEIQ",
+          "username": ""
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "SybaseIQ_JNDI@habitat(Datawarehouse)",
+          "password": "<redacted>",
+          "server": "<redacted>",
+          "type": "SYBASEIQ",
+          "username": ""
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "SybaseIQ_JNDI@habitat(Interfaz)",
+          "password": "<redacted>",
+          "server": "",
+          "type": "SYBASEIQ",
+          "username": ""
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "SybaseIQ_JNDI@habitat(LavadoActivos)",
+          "password": "<redacted>",
+          "server": "",
+          "type": "SYBASEIQ",
+          "username": ""
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "SybaseIQ_JNDI@habitat(MAC)",
+          "password": "<redacted>",
+          "server": "<redacted>",
+          "type": "SYBASEIQ",
+          "username": ""
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "SybaseIQ_JNDI@habitat(PAET)",
+          "password": "<redacted>",
+          "server": "",
+          "type": "SYBASEIQ",
+          "username": ""
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "SybaseIQ_JNDI@habitat(PowerBI)",
+          "password": "<redacted>",
+          "server": "",
+          "type": "SYBASEIQ",
+          "username": ""
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "SybaseIQ_JNDI@habitat(Retiro10)",
+          "password": "<redacted>",
+          "server": "",
+          "type": "SYBASEIQ",
+          "username": ""
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "SybaseIQ_JNDI@habitat(SalesForce)",
+          "password": "<redacted>",
+          "server": "",
+          "type": "SYBASEIQ",
+          "username": ""
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "SybaseIQ_JNDI@habitat(TDS)",
+          "password": "<redacted>",
+          "server": "",
+          "type": "SYBASEIQ",
+          "username": ""
+        },
+        {
+          "access": "Native",
+          "database": "<redacted>",
+          "name": "TotalPackV24",
+          "password": "<redacted>",
+          "server": "<redacted>",
+          "type": "MSSQL",
+          "username": "<redacted>"
+        },
+        {
+          "access": "Native",
+          "database": "<redacted>",
+          "name": "cnTower",
+          "password": "<redacted>",
+          "server": "<redacted>",
+          "type": "MSSQL",
+          "username": "<redacted>"
+        },
+        {
+          "access": "Native",
+          "database": "<redacted>",
+          "name": "testOracle@HABITAT",
+          "password": "<redacted>",
+          "server": "",
+          "type": "ORACLE",
+          "username": "<redacted>"
+        },
+        {
+          "access": "Native",
+          "database": "<redacted>",
+          "name": "testOracle@PRODAFP",
+          "password": "<redacted>",
+          "server": "",
+          "type": "ORACLE",
+          "username": "<redacted>"
+        },
+        {
+          "access": "Native",
+          "database": "<redacted>",
+          "name": "testSybase@IQProd",
+          "password": "<redacted>",
+          "server": "<redacted>",
+          "type": "SYBASEIQ",
+          "username": "<redacted>"
+        },
+        {
+          "access": "Native",
+          "database": "<redacted>",
+          "name": "testSybase@IQProd(16.1)",
+          "password": "<redacted>",
+          "server": "<redacted>",
+          "type": "SYBASEIQ",
+          "username": "<redacted>"
+        }
+      ],
+      "hops": [
+        {
+          "enabled": "Y",
+          "from": "Archivo_AgendamientoZeroQ",
+          "to": "Replace puntos en el rutEjecutivo"
+        },
+        {
+          "enabled": "Y",
+          "from": "Campos que continuan",
+          "to": "AgendamientoZeroQ"
+        },
+        {
+          "enabled": "Y",
+          "from": "Extrae Fecha Archivo",
+          "to": "Obtiene Fecha Cierre"
+        },
+        {
+          "enabled": "Y",
+          "from": "Obtiene Fecha Cierre",
+          "to": "Campos que continuan"
+        },
+        {
+          "enabled": "Y",
+          "from": "Replace puntos en el rutEjecutivo",
+          "to": "Extrae Fecha Archivo"
+        }
+      ],
+      "kind": "ktr",
+      "name": "",
+      "parameters": [],
+      "path": "transf_AgendamientoZeroQ_TDS.ktr",
+      "referenced_files": [],
+      "steps": [
+        {
+          "description": "",
+          "name": "AgendamientoZeroQ",
+          "type": "TextFileOutput"
+        },
+        {
+          "description": "",
+          "name": "Archivo_AgendamientoZeroQ",
+          "type": "TextFileInput"
+        },
+        {
+          "description": "",
+          "name": "Campos que continuan",
+          "type": "SelectValues"
+        },
+        {
+          "description": "",
+          "name": "Extrae Fecha Archivo",
+          "type": "ReplaceString"
+        },
+        {
+          "description": "",
+          "name": "Obtiene Fecha Cierre",
+          "type": "Formula"
+        },
+        {
+          "description": "",
+          "name": "Replace puntos en el rutEjecutivo",
+          "type": "ReplaceString"
+        }
+      ],
+      "variables": [
+        "${ServidorCierreMes}",
+        "${ServidorSybaseIQ}",
+        "${atensucu.ruta.archivo}",
+        "${puerto.SybaseIQ}",
+        "${puerto.base.Oracle}",
+        "${ruta.tds.archivo.csv}",
+        "${v_atensucu_periodoDesde}",
+        "${v_atensucu_periodoHasta}"
+      ]
+    },
+    {
+      "connections": [
+        {
+          "access": "Native",
+          "database": "<redacted>",
+          "name": "AgileBI",
+          "password": "<redacted>",
+          "server": "<redacted>",
+          "type": "MONETDB",
+          "username": "<redacted>"
+        },
+        {
+          "access": "Native",
+          "database": "<redacted>",
+          "name": "Bonobo",
+          "password": "<redacted>",
+          "server": "<redacted>",
+          "type": "MYSQL",
+          "username": "<redacted>"
+        },
+        {
+          "access": "Native",
+          "database": "<redacted>",
+          "name": "FUGA",
+          "password": "<redacted>",
+          "server": "<redacted>",
+          "type": "ORACLE",
+          "username": "<redacted>"
+        },
+        {
+          "access": "Native",
+          "database": "<redacted>",
+          "name": "Kettle",
+          "password": "<redacted>",
+          "server": "<redacted>",
+          "type": "ORACLE",
+          "username": "<redacted>"
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "MsSQLServer_JNDI@TotalPack(Datawarehouse)",
+          "password": "<redacted>",
+          "server": "",
+          "type": "ORACLE",
+          "username": ""
+        },
+        {
+          "access": "Native",
+          "database": "<redacted>",
+          "name": "MySQL5",
+          "password": "<redacted>",
+          "server": "<redacted>",
+          "type": "MYSQL",
+          "username": "<redacted>"
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "MySQL_JNDI@SGC(Datawarehouse)",
+          "password": "<redacted>",
+          "server": "<redacted>",
+          "type": "MYSQL",
+          "username": ""
+        },
+        {
+          "access": "Native",
+          "database": "<redacted>",
+          "name": "OracleJDBC@CERTRTC(Datawarehouse)",
+          "password": "<redacted>",
+          "server": "",
+          "type": "ORACLE",
+          "username": "<redacted>"
+        },
+        {
+          "access": "Native",
+          "database": "<redacted>",
+          "name": "OracleJDBC@CERTRTP(Datawarehouse)",
+          "password": "<redacted>",
+          "server": "",
+          "type": "ORACLE",
+          "username": "<redacted>"
+        },
+        {
+          "access": "Native",
+          "database": "<redacted>",
+          "name": "OracleJDBC@DESARTC(Datawarehouse)",
+          "password": "<redacted>",
+          "server": "",
+          "type": "ORACLE",
+          "username": "<redacted>"
+        },
+        {
+          "access": "Native",
+          "database": "<redacted>",
+          "name": "OracleJDBC@DESARTP(Datawarehouse)",
+          "password": "<redacted>",
+          "server": "",
+          "type": "ORACLE",
+          "username": "<redacted>"
+        },
+        {
+          "access": "Native",
+          "database": "<redacted>",
+          "name": "OracleJDBC@DESARTP(OWN_TRIBUTARIO)",
+          "password": "<redacted>",
+          "server": "",
+          "type": "ORACLE",
+          "username": "<redacted>"
+        },
+        {
+          "access": "Native",
+          "database": "<redacted>",
+          "name": "OracleJDBC@PRODCAR(AHERMOSI)",
+          "password": "<redacted>",
+          "server": "",
+          "type": "ORACLE",
+          "username": "<redacted>"
+        },
+        {
+          "access": "Native",
+          "database": "<redacted>",
+          "name": "Oracle_JDBC@DESA_RTP(Datawarehouse)",
+          "password": "<redacted>",
+          "server": "",
+          "type": "ORACLE",
+          "username": "<redacted>"
+        },
+        {
+          "access": "Native",
+          "database": "<redacted>",
+          "name": "Oracle_JDBC@DESA_RTP(IPINCHEI)",
+          "password": "<redacted>",
+          "server": "",
+          "type": "ORACLE",
+          "username": "<redacted>"
+        },
+        {
+          "access": "Native",
+          "database": "<redacted>",
+          "name": "Oracle_JNDI@DESA_RTP(IPINCHEI)",
+          "password": "<redacted>",
+          "server": "",
+          "type": "ORACLE",
+          "username": "<redacted>"
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "Oracle_JNDI@DOCUWARE(Datawarehouse)",
+          "password": "<redacted>",
+          "server": "",
+          "type": "ORACLE",
+          "username": ""
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "Oracle_JNDI@EXPL10G2(Datawarehouse)",
+          "password": "<redacted>",
+          "server": "<redacted>",
+          "type": "ORACLE",
+          "username": ""
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "Oracle_JNDI@FINPRD(Datawarehouse)",
+          "password": "<redacted>",
+          "server": "",
+          "type": "ORACLE",
+          "username": ""
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "Oracle_JNDI@HABITAT(Cierre_Mes)",
+          "password": "<redacted>",
+          "server": "<redacted>",
+          "type": "ORACLE",
+          "username": ""
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "Oracle_JNDI@PRDINV(Datawarehouse)",
+          "password": "<redacted>",
+          "server": "",
+          "type": "ORACLE",
+          "username": ""
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "Oracle_JNDI@PROD11G(Datawarehouse)",
+          "password": "<redacted>",
+          "server": "",
+          "type": "ORACLE",
+          "username": ""
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "Oracle_JNDI@PRODAFP(Datawarehouse)",
+          "password": "<redacted>",
+          "server": "",
+          "type": "ORACLE",
+          "username": ""
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "Oracle_JNDI@PRODWINV(Datawarehouse)",
+          "password": "<redacted>",
+          "server": "<redacted>",
+          "type": "ORACLE",
+          "username": ""
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "Oracle_JNDI@RTCHabitat(Datawarehouse)",
+          "password": "<redacted>",
+          "server": "<redacted>",
+          "type": "ORACLE",
+          "username": ""
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "PostgreSQL_JNDI@JiraLEAN(bigdata)",
+          "password": "<redacted>",
+          "server": "<redacted>",
+          "type": "POSTGRESQL",
+          "username": ""
+        },
+        {
+          "access": "Native",
+          "database": "<redacted>",
+          "name": "SampleData",
+          "password": "<redacted>",
+          "server": "<redacted>",
+          "type": "HYPERSONIC",
+          "username": "<redacted>"
+        },
+        {
+          "access": "Native",
+          "database": "<redacted>",
+          "name": "SybaseIQ_JDBC@habitat(DMGestion)",
+          "password": "<redacted>",
+          "server": "<redacted>",
+          "type": "SYBASEIQ",
+          "username": "<redacted>"
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "SybaseIQ_JNDI@habitat(AFC)",
+          "password": "<redacted>",
+          "server": "<redacted>",
+          "type": "SYBASEIQ",
+          "username": ""
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "SybaseIQ_JNDI@habitat(Auditoria)",
+          "password": "<redacted>",
+          "server": "",
+          "type": "SYBASEIQ",
+          "username": ""
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "SybaseIQ_JNDI@habitat(BonoCargoFiscal)",
+          "password": "<redacted>",
+          "server": "",
+          "type": "SYBASEIQ",
+          "username": ""
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "SybaseIQ_JNDI@habitat(Circular119)",
+          "password": "<redacted>",
+          "server": "",
+          "type": "SYBASEIQ",
+          "username": ""
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "SybaseIQ_JNDI@habitat(Circular1509)",
+          "password": "<redacted>",
+          "server": "<redacted>",
+          "type": "SYBASEIQ",
+          "username": ""
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "SybaseIQ_JNDI@habitat(Circular1532)",
+          "password": "<redacted>",
+          "server": "",
+          "type": "SYBASEIQ",
+          "username": ""
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "SybaseIQ_JNDI@habitat(Circular1536)",
+          "password": "<redacted>",
+          "server": "<redacted>",
+          "type": "SYBASEIQ",
+          "username": ""
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "SybaseIQ_JNDI@habitat(Circular1661V1)",
+          "password": "<redacted>",
+          "server": "<redacted>",
+          "type": "SYBASEIQ",
+          "username": ""
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "SybaseIQ_JNDI@habitat(ControlProcesos)",
+          "password": "<redacted>",
+          "server": "",
+          "type": "SYBASEIQ",
+          "username": ""
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "SybaseIQ_JNDI@habitat(DDS)",
+          "password": "<redacted>",
+          "server": "<redacted>",
+          "type": "GENERIC",
+          "username": ""
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "SybaseIQ_JNDI@habitat(DMGestion)",
+          "password": "<redacted>",
+          "server": "<redacted>",
+          "type": "SYBASEIQ",
+          "username": ""
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "SybaseIQ_JNDI@habitat(Datawarehouse)",
+          "password": "<redacted>",
+          "server": "<redacted>",
+          "type": "SYBASEIQ",
+          "username": ""
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "SybaseIQ_JNDI@habitat(Interfaz)",
+          "password": "<redacted>",
+          "server": "",
+          "type": "SYBASEIQ",
+          "username": ""
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "SybaseIQ_JNDI@habitat(LavadoActivos)",
+          "password": "<redacted>",
+          "server": "",
+          "type": "SYBASEIQ",
+          "username": ""
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "SybaseIQ_JNDI@habitat(MAC)",
+          "password": "<redacted>",
+          "server": "<redacted>",
+          "type": "SYBASEIQ",
+          "username": ""
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "SybaseIQ_JNDI@habitat(PAET)",
+          "password": "<redacted>",
+          "server": "",
+          "type": "SYBASEIQ",
+          "username": ""
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "SybaseIQ_JNDI@habitat(PowerBI)",
+          "password": "<redacted>",
+          "server": "",
+          "type": "SYBASEIQ",
+          "username": ""
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "SybaseIQ_JNDI@habitat(Retiro10)",
+          "password": "<redacted>",
+          "server": "",
+          "type": "SYBASEIQ",
+          "username": ""
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "SybaseIQ_JNDI@habitat(SalesForce)",
+          "password": "<redacted>",
+          "server": "",
+          "type": "SYBASEIQ",
+          "username": ""
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "SybaseIQ_JNDI@habitat(TDS)",
+          "password": "<redacted>",
+          "server": "",
+          "type": "SYBASEIQ",
+          "username": ""
+        },
+        {
+          "access": "Native",
+          "database": "<redacted>",
+          "name": "TotalPackV24",
+          "password": "<redacted>",
+          "server": "<redacted>",
+          "type": "MSSQL",
+          "username": "<redacted>"
+        },
+        {
+          "access": "Native",
+          "database": "<redacted>",
+          "name": "cnTower",
+          "password": "<redacted>",
+          "server": "<redacted>",
+          "type": "MSSQL",
+          "username": "<redacted>"
+        },
+        {
+          "access": "Native",
+          "database": "<redacted>",
+          "name": "testOracle@HABITAT",
+          "password": "<redacted>",
+          "server": "",
+          "type": "ORACLE",
+          "username": "<redacted>"
+        },
+        {
+          "access": "Native",
+          "database": "<redacted>",
+          "name": "testOracle@PRODAFP",
+          "password": "<redacted>",
+          "server": "",
+          "type": "ORACLE",
+          "username": "<redacted>"
+        },
+        {
+          "access": "Native",
+          "database": "<redacted>",
+          "name": "testSybase@IQProd",
+          "password": "<redacted>",
+          "server": "<redacted>",
+          "type": "SYBASEIQ",
+          "username": "<redacted>"
+        },
+        {
+          "access": "Native",
+          "database": "<redacted>",
+          "name": "testSybase@IQProd(16.1)",
+          "password": "<redacted>",
+          "server": "<redacted>",
+          "type": "SYBASEIQ",
+          "username": "<redacted>"
+        }
+      ],
+      "hops": [
+        {
+          "enabled": "Y",
+          "from": "Archivo_AtencionZeroQ",
+          "to": "Replace puntos en el rutEjecutivo"
+        },
+        {
+          "enabled": "Y",
+          "from": "Campos que continuan",
+          "to": "AtencionesZeroQ"
+        },
+        {
+          "enabled": "Y",
+          "from": "Extrae Fecha Archivo",
+          "to": "Obtiene Fecha Cierre"
+        },
+        {
+          "enabled": "Y",
+          "from": "Obtiene Fecha Cierre",
+          "to": "Campos que continuan"
+        },
+        {
+          "enabled": "Y",
+          "from": "Replace puntos en el rutEjecutivo",
+          "to": "Extrae Fecha Archivo"
+        }
+      ],
+      "kind": "ktr",
+      "name": "",
+      "parameters": [],
+      "path": "transf_AtencionesZeroQ_TDS.ktr",
+      "referenced_files": [],
+      "steps": [
+        {
+          "description": "",
+          "name": "Archivo_AtencionZeroQ",
+          "type": "TextFileInput"
+        },
+        {
+          "description": "",
+          "name": "AtencionesZeroQ",
+          "type": "TextFileOutput"
+        },
+        {
+          "description": "",
+          "name": "Campos que continuan",
+          "type": "SelectValues"
+        },
+        {
+          "description": "",
+          "name": "Extrae Fecha Archivo",
+          "type": "ReplaceString"
+        },
+        {
+          "description": "",
+          "name": "Obtiene Fecha Cierre",
+          "type": "Formula"
+        },
+        {
+          "description": "",
+          "name": "Replace puntos en el rutEjecutivo",
+          "type": "ReplaceString"
+        }
+      ],
+      "variables": [
+        "${ServidorCierreMes}",
+        "${ServidorSybaseIQ}",
+        "${atensucu.ruta.archivo}",
+        "${puerto.SybaseIQ}",
+        "${puerto.base.Oracle}",
+        "${ruta.tds.archivo.csv}",
+        "${v_atensucu_periodoDesde}",
+        "${v_atensucu_periodoHasta}"
+      ]
+    },
+    {
+      "connections": [
+        {
+          "access": "Native",
+          "database": "<redacted>",
+          "name": "AgileBI",
+          "password": "<redacted>",
+          "server": "<redacted>",
+          "type": "MONETDB",
+          "username": "<redacted>"
+        },
+        {
+          "access": "Native",
+          "database": "<redacted>",
+          "name": "Bonobo",
+          "password": "<redacted>",
+          "server": "<redacted>",
+          "type": "MYSQL",
+          "username": "<redacted>"
+        },
+        {
+          "access": "Native",
+          "database": "<redacted>",
+          "name": "FUGA",
+          "password": "<redacted>",
+          "server": "<redacted>",
+          "type": "ORACLE",
+          "username": "<redacted>"
+        },
+        {
+          "access": "Native",
+          "database": "<redacted>",
+          "name": "Kettle",
+          "password": "<redacted>",
+          "server": "<redacted>",
+          "type": "ORACLE",
+          "username": "<redacted>"
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "MsSQLServer_JNDI@TotalPack(Datawarehouse)",
+          "password": "<redacted>",
+          "server": "",
+          "type": "ORACLE",
+          "username": ""
+        },
+        {
+          "access": "Native",
+          "database": "<redacted>",
+          "name": "MySQL5",
+          "password": "<redacted>",
+          "server": "<redacted>",
+          "type": "MYSQL",
+          "username": "<redacted>"
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "MySQL_JNDI@SGC(Datawarehouse)",
+          "password": "<redacted>",
+          "server": "<redacted>",
+          "type": "MYSQL",
+          "username": ""
+        },
+        {
+          "access": "Native",
+          "database": "<redacted>",
+          "name": "OracleJDBC@CERTRTC(Datawarehouse)",
+          "password": "<redacted>",
+          "server": "",
+          "type": "ORACLE",
+          "username": "<redacted>"
+        },
+        {
+          "access": "Native",
+          "database": "<redacted>",
+          "name": "OracleJDBC@CERTRTP(Datawarehouse)",
+          "password": "<redacted>",
+          "server": "",
+          "type": "ORACLE",
+          "username": "<redacted>"
+        },
+        {
+          "access": "Native",
+          "database": "<redacted>",
+          "name": "OracleJDBC@DESARTC(Datawarehouse)",
+          "password": "<redacted>",
+          "server": "",
+          "type": "ORACLE",
+          "username": "<redacted>"
+        },
+        {
+          "access": "Native",
+          "database": "<redacted>",
+          "name": "OracleJDBC@DESARTP(Datawarehouse)",
+          "password": "<redacted>",
+          "server": "",
+          "type": "ORACLE",
+          "username": "<redacted>"
+        },
+        {
+          "access": "Native",
+          "database": "<redacted>",
+          "name": "OracleJDBC@DESARTP(OWN_TRIBUTARIO)",
+          "password": "<redacted>",
+          "server": "",
+          "type": "ORACLE",
+          "username": "<redacted>"
+        },
+        {
+          "access": "Native",
+          "database": "<redacted>",
+          "name": "OracleJDBC@PRODCAR(AHERMOSI)",
+          "password": "<redacted>",
+          "server": "",
+          "type": "ORACLE",
+          "username": "<redacted>"
+        },
+        {
+          "access": "Native",
+          "database": "<redacted>",
+          "name": "Oracle_JDBC@DESA_RTP(Datawarehouse)",
+          "password": "<redacted>",
+          "server": "",
+          "type": "ORACLE",
+          "username": "<redacted>"
+        },
+        {
+          "access": "Native",
+          "database": "<redacted>",
+          "name": "Oracle_JDBC@DESA_RTP(IPINCHEI)",
+          "password": "<redacted>",
+          "server": "",
+          "type": "ORACLE",
+          "username": "<redacted>"
+        },
+        {
+          "access": "Native",
+          "database": "<redacted>",
+          "name": "Oracle_JNDI@DESA_RTP(IPINCHEI)",
+          "password": "<redacted>",
+          "server": "",
+          "type": "ORACLE",
+          "username": "<redacted>"
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "Oracle_JNDI@DOCUWARE(Datawarehouse)",
+          "password": "<redacted>",
+          "server": "",
+          "type": "ORACLE",
+          "username": ""
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "Oracle_JNDI@EXPL10G2(Datawarehouse)",
+          "password": "<redacted>",
+          "server": "<redacted>",
+          "type": "ORACLE",
+          "username": ""
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "Oracle_JNDI@FINPRD(Datawarehouse)",
+          "password": "<redacted>",
+          "server": "",
+          "type": "ORACLE",
+          "username": ""
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "Oracle_JNDI@HABITAT(Cierre_Mes)",
+          "password": "<redacted>",
+          "server": "<redacted>",
+          "type": "ORACLE",
+          "username": ""
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "Oracle_JNDI@PRDINV(Datawarehouse)",
+          "password": "<redacted>",
+          "server": "",
+          "type": "ORACLE",
+          "username": ""
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "Oracle_JNDI@PROD11G(Datawarehouse)",
+          "password": "<redacted>",
+          "server": "",
+          "type": "ORACLE",
+          "username": ""
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "Oracle_JNDI@PRODAFP(Datawarehouse)",
+          "password": "<redacted>",
+          "server": "",
+          "type": "ORACLE",
+          "username": ""
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "Oracle_JNDI@PRODWINV(Datawarehouse)",
+          "password": "<redacted>",
+          "server": "<redacted>",
+          "type": "ORACLE",
+          "username": ""
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "Oracle_JNDI@RTCHabitat(Datawarehouse)",
+          "password": "<redacted>",
+          "server": "<redacted>",
+          "type": "ORACLE",
+          "username": ""
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "PostgreSQL_JNDI@JiraLEAN(bigdata)",
+          "password": "<redacted>",
+          "server": "<redacted>",
+          "type": "POSTGRESQL",
+          "username": ""
+        },
+        {
+          "access": "Native",
+          "database": "<redacted>",
+          "name": "SampleData",
+          "password": "<redacted>",
+          "server": "<redacted>",
+          "type": "HYPERSONIC",
+          "username": "<redacted>"
+        },
+        {
+          "access": "Native",
+          "database": "<redacted>",
+          "name": "SybaseIQ_JDBC@habitat(DMGestion)",
+          "password": "<redacted>",
+          "server": "<redacted>",
+          "type": "SYBASEIQ",
+          "username": "<redacted>"
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "SybaseIQ_JNDI@habitat(AFC)",
+          "password": "<redacted>",
+          "server": "<redacted>",
+          "type": "SYBASEIQ",
+          "username": ""
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "SybaseIQ_JNDI@habitat(Auditoria)",
+          "password": "<redacted>",
+          "server": "",
+          "type": "SYBASEIQ",
+          "username": ""
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "SybaseIQ_JNDI@habitat(BonoCargoFiscal)",
+          "password": "<redacted>",
+          "server": "",
+          "type": "SYBASEIQ",
+          "username": ""
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "SybaseIQ_JNDI@habitat(Circular119)",
+          "password": "<redacted>",
+          "server": "",
+          "type": "SYBASEIQ",
+          "username": ""
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "SybaseIQ_JNDI@habitat(Circular1509)",
+          "password": "<redacted>",
+          "server": "<redacted>",
+          "type": "SYBASEIQ",
+          "username": ""
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "SybaseIQ_JNDI@habitat(Circular1532)",
+          "password": "<redacted>",
+          "server": "",
+          "type": "SYBASEIQ",
+          "username": ""
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "SybaseIQ_JNDI@habitat(Circular1536)",
+          "password": "<redacted>",
+          "server": "<redacted>",
+          "type": "SYBASEIQ",
+          "username": ""
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "SybaseIQ_JNDI@habitat(Circular1661V1)",
+          "password": "<redacted>",
+          "server": "<redacted>",
+          "type": "SYBASEIQ",
+          "username": ""
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "SybaseIQ_JNDI@habitat(ControlProcesos)",
+          "password": "<redacted>",
+          "server": "",
+          "type": "SYBASEIQ",
+          "username": ""
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "SybaseIQ_JNDI@habitat(DDS)",
+          "password": "<redacted>",
+          "server": "<redacted>",
+          "type": "GENERIC",
+          "username": ""
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "SybaseIQ_JNDI@habitat(DMGestion)",
+          "password": "<redacted>",
+          "server": "<redacted>",
+          "type": "SYBASEIQ",
+          "username": ""
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "SybaseIQ_JNDI@habitat(Datawarehouse)",
+          "password": "<redacted>",
+          "server": "<redacted>",
+          "type": "SYBASEIQ",
+          "username": ""
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "SybaseIQ_JNDI@habitat(Interfaz)",
+          "password": "<redacted>",
+          "server": "",
+          "type": "SYBASEIQ",
+          "username": ""
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "SybaseIQ_JNDI@habitat(LavadoActivos)",
+          "password": "<redacted>",
+          "server": "",
+          "type": "SYBASEIQ",
+          "username": ""
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "SybaseIQ_JNDI@habitat(MAC)",
+          "password": "<redacted>",
+          "server": "<redacted>",
+          "type": "SYBASEIQ",
+          "username": ""
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "SybaseIQ_JNDI@habitat(PAET)",
+          "password": "<redacted>",
+          "server": "",
+          "type": "SYBASEIQ",
+          "username": ""
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "SybaseIQ_JNDI@habitat(PowerBI)",
+          "password": "<redacted>",
+          "server": "",
+          "type": "SYBASEIQ",
+          "username": ""
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "SybaseIQ_JNDI@habitat(Retiro10)",
+          "password": "<redacted>",
+          "server": "",
+          "type": "SYBASEIQ",
+          "username": ""
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "SybaseIQ_JNDI@habitat(SalesForce)",
+          "password": "<redacted>",
+          "server": "",
+          "type": "SYBASEIQ",
+          "username": ""
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "SybaseIQ_JNDI@habitat(TDS)",
+          "password": "<redacted>",
+          "server": "",
+          "type": "SYBASEIQ",
+          "username": ""
+        },
+        {
+          "access": "Native",
+          "database": "<redacted>",
+          "name": "TotalPackV24",
+          "password": "<redacted>",
+          "server": "<redacted>",
+          "type": "MSSQL",
+          "username": "<redacted>"
+        },
+        {
+          "access": "Native",
+          "database": "<redacted>",
+          "name": "cnTower",
+          "password": "<redacted>",
+          "server": "<redacted>",
+          "type": "MSSQL",
+          "username": "<redacted>"
+        },
+        {
+          "access": "Native",
+          "database": "<redacted>",
+          "name": "testOracle@HABITAT",
+          "password": "<redacted>",
+          "server": "",
+          "type": "ORACLE",
+          "username": "<redacted>"
+        },
+        {
+          "access": "Native",
+          "database": "<redacted>",
+          "name": "testOracle@PRODAFP",
+          "password": "<redacted>",
+          "server": "",
+          "type": "ORACLE",
+          "username": "<redacted>"
+        },
+        {
+          "access": "Native",
+          "database": "<redacted>",
+          "name": "testSybase@IQProd",
+          "password": "<redacted>",
+          "server": "<redacted>",
+          "type": "SYBASEIQ",
+          "username": "<redacted>"
+        },
+        {
+          "access": "Native",
+          "database": "<redacted>",
+          "name": "testSybase@IQProd(16.1)",
+          "password": "<redacted>",
+          "server": "<redacted>",
+          "type": "SYBASEIQ",
+          "username": "<redacted>"
+        }
+      ],
+      "hops": [
+        {
+          "enabled": "Y",
+          "from": "Archivo_AgendamientoZeroQ",
+          "to": "dummy"
+        },
+        {
+          "enabled": "Y",
+          "from": "Blocking step",
+          "to": "Stream lookup"
+        },
+        {
+          "enabled": "Y",
+          "from": "Extrae Fecha Archivo",
+          "to": "Obtiene Fecha Cierre"
+        },
+        {
+          "enabled": "Y",
+          "from": "Obtiene Fecha Cierre",
+          "to": "Crea Archivo motivosAgendamientoZeroq"
+        },
+        {
+          "enabled": "Y",
+          "from": "Select values",
+          "to": "Stream lookup"
+        },
+        {
+          "enabled": "Y",
+          "from": "Select values motivos",
+          "to": "Extrae Fecha Archivo"
+        },
+        {
+          "enabled": "Y",
+          "from": "Split fields Desc Mov",
+          "to": "Select values"
+        },
+        {
+          "enabled": "Y",
+          "from": "Split fields ID Mot",
+          "to": "Blocking step"
+        },
+        {
+          "enabled": "Y",
+          "from": "Stream lookup",
+          "to": "Select values motivos"
+        },
+        {
+          "enabled": "Y",
+          "from": "dummy",
+          "to": "split IDMotivos"
+        },
+        {
+          "enabled": "Y",
+          "from": "dummy",
+          "to": "split desc Motivos"
+        },
+        {
+          "enabled": "Y",
+          "from": "split IDMotivos",
+          "to": "Split fields ID Mot"
+        },
+        {
+          "enabled": "Y",
+          "from": "split desc Motivos",
+          "to": "Split fields Desc Mov"
+        }
+      ],
+      "kind": "ktr",
+      "name": "",
+      "parameters": [],
+      "path": "transf_MotivoAgendamientoZeroQ_TDS.ktr",
+      "referenced_files": [],
+      "steps": [
+        {
+          "description": "",
+          "name": "Archivo_AgendamientoZeroQ",
+          "type": "TextFileInput"
+        },
+        {
+          "description": "",
+          "name": "Blocking step",
+          "type": "BlockingStep"
+        },
+        {
+          "description": "",
+          "name": "Crea Archivo motivosAgendamientoZeroq",
+          "type": "TextFileOutput"
+        },
+        {
+          "description": "",
+          "name": "Extrae Fecha Archivo",
+          "type": "ReplaceString"
+        },
+        {
+          "description": "",
+          "name": "Obtiene Fecha Cierre",
+          "type": "Formula"
+        },
+        {
+          "description": "",
+          "name": "Select values",
+          "type": "SelectValues"
+        },
+        {
+          "description": "",
+          "name": "Select values motivos",
+          "type": "SelectValues"
+        },
+        {
+          "description": "",
+          "name": "Split fields Desc Mov",
+          "type": "FieldSplitter"
+        },
+        {
+          "description": "",
+          "name": "Split fields ID Mot",
+          "type": "FieldSplitter"
+        },
+        {
+          "description": "",
+          "name": "Stream lookup",
+          "type": "StreamLookup"
+        },
+        {
+          "description": "",
+          "name": "dummy",
+          "type": "Dummy"
+        },
+        {
+          "description": "",
+          "name": "split IDMotivos",
+          "type": "SplitFieldToRows3"
+        },
+        {
+          "description": "",
+          "name": "split desc Motivos",
+          "type": "SplitFieldToRows3"
+        }
+      ],
+      "variables": [
+        "${ServidorCierreMes}",
+        "${ServidorSybaseIQ}",
+        "${atensucu.ruta.archivo}",
+        "${puerto.SybaseIQ}",
+        "${puerto.base.Oracle}",
+        "${ruta.tds.archivo.csv}",
+        "${v_atensucu_periodoDesde}",
+        "${v_atensucu_periodoHasta}"
+      ]
+    },
+    {
+      "connections": [
+        {
+          "access": "Native",
+          "database": "<redacted>",
+          "name": "AgileBI",
+          "password": "<redacted>",
+          "server": "<redacted>",
+          "type": "MONETDB",
+          "username": "<redacted>"
+        },
+        {
+          "access": "Native",
+          "database": "<redacted>",
+          "name": "Bonobo",
+          "password": "<redacted>",
+          "server": "<redacted>",
+          "type": "MYSQL",
+          "username": "<redacted>"
+        },
+        {
+          "access": "Native",
+          "database": "<redacted>",
+          "name": "FUGA",
+          "password": "<redacted>",
+          "server": "<redacted>",
+          "type": "ORACLE",
+          "username": "<redacted>"
+        },
+        {
+          "access": "Native",
+          "database": "<redacted>",
+          "name": "Kettle",
+          "password": "<redacted>",
+          "server": "<redacted>",
+          "type": "ORACLE",
+          "username": "<redacted>"
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "MsSQLServer_JNDI@TotalPack(Datawarehouse)",
+          "password": "<redacted>",
+          "server": "",
+          "type": "ORACLE",
+          "username": ""
+        },
+        {
+          "access": "Native",
+          "database": "<redacted>",
+          "name": "MySQL5",
+          "password": "<redacted>",
+          "server": "<redacted>",
+          "type": "MYSQL",
+          "username": "<redacted>"
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "MySQL_JNDI@SGC(Datawarehouse)",
+          "password": "<redacted>",
+          "server": "<redacted>",
+          "type": "MYSQL",
+          "username": ""
+        },
+        {
+          "access": "Native",
+          "database": "<redacted>",
+          "name": "OracleJDBC@CERTRTC(Datawarehouse)",
+          "password": "<redacted>",
+          "server": "",
+          "type": "ORACLE",
+          "username": "<redacted>"
+        },
+        {
+          "access": "Native",
+          "database": "<redacted>",
+          "name": "OracleJDBC@CERTRTP(Datawarehouse)",
+          "password": "<redacted>",
+          "server": "",
+          "type": "ORACLE",
+          "username": "<redacted>"
+        },
+        {
+          "access": "Native",
+          "database": "<redacted>",
+          "name": "OracleJDBC@DESARTC(Datawarehouse)",
+          "password": "<redacted>",
+          "server": "",
+          "type": "ORACLE",
+          "username": "<redacted>"
+        },
+        {
+          "access": "Native",
+          "database": "<redacted>",
+          "name": "OracleJDBC@DESARTP(Datawarehouse)",
+          "password": "<redacted>",
+          "server": "",
+          "type": "ORACLE",
+          "username": "<redacted>"
+        },
+        {
+          "access": "Native",
+          "database": "<redacted>",
+          "name": "OracleJDBC@DESARTP(OWN_TRIBUTARIO)",
+          "password": "<redacted>",
+          "server": "",
+          "type": "ORACLE",
+          "username": "<redacted>"
+        },
+        {
+          "access": "Native",
+          "database": "<redacted>",
+          "name": "OracleJDBC@PRODCAR(AHERMOSI)",
+          "password": "<redacted>",
+          "server": "",
+          "type": "ORACLE",
+          "username": "<redacted>"
+        },
+        {
+          "access": "Native",
+          "database": "<redacted>",
+          "name": "Oracle_JDBC@DESA_RTP(Datawarehouse)",
+          "password": "<redacted>",
+          "server": "",
+          "type": "ORACLE",
+          "username": "<redacted>"
+        },
+        {
+          "access": "Native",
+          "database": "<redacted>",
+          "name": "Oracle_JDBC@DESA_RTP(IPINCHEI)",
+          "password": "<redacted>",
+          "server": "",
+          "type": "ORACLE",
+          "username": "<redacted>"
+        },
+        {
+          "access": "Native",
+          "database": "<redacted>",
+          "name": "Oracle_JNDI@DESA_RTP(IPINCHEI)",
+          "password": "<redacted>",
+          "server": "",
+          "type": "ORACLE",
+          "username": "<redacted>"
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "Oracle_JNDI@DOCUWARE(Datawarehouse)",
+          "password": "<redacted>",
+          "server": "",
+          "type": "ORACLE",
+          "username": ""
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "Oracle_JNDI@EXPL10G2(Datawarehouse)",
+          "password": "<redacted>",
+          "server": "<redacted>",
+          "type": "ORACLE",
+          "username": ""
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "Oracle_JNDI@FINPRD(Datawarehouse)",
+          "password": "<redacted>",
+          "server": "",
+          "type": "ORACLE",
+          "username": ""
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "Oracle_JNDI@HABITAT(Cierre_Mes)",
+          "password": "<redacted>",
+          "server": "<redacted>",
+          "type": "ORACLE",
+          "username": ""
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "Oracle_JNDI@PRDINV(Datawarehouse)",
+          "password": "<redacted>",
+          "server": "",
+          "type": "ORACLE",
+          "username": ""
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "Oracle_JNDI@PROD11G(Datawarehouse)",
+          "password": "<redacted>",
+          "server": "",
+          "type": "ORACLE",
+          "username": ""
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "Oracle_JNDI@PRODAFP(Datawarehouse)",
+          "password": "<redacted>",
+          "server": "",
+          "type": "ORACLE",
+          "username": ""
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "Oracle_JNDI@PRODWINV(Datawarehouse)",
+          "password": "<redacted>",
+          "server": "<redacted>",
+          "type": "ORACLE",
+          "username": ""
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "Oracle_JNDI@RTCHabitat(Datawarehouse)",
+          "password": "<redacted>",
+          "server": "<redacted>",
+          "type": "ORACLE",
+          "username": ""
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "PostgreSQL_JNDI@JiraLEAN(bigdata)",
+          "password": "<redacted>",
+          "server": "<redacted>",
+          "type": "POSTGRESQL",
+          "username": ""
+        },
+        {
+          "access": "Native",
+          "database": "<redacted>",
+          "name": "SampleData",
+          "password": "<redacted>",
+          "server": "<redacted>",
+          "type": "HYPERSONIC",
+          "username": "<redacted>"
+        },
+        {
+          "access": "Native",
+          "database": "<redacted>",
+          "name": "SybaseIQ_JDBC@habitat(DMGestion)",
+          "password": "<redacted>",
+          "server": "<redacted>",
+          "type": "SYBASEIQ",
+          "username": "<redacted>"
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "SybaseIQ_JNDI@habitat(AFC)",
+          "password": "<redacted>",
+          "server": "<redacted>",
+          "type": "SYBASEIQ",
+          "username": ""
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "SybaseIQ_JNDI@habitat(Auditoria)",
+          "password": "<redacted>",
+          "server": "",
+          "type": "SYBASEIQ",
+          "username": ""
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "SybaseIQ_JNDI@habitat(BonoCargoFiscal)",
+          "password": "<redacted>",
+          "server": "",
+          "type": "SYBASEIQ",
+          "username": ""
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "SybaseIQ_JNDI@habitat(Circular119)",
+          "password": "<redacted>",
+          "server": "",
+          "type": "SYBASEIQ",
+          "username": ""
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "SybaseIQ_JNDI@habitat(Circular1509)",
+          "password": "<redacted>",
+          "server": "<redacted>",
+          "type": "SYBASEIQ",
+          "username": ""
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "SybaseIQ_JNDI@habitat(Circular1532)",
+          "password": "<redacted>",
+          "server": "",
+          "type": "SYBASEIQ",
+          "username": ""
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "SybaseIQ_JNDI@habitat(Circular1536)",
+          "password": "<redacted>",
+          "server": "<redacted>",
+          "type": "SYBASEIQ",
+          "username": ""
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "SybaseIQ_JNDI@habitat(Circular1661V1)",
+          "password": "<redacted>",
+          "server": "<redacted>",
+          "type": "SYBASEIQ",
+          "username": ""
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "SybaseIQ_JNDI@habitat(ControlProcesos)",
+          "password": "<redacted>",
+          "server": "",
+          "type": "SYBASEIQ",
+          "username": ""
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "SybaseIQ_JNDI@habitat(DDS)",
+          "password": "<redacted>",
+          "server": "<redacted>",
+          "type": "GENERIC",
+          "username": ""
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "SybaseIQ_JNDI@habitat(DMGestion)",
+          "password": "<redacted>",
+          "server": "<redacted>",
+          "type": "SYBASEIQ",
+          "username": ""
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "SybaseIQ_JNDI@habitat(Datawarehouse)",
+          "password": "<redacted>",
+          "server": "<redacted>",
+          "type": "SYBASEIQ",
+          "username": ""
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "SybaseIQ_JNDI@habitat(Interfaz)",
+          "password": "<redacted>",
+          "server": "",
+          "type": "SYBASEIQ",
+          "username": ""
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "SybaseIQ_JNDI@habitat(LavadoActivos)",
+          "password": "<redacted>",
+          "server": "",
+          "type": "SYBASEIQ",
+          "username": ""
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "SybaseIQ_JNDI@habitat(MAC)",
+          "password": "<redacted>",
+          "server": "<redacted>",
+          "type": "SYBASEIQ",
+          "username": ""
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "SybaseIQ_JNDI@habitat(PAET)",
+          "password": "<redacted>",
+          "server": "",
+          "type": "SYBASEIQ",
+          "username": ""
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "SybaseIQ_JNDI@habitat(PowerBI)",
+          "password": "<redacted>",
+          "server": "",
+          "type": "SYBASEIQ",
+          "username": ""
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "SybaseIQ_JNDI@habitat(Retiro10)",
+          "password": "<redacted>",
+          "server": "",
+          "type": "SYBASEIQ",
+          "username": ""
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "SybaseIQ_JNDI@habitat(SalesForce)",
+          "password": "<redacted>",
+          "server": "",
+          "type": "SYBASEIQ",
+          "username": ""
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "SybaseIQ_JNDI@habitat(TDS)",
+          "password": "<redacted>",
+          "server": "",
+          "type": "SYBASEIQ",
+          "username": ""
+        },
+        {
+          "access": "Native",
+          "database": "<redacted>",
+          "name": "TotalPackV24",
+          "password": "<redacted>",
+          "server": "<redacted>",
+          "type": "MSSQL",
+          "username": "<redacted>"
+        },
+        {
+          "access": "Native",
+          "database": "<redacted>",
+          "name": "cnTower",
+          "password": "<redacted>",
+          "server": "<redacted>",
+          "type": "MSSQL",
+          "username": "<redacted>"
+        },
+        {
+          "access": "Native",
+          "database": "<redacted>",
+          "name": "testOracle@HABITAT",
+          "password": "<redacted>",
+          "server": "",
+          "type": "ORACLE",
+          "username": "<redacted>"
+        },
+        {
+          "access": "Native",
+          "database": "<redacted>",
+          "name": "testOracle@PRODAFP",
+          "password": "<redacted>",
+          "server": "",
+          "type": "ORACLE",
+          "username": "<redacted>"
+        },
+        {
+          "access": "Native",
+          "database": "<redacted>",
+          "name": "testSybase@IQProd",
+          "password": "<redacted>",
+          "server": "<redacted>",
+          "type": "SYBASEIQ",
+          "username": "<redacted>"
+        },
+        {
+          "access": "Native",
+          "database": "<redacted>",
+          "name": "testSybase@IQProd(16.1)",
+          "password": "<redacted>",
+          "server": "<redacted>",
+          "type": "SYBASEIQ",
+          "username": "<redacted>"
+        }
+      ],
+      "hops": [
+        {
+          "enabled": "Y",
+          "from": "Archivo_AtencionZeroQ",
+          "to": "Dummy (do nothing)"
+        },
+        {
+          "enabled": "Y",
+          "from": "Blocking step",
+          "to": "Stream lookup"
+        },
+        {
+          "enabled": "Y",
+          "from": "Dummy (do nothing)",
+          "to": "split IDMotivos"
+        },
+        {
+          "enabled": "Y",
+          "from": "Dummy (do nothing)",
+          "to": "split desc Motivos"
+        },
+        {
+          "enabled": "Y",
+          "from": "Extrae Fecha Archivo",
+          "to": "Obtiene Fecha Cierre"
+        },
+        {
+          "enabled": "Y",
+          "from": "Obtiene Fecha Cierre",
+          "to": "Crea Archivo motivosAtencionZeroq"
+        },
+        {
+          "enabled": "Y",
+          "from": "Select values",
+          "to": "Stream lookup"
+        },
+        {
+          "enabled": "Y",
+          "from": "Select values motivos",
+          "to": "Extrae Fecha Archivo"
+        },
+        {
+          "enabled": "Y",
+          "from": "Split fields Desc Mov",
+          "to": "Select values"
+        },
+        {
+          "enabled": "Y",
+          "from": "Split fields ID Mot",
+          "to": "Blocking step"
+        },
+        {
+          "enabled": "Y",
+          "from": "Stream lookup",
+          "to": "Select values motivos"
+        },
+        {
+          "enabled": "Y",
+          "from": "split IDMotivos",
+          "to": "Split fields ID Mot"
+        },
+        {
+          "enabled": "Y",
+          "from": "split desc Motivos",
+          "to": "Split fields Desc Mov"
+        }
+      ],
+      "kind": "ktr",
+      "name": "",
+      "parameters": [],
+      "path": "transf_MotivoAtencionZeroQ_TDS.ktr",
+      "referenced_files": [],
+      "steps": [
+        {
+          "description": "",
+          "name": "Archivo_AtencionZeroQ",
+          "type": "TextFileInput"
+        },
+        {
+          "description": "",
+          "name": "Blocking step",
+          "type": "BlockingStep"
+        },
+        {
+          "description": "",
+          "name": "Crea Archivo motivosAtencionZeroq",
+          "type": "TextFileOutput"
+        },
+        {
+          "description": "",
+          "name": "Dummy (do nothing)",
+          "type": "Dummy"
+        },
+        {
+          "description": "",
+          "name": "Extrae Fecha Archivo",
+          "type": "ReplaceString"
+        },
+        {
+          "description": "",
+          "name": "Obtiene Fecha Cierre",
+          "type": "Formula"
+        },
+        {
+          "description": "",
+          "name": "Select values",
+          "type": "SelectValues"
+        },
+        {
+          "description": "",
+          "name": "Select values motivos",
+          "type": "SelectValues"
+        },
+        {
+          "description": "",
+          "name": "Split fields Desc Mov",
+          "type": "FieldSplitter"
+        },
+        {
+          "description": "",
+          "name": "Split fields ID Mot",
+          "type": "FieldSplitter"
+        },
+        {
+          "description": "",
+          "name": "Stream lookup",
+          "type": "StreamLookup"
+        },
+        {
+          "description": "",
+          "name": "split IDMotivos",
+          "type": "SplitFieldToRows3"
+        },
+        {
+          "description": "",
+          "name": "split desc Motivos",
+          "type": "SplitFieldToRows3"
+        }
+      ],
+      "variables": [
+        "${ServidorCierreMes}",
+        "${ServidorSybaseIQ}",
+        "${atensucu.ruta.archivo}",
+        "${puerto.SybaseIQ}",
+        "${puerto.base.Oracle}",
+        "${ruta.tds.archivo.csv}",
+        "${v_atensucu_periodoDesde}",
+        "${v_atensucu_periodoHasta}"
+      ]
+    },
+    {
+      "connections": [
+        {
+          "access": "Native",
+          "database": "<redacted>",
+          "name": "AgileBI",
+          "password": "<redacted>",
+          "server": "<redacted>",
+          "type": "MONETDB",
+          "username": "<redacted>"
+        },
+        {
+          "access": "Native",
+          "database": "<redacted>",
+          "name": "Bonobo",
+          "password": "<redacted>",
+          "server": "<redacted>",
+          "type": "MYSQL",
+          "username": "<redacted>"
+        },
+        {
+          "access": "Native",
+          "database": "<redacted>",
+          "name": "FUGA",
+          "password": "<redacted>",
+          "server": "<redacted>",
+          "type": "ORACLE",
+          "username": "<redacted>"
+        },
+        {
+          "access": "Native",
+          "database": "<redacted>",
+          "name": "Kettle",
+          "password": "<redacted>",
+          "server": "<redacted>",
+          "type": "ORACLE",
+          "username": "<redacted>"
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "MsSQLServer_JNDI@TotalPack(Datawarehouse)",
+          "password": "<redacted>",
+          "server": "",
+          "type": "ORACLE",
+          "username": ""
+        },
+        {
+          "access": "Native",
+          "database": "<redacted>",
+          "name": "MySQL5",
+          "password": "<redacted>",
+          "server": "<redacted>",
+          "type": "MYSQL",
+          "username": "<redacted>"
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "MySQL_JNDI@SGC(Datawarehouse)",
+          "password": "<redacted>",
+          "server": "<redacted>",
+          "type": "MYSQL",
+          "username": ""
+        },
+        {
+          "access": "Native",
+          "database": "<redacted>",
+          "name": "OracleJDBC@CERTRTC(Datawarehouse)",
+          "password": "<redacted>",
+          "server": "",
+          "type": "ORACLE",
+          "username": "<redacted>"
+        },
+        {
+          "access": "Native",
+          "database": "<redacted>",
+          "name": "OracleJDBC@CERTRTP(Datawarehouse)",
+          "password": "<redacted>",
+          "server": "",
+          "type": "ORACLE",
+          "username": "<redacted>"
+        },
+        {
+          "access": "Native",
+          "database": "<redacted>",
+          "name": "OracleJDBC@DESARTC(Datawarehouse)",
+          "password": "<redacted>",
+          "server": "",
+          "type": "ORACLE",
+          "username": "<redacted>"
+        },
+        {
+          "access": "Native",
+          "database": "<redacted>",
+          "name": "OracleJDBC@DESARTP(Datawarehouse)",
+          "password": "<redacted>",
+          "server": "",
+          "type": "ORACLE",
+          "username": "<redacted>"
+        },
+        {
+          "access": "Native",
+          "database": "<redacted>",
+          "name": "OracleJDBC@DESARTP(OWN_TRIBUTARIO)",
+          "password": "<redacted>",
+          "server": "",
+          "type": "ORACLE",
+          "username": "<redacted>"
+        },
+        {
+          "access": "Native",
+          "database": "<redacted>",
+          "name": "OracleJDBC@PRODCAR(AHERMOSI)",
+          "password": "<redacted>",
+          "server": "",
+          "type": "ORACLE",
+          "username": "<redacted>"
+        },
+        {
+          "access": "Native",
+          "database": "<redacted>",
+          "name": "Oracle_JDBC@DESA_RTP(Datawarehouse)",
+          "password": "<redacted>",
+          "server": "",
+          "type": "ORACLE",
+          "username": "<redacted>"
+        },
+        {
+          "access": "Native",
+          "database": "<redacted>",
+          "name": "Oracle_JDBC@DESA_RTP(IPINCHEI)",
+          "password": "<redacted>",
+          "server": "",
+          "type": "ORACLE",
+          "username": "<redacted>"
+        },
+        {
+          "access": "Native",
+          "database": "<redacted>",
+          "name": "Oracle_JNDI@DESA_RTP(IPINCHEI)",
+          "password": "<redacted>",
+          "server": "",
+          "type": "ORACLE",
+          "username": "<redacted>"
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "Oracle_JNDI@DOCUWARE(Datawarehouse)",
+          "password": "<redacted>",
+          "server": "",
+          "type": "ORACLE",
+          "username": ""
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "Oracle_JNDI@EXPL10G2(Datawarehouse)",
+          "password": "<redacted>",
+          "server": "<redacted>",
+          "type": "ORACLE",
+          "username": ""
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "Oracle_JNDI@FINPRD(Datawarehouse)",
+          "password": "<redacted>",
+          "server": "",
+          "type": "ORACLE",
+          "username": ""
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "Oracle_JNDI@HABITAT(Cierre_Mes)",
+          "password": "<redacted>",
+          "server": "<redacted>",
+          "type": "ORACLE",
+          "username": ""
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "Oracle_JNDI@PRDINV(Datawarehouse)",
+          "password": "<redacted>",
+          "server": "",
+          "type": "ORACLE",
+          "username": ""
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "Oracle_JNDI@PROD11G(Datawarehouse)",
+          "password": "<redacted>",
+          "server": "",
+          "type": "ORACLE",
+          "username": ""
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "Oracle_JNDI@PRODAFP(Datawarehouse)",
+          "password": "<redacted>",
+          "server": "",
+          "type": "ORACLE",
+          "username": ""
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "Oracle_JNDI@PRODWINV(Datawarehouse)",
+          "password": "<redacted>",
+          "server": "<redacted>",
+          "type": "ORACLE",
+          "username": ""
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "Oracle_JNDI@RTCHabitat(Datawarehouse)",
+          "password": "<redacted>",
+          "server": "<redacted>",
+          "type": "ORACLE",
+          "username": ""
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "PostgreSQL_JNDI@JiraLEAN(bigdata)",
+          "password": "<redacted>",
+          "server": "<redacted>",
+          "type": "POSTGRESQL",
+          "username": ""
+        },
+        {
+          "access": "Native",
+          "database": "<redacted>",
+          "name": "SampleData",
+          "password": "<redacted>",
+          "server": "<redacted>",
+          "type": "HYPERSONIC",
+          "username": "<redacted>"
+        },
+        {
+          "access": "Native",
+          "database": "<redacted>",
+          "name": "SybaseIQ_JDBC@habitat(DMGestion)",
+          "password": "<redacted>",
+          "server": "<redacted>",
+          "type": "SYBASEIQ",
+          "username": "<redacted>"
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "SybaseIQ_JNDI@habitat(AFC)",
+          "password": "<redacted>",
+          "server": "<redacted>",
+          "type": "SYBASEIQ",
+          "username": ""
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "SybaseIQ_JNDI@habitat(Auditoria)",
+          "password": "<redacted>",
+          "server": "",
+          "type": "SYBASEIQ",
+          "username": ""
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "SybaseIQ_JNDI@habitat(BonoCargoFiscal)",
+          "password": "<redacted>",
+          "server": "",
+          "type": "SYBASEIQ",
+          "username": ""
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "SybaseIQ_JNDI@habitat(Circular119)",
+          "password": "<redacted>",
+          "server": "",
+          "type": "SYBASEIQ",
+          "username": ""
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "SybaseIQ_JNDI@habitat(Circular1509)",
+          "password": "<redacted>",
+          "server": "<redacted>",
+          "type": "SYBASEIQ",
+          "username": ""
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "SybaseIQ_JNDI@habitat(Circular1532)",
+          "password": "<redacted>",
+          "server": "",
+          "type": "SYBASEIQ",
+          "username": ""
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "SybaseIQ_JNDI@habitat(Circular1536)",
+          "password": "<redacted>",
+          "server": "<redacted>",
+          "type": "SYBASEIQ",
+          "username": ""
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "SybaseIQ_JNDI@habitat(Circular1661V1)",
+          "password": "<redacted>",
+          "server": "<redacted>",
+          "type": "SYBASEIQ",
+          "username": ""
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "SybaseIQ_JNDI@habitat(ControlProcesos)",
+          "password": "<redacted>",
+          "server": "",
+          "type": "SYBASEIQ",
+          "username": ""
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "SybaseIQ_JNDI@habitat(DDS)",
+          "password": "<redacted>",
+          "server": "<redacted>",
+          "type": "GENERIC",
+          "username": ""
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "SybaseIQ_JNDI@habitat(DMGestion)",
+          "password": "<redacted>",
+          "server": "<redacted>",
+          "type": "SYBASEIQ",
+          "username": ""
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "SybaseIQ_JNDI@habitat(Datawarehouse)",
+          "password": "<redacted>",
+          "server": "<redacted>",
+          "type": "SYBASEIQ",
+          "username": ""
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "SybaseIQ_JNDI@habitat(Interfaz)",
+          "password": "<redacted>",
+          "server": "",
+          "type": "SYBASEIQ",
+          "username": ""
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "SybaseIQ_JNDI@habitat(LavadoActivos)",
+          "password": "<redacted>",
+          "server": "",
+          "type": "SYBASEIQ",
+          "username": ""
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "SybaseIQ_JNDI@habitat(MAC)",
+          "password": "<redacted>",
+          "server": "<redacted>",
+          "type": "SYBASEIQ",
+          "username": ""
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "SybaseIQ_JNDI@habitat(PAET)",
+          "password": "<redacted>",
+          "server": "",
+          "type": "SYBASEIQ",
+          "username": ""
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "SybaseIQ_JNDI@habitat(PowerBI)",
+          "password": "<redacted>",
+          "server": "",
+          "type": "SYBASEIQ",
+          "username": ""
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "SybaseIQ_JNDI@habitat(Retiro10)",
+          "password": "<redacted>",
+          "server": "",
+          "type": "SYBASEIQ",
+          "username": ""
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "SybaseIQ_JNDI@habitat(SalesForce)",
+          "password": "<redacted>",
+          "server": "",
+          "type": "SYBASEIQ",
+          "username": ""
+        },
+        {
+          "access": "JNDI",
+          "database": "<redacted>",
+          "name": "SybaseIQ_JNDI@habitat(TDS)",
+          "password": "<redacted>",
+          "server": "",
+          "type": "SYBASEIQ",
+          "username": ""
+        },
+        {
+          "access": "Native",
+          "database": "<redacted>",
+          "name": "TotalPackV24",
+          "password": "<redacted>",
+          "server": "<redacted>",
+          "type": "MSSQL",
+          "username": "<redacted>"
+        },
+        {
+          "access": "Native",
+          "database": "<redacted>",
+          "name": "cnTower",
+          "password": "<redacted>",
+          "server": "<redacted>",
+          "type": "MSSQL",
+          "username": "<redacted>"
+        },
+        {
+          "access": "Native",
+          "database": "<redacted>",
+          "name": "testOracle@HABITAT",
+          "password": "<redacted>",
+          "server": "",
+          "type": "ORACLE",
+          "username": "<redacted>"
+        },
+        {
+          "access": "Native",
+          "database": "<redacted>",
+          "name": "testOracle@PRODAFP",
+          "password": "<redacted>",
+          "server": "",
+          "type": "ORACLE",
+          "username": "<redacted>"
+        },
+        {
+          "access": "Native",
+          "database": "<redacted>",
+          "name": "testSybase@IQProd",
+          "password": "<redacted>",
+          "server": "<redacted>",
+          "type": "SYBASEIQ",
+          "username": "<redacted>"
+        },
+        {
+          "access": "Native",
+          "database": "<redacted>",
+          "name": "testSybase@IQProd(16.1)",
+          "password": "<redacted>",
+          "server": "<redacted>",
+          "type": "SYBASEIQ",
+          "username": "<redacted>"
+        }
+      ],
+      "hops": [
+        {
+          "enabled": "Y",
+          "from": "Obtener Listado Fechas",
+          "to": "Asigna Variables"
+        }
+      ],
+      "kind": "ktr",
+      "name": "",
+      "parameters": [],
+      "path": "transf_obtenerPeriodoExtraer.ktr",
+      "referenced_files": [],
+      "steps": [
+        {
+          "description": "",
+          "name": "Asigna Variables",
+          "type": "SetVariable"
+        },
+        {
+          "description": "",
+          "name": "Obtener Listado Fechas",
+          "type": "TableInput"
+        }
+      ],
+      "variables": [
+        "${ServidorCierreMes}",
+        "${ServidorSybaseIQ}",
+        "${puerto.SybaseIQ}",
+        "${puerto.base.Oracle}"
+      ]
+    }
+  ],
+  "jobs": 1,
+  "referenced_files": [
+    "${atensucu.ruta.shell}descargarAgendamientoZeroQ.sh",
+    "${atensucu.ruta.shell}descargarAtencionesZeroQ.sh"
+  ],
+  "source_root": ".",
+  "transformations": 5
+}

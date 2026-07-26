@@ -1,0 +1,495 @@
+{
+  "project": "Pentaho Habitat Sucursales",
+  "schema_version": 1,
+  "quality_kpis": [
+    {
+      "id": "migration_readiness_score",
+      "label": "Migration Readiness Score",
+      "status": "available",
+      "confidence": "high",
+      "value": 70,
+      "display_value": "70%",
+      "unit": "percent",
+      "formula": "weighted source coverage, test readiness, and complexity density",
+      "evidence_sources": [
+        "quality-kpis/quality-kpis.json"
+      ],
+      "decision_value": "Identifies apps ready for migration wave planning.",
+      "dashboard_placement": [
+        "executive",
+        "technical"
+      ],
+      "drivers": [],
+      "missing_evidence": [],
+      "capture_requirement": null
+    },
+    {
+      "id": "modernization_candidate_rate",
+      "label": "Modernization Candidate Rate",
+      "status": "available",
+      "confidence": "high",
+      "value": 0,
+      "display_value": "0%",
+      "unit": "percent",
+      "formula": "apps with dependency or complexity evidence / total apps * 100",
+      "evidence_sources": [
+        "quality-kpis/quality-kpis.json"
+      ],
+      "decision_value": "Quantifies the portfolio modernization backlog.",
+      "dashboard_placement": [
+        "executive"
+      ],
+      "drivers": [],
+      "missing_evidence": [],
+      "capture_requirement": null
+    },
+    {
+      "id": "technical_debt_index",
+      "label": "Technical Debt Index",
+      "status": "available",
+      "confidence": "medium",
+      "value": 0,
+      "display_value": "0 score",
+      "unit": "score",
+      "formula": "average complexity, dependency count, and security signals",
+      "evidence_sources": [
+        "quality-kpis/quality-kpis.json"
+      ],
+      "decision_value": "Prioritizes refactor, replatform, or deeper technical assessment before cutover.",
+      "dashboard_placement": [
+        "executive",
+        "technical"
+      ],
+      "drivers": [],
+      "missing_evidence": [],
+      "capture_requirement": null
+    },
+    {
+      "id": "dependency_coupling_index",
+      "label": "Dependency Coupling Index",
+      "status": "available",
+      "confidence": "high",
+      "value": 0,
+      "display_value": "0 count",
+      "unit": "count",
+      "formula": "dependency analyzer dependency count",
+      "evidence_sources": [
+        "quality-kpis/quality-kpis.json"
+      ],
+      "decision_value": "Identifies co-migration groups and sequencing constraints.",
+      "dashboard_placement": [
+        "technical"
+      ],
+      "drivers": [],
+      "missing_evidence": [],
+      "capture_requirement": null
+    },
+    {
+      "id": "blast_radius_score",
+      "label": "Blast Radius Score",
+      "status": "available",
+      "confidence": "medium",
+      "value": 0,
+      "display_value": "0 score",
+      "unit": "score",
+      "formula": "dependency + endpoint + data-access evidence count",
+      "evidence_sources": [
+        "quality-kpis/quality-kpis.json"
+      ],
+      "decision_value": "Helps decide wave placement, co-living need, and rollback rigor.",
+      "dashboard_placement": [
+        "executive",
+        "technical"
+      ],
+      "drivers": [],
+      "missing_evidence": [],
+      "capture_requirement": null
+    },
+    {
+      "id": "security_exposure",
+      "label": "Security Exposure",
+      "status": "available",
+      "confidence": "medium",
+      "value": 0,
+      "display_value": "0 count",
+      "unit": "count",
+      "formula": "security token evidence count across analyzer payloads",
+      "evidence_sources": [
+        "quality-kpis/quality-kpis.json"
+      ],
+      "decision_value": "Blocks unsafe releases and prioritizes security remediation.",
+      "dashboard_placement": [
+        "executive",
+        "technical"
+      ],
+      "drivers": [],
+      "missing_evidence": [],
+      "capture_requirement": "Import SAST/SCA/SBOM results for vulnerability-grade precision."
+    },
+    {
+      "id": "source_evidence_coverage",
+      "label": "Source Evidence Coverage",
+      "status": "available",
+      "confidence": "high",
+      "value": 100,
+      "display_value": "100%",
+      "unit": "percent",
+      "formula": "apps with source inventory / total apps * 100",
+      "evidence_sources": [
+        "quality-kpis/quality-kpis.json"
+      ],
+      "decision_value": "Flags partial uploads and hidden unknowns.",
+      "dashboard_placement": [
+        "technical"
+      ],
+      "drivers": [],
+      "missing_evidence": [],
+      "capture_requirement": null
+    },
+    {
+      "id": "test_readiness",
+      "label": "Test Readiness",
+      "status": "available",
+      "confidence": "medium",
+      "value": 0,
+      "display_value": "0%",
+      "unit": "percent",
+      "formula": "apps with detected test/spec files / total apps * 100",
+      "evidence_sources": [
+        "quality-kpis/quality-kpis.json"
+      ],
+      "decision_value": "Shows whether migrated behavior can be validated.",
+      "dashboard_placement": [
+        "technical"
+      ],
+      "drivers": [],
+      "missing_evidence": [],
+      "capture_requirement": null
+    },
+    {
+      "id": "data_migration_complexity",
+      "label": "Data Migration Complexity",
+      "status": "available",
+      "confidence": "medium",
+      "value": 0,
+      "display_value": "0 score",
+      "unit": "score",
+      "formula": "data-access analyzer evidence count",
+      "evidence_sources": [
+        "quality-kpis/quality-kpis.json"
+      ],
+      "decision_value": "Selects rehost, replatform, refactor, or coexistence approach.",
+      "dashboard_placement": [
+        "technical"
+      ],
+      "drivers": [],
+      "missing_evidence": [],
+      "capture_requirement": null
+    },
+    {
+      "id": "observability_readiness",
+      "label": "Observability Readiness",
+      "status": "available",
+      "confidence": "medium",
+      "value": 0,
+      "display_value": "0 signals",
+      "unit": "signals",
+      "formula": "health, observability, monitoring, and logging evidence count",
+      "evidence_sources": [
+        "quality-kpis/quality-kpis.json"
+      ],
+      "decision_value": "Determines whether the migrated app can be operated in production.",
+      "dashboard_placement": [
+        "technical"
+      ],
+      "drivers": [],
+      "missing_evidence": [],
+      "capture_requirement": null
+    },
+    {
+      "id": "target_stack_fit",
+      "label": "Target-Stack Fit",
+      "status": "available",
+      "confidence": "medium",
+      "value": 60,
+      "display_value": "60 score",
+      "unit": "score",
+      "formula": "source coverage, observability, and test readiness weighted score",
+      "evidence_sources": [
+        "quality-kpis/quality-kpis.json"
+      ],
+      "decision_value": "Prevents false readiness when target assumptions do not match evidence.",
+      "dashboard_placement": [
+        "executive",
+        "technical"
+      ],
+      "drivers": [],
+      "missing_evidence": [],
+      "capture_requirement": null
+    },
+    {
+      "id": "business_criticality",
+      "label": "Business Criticality",
+      "status": "available",
+      "confidence": "medium",
+      "value": 10,
+      "display_value": "10 score",
+      "unit": "score",
+      "formula": "static impact score from dependency, endpoint, data, and security surface",
+      "evidence_sources": [
+        "quality-kpis/quality-kpis.json"
+      ],
+      "decision_value": "Combines business value with technical risk to choose sequence.",
+      "dashboard_placement": [
+        "executive"
+      ],
+      "drivers": [],
+      "missing_evidence": [],
+      "capture_requirement": "Import owner, SLA, active-user, revenue, and priority metadata for business-grade criticality."
+    },
+    {
+      "id": "cost_tco_delta",
+      "label": "Cost/TCO Delta",
+      "status": "available",
+      "confidence": "medium",
+      "value": 49,
+      "display_value": "49 inputs",
+      "unit": "inputs",
+      "formula": "cost, TCO, sizing, license, BoM evidence count",
+      "evidence_sources": [
+        "quality-kpis/quality-kpis.json"
+      ],
+      "decision_value": "Supports fund/defer/retire decisions.",
+      "dashboard_placement": [
+        "executive"
+      ],
+      "drivers": [],
+      "missing_evidence": [],
+      "capture_requirement": "Import current run cost, target run cost, license cost, migration estimate, and transition cost inputs."
+    },
+    {
+      "id": "dora_delivery_baseline",
+      "label": "DORA Delivery Baseline",
+      "status": "available",
+      "confidence": "medium",
+      "value": 6,
+      "display_value": "6 signals",
+      "unit": "signals",
+      "formula": "deployment, release, incident, pipeline, and DORA evidence count",
+      "evidence_sources": [
+        "quality-kpis/quality-kpis.json"
+      ],
+      "decision_value": "Separates migration success from code movement alone.",
+      "dashboard_placement": [
+        "executive"
+      ],
+      "drivers": [],
+      "missing_evidence": [],
+      "capture_requirement": "Import deployment and incident telemetry per app/service."
+    },
+    {
+      "id": "technical_debt_ratio",
+      "label": "Technical Debt Ratio",
+      "status": "available",
+      "confidence": "medium",
+      "value": 0,
+      "display_value": "0%",
+      "unit": "percent",
+      "formula": "technical debt index normalized as remediation-ratio input",
+      "evidence_sources": [
+        "quality-kpis/quality-kpis.json"
+      ],
+      "decision_value": "Replaces ad hoc maintainability assessment with a migration debt ratio.",
+      "dashboard_placement": [
+        "executive",
+        "technical"
+      ],
+      "drivers": [],
+      "missing_evidence": [],
+      "capture_requirement": null
+    },
+    {
+      "id": "complexity_hotspot_density",
+      "label": "Complexity Hotspot Density",
+      "status": "available",
+      "confidence": "medium",
+      "value": 0,
+      "display_value": "0%",
+      "unit": "percent",
+      "formula": "high-complexity analyzer entries / complexity entries * 100",
+      "evidence_sources": [
+        "quality-kpis/quality-kpis.json"
+      ],
+      "decision_value": "Drives refactor-first and test-first planning.",
+      "dashboard_placement": [
+        "technical"
+      ],
+      "drivers": [],
+      "missing_evidence": [],
+      "capture_requirement": null
+    },
+    {
+      "id": "test_coverage",
+      "label": "Test Coverage",
+      "status": "available",
+      "confidence": "medium",
+      "value": 0,
+      "display_value": "0%",
+      "unit": "percent",
+      "formula": "detected test/spec files / source inventory files * 100",
+      "evidence_sources": [
+        "quality-kpis/quality-kpis.json"
+      ],
+      "decision_value": "Low coverage raises migration equivalence risk.",
+      "dashboard_placement": [
+        "technical"
+      ],
+      "drivers": [],
+      "missing_evidence": [],
+      "capture_requirement": "Import coverage reports for executable line/branch coverage."
+    },
+    {
+      "id": "functional_equivalence_risk",
+      "label": "Functional Equivalence Risk",
+      "status": "available",
+      "confidence": "medium",
+      "value": 100,
+      "display_value": "100%",
+      "unit": "percent",
+      "formula": "inverse test readiness plus bounded dependency pressure",
+      "evidence_sources": [
+        "quality-kpis/quality-kpis.json"
+      ],
+      "decision_value": "Determines need for characterization tests and parallel run.",
+      "dashboard_placement": [
+        "technical"
+      ],
+      "drivers": [],
+      "missing_evidence": [],
+      "capture_requirement": null
+    },
+    {
+      "id": "data_gravity_score",
+      "label": "Data Gravity Score",
+      "status": "available",
+      "confidence": "medium",
+      "value": 0,
+      "display_value": "0 score",
+      "unit": "score",
+      "formula": "bounded data-access analyzer evidence count",
+      "evidence_sources": [
+        "quality-kpis/quality-kpis.json"
+      ],
+      "decision_value": "Chooses big-bang, phased, or co-living migration.",
+      "dashboard_placement": [
+        "executive",
+        "technical"
+      ],
+      "drivers": [],
+      "missing_evidence": [],
+      "capture_requirement": null
+    },
+    {
+      "id": "runtime_golden_signals_baseline",
+      "label": "Runtime Golden Signals Baseline",
+      "status": "available",
+      "confidence": "medium",
+      "value": 0,
+      "display_value": "0 signals",
+      "unit": "signals",
+      "formula": "health and observability evidence signal count",
+      "evidence_sources": [
+        "quality-kpis/quality-kpis.json"
+      ],
+      "decision_value": "Defines objective post-migration acceptance.",
+      "dashboard_placement": [
+        "technical"
+      ],
+      "drivers": [],
+      "missing_evidence": [],
+      "capture_requirement": "Import traffic, latency, errors, and saturation telemetry."
+    },
+    {
+      "id": "license_compliance_risk",
+      "label": "License and Compliance Risk",
+      "status": "available",
+      "confidence": "medium",
+      "value": 0,
+      "display_value": "0 count",
+      "unit": "count",
+      "formula": "license, SBOM, and compliance evidence count",
+      "evidence_sources": [
+        "quality-kpis/quality-kpis.json"
+      ],
+      "decision_value": "Prevents migration packages that cannot be deployed.",
+      "dashboard_placement": [
+        "executive",
+        "technical"
+      ],
+      "drivers": [],
+      "missing_evidence": [],
+      "capture_requirement": "Import SBOM and license policy scan results."
+    },
+    {
+      "id": "strangler_feasibility",
+      "label": "Strangler Feasibility",
+      "status": "available",
+      "confidence": "medium",
+      "value": 70,
+      "display_value": "70 score",
+      "unit": "score",
+      "formula": "readiness minus coupling penalty plus endpoint seam credit",
+      "evidence_sources": [
+        "quality-kpis/quality-kpis.json"
+      ],
+      "decision_value": "Chooses strangler-style modernization versus replatform/rewrite.",
+      "dashboard_placement": [
+        "technical"
+      ],
+      "drivers": [],
+      "missing_evidence": [],
+      "capture_requirement": null
+    },
+    {
+      "id": "automation_potential",
+      "label": "Automation Potential",
+      "status": "available",
+      "confidence": "medium",
+      "value": 58,
+      "display_value": "58 score",
+      "unit": "score",
+      "formula": "source coverage, test readiness, and target-stack fit weighted score",
+      "evidence_sources": [
+        "quality-kpis/quality-kpis.json"
+      ],
+      "decision_value": "Identifies apps suitable for migration factory automation.",
+      "dashboard_placement": [
+        "executive",
+        "technical"
+      ],
+      "drivers": [],
+      "missing_evidence": [],
+      "capture_requirement": null
+    },
+    {
+      "id": "unknown_dependency_count",
+      "label": "Unknown Dependency Count",
+      "status": "available",
+      "confidence": "medium",
+      "value": 1,
+      "display_value": "1 count",
+      "unit": "count",
+      "formula": "apps with no dependency analyzer evidence",
+      "evidence_sources": [
+        "quality-kpis/quality-kpis.json"
+      ],
+      "decision_value": "Blocks risky isolated migrations.",
+      "dashboard_placement": [
+        "technical"
+      ],
+      "drivers": [],
+      "missing_evidence": [],
+      "capture_requirement": null
+    }
+  ]
+}

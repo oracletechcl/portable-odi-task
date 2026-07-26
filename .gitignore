@@ -4,3 +4,13 @@ __pycache__/
 .venv/
 graphify-out/
 target/
+!habitat-e2e-demo/oci-odi/sucursales/target/
+!habitat-e2e-demo/oci-odi/sucursales/target/**
+!habitat-e2e-demo/oci-odi/web/target/
+!habitat-e2e-demo/oci-odi/web/target/**
+pytest-of-*/
+ssh-keys
+.demo-deploy.env
+.deploy.env
+.env
+.DS_Store

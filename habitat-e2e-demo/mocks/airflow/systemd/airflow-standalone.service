@@ -1,0 +1,27 @@
+[Unit]
+Description=Apache Airflow 3.3.0 standalone test server
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=airflow
+Group=airflow
+EnvironmentFile=/etc/airflow/airflow.env
+WorkingDirectory=/var/lib/airflow
+ExecStart=/opt/airflow/venv/bin/airflow standalone
+Restart=on-failure
+RestartSec=10
+TimeoutStartSec=180
+TimeoutStopSec=120
+KillMode=control-group
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectHome=true
+ProtectSystem=full
+ReadWritePaths=/var/lib/airflow
+UMask=0027
+
+[Install]
+WantedBy=multi-user.target
+
