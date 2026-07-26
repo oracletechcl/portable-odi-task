@@ -1,0 +1,61 @@
+title: Profile 1 - Co-Living Architecture
+customer: Code Introspector
+narrative: 'Legacy estate coexists with OCI ODI. Dominant strategies: Strangler Fig
+  Incremental (1).'
+topology: single_region
+stencil_sources:
+  reference_library: processing-files/programmatic-pipeline/assets/diagram/OCI Library.xml
+tenant_components: []
+regions:
+- id: primary-region
+  label: OCI
+  role: primary
+  components:
+  - id: compatibility-boundary
+    logical_key: compatibility-boundary
+    label: Compatibility Boundary
+    subtitle: Strangler Fig Incremental (1)
+    oci_services: []
+    subnet: public
+    flow_rank: 15
+  - id: target-runtime
+    logical_key: soa marketplace iaas
+    label: OCI ODI
+    subtitle: Running on OCI ODI; OCI; 1 canonical apps
+    oci_services:
+    - Marketplace on IaaS
+    - Compute
+    subnet: private
+    flow_rank: 30
+  - id: cutover-controls
+    logical_key: cutover-controls
+    label: Observability and Cutover Controls
+    subtitle: Not specified
+    oci_services: []
+    subnet: private
+    flow_rank: 60
+external_nodes:
+- id: internet-users
+  label: Channels and Upstream Systems
+  subtitle: Business traffic
+  style: external
+- id: legacy-estate
+  label: Legacy Runtime / Old Infrastructure
+  subtitle: SOAP + WSDL + Oracle + Database
+  style: external_muted
+connections:
+- from: legacy-estate
+  to: compatibility-boundary
+  label: Legacy path
+  type: standard
+  render_label: false
+- from: compatibility-boundary
+  to: target-runtime
+  label: Compatibility flow
+  type: standard
+  render_label: false
+- from: target-runtime
+  to: cutover-controls
+  label: Telemetry
+  type: standard
+  render_label: false

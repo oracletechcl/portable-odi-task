@@ -49,6 +49,12 @@ def parse_args(argv: list[str]) -> argparse.Namespace:
     parser.add_argument("--task-identifier", type=identifier, required=True)
     parser.add_argument("--release-version", type=version, required=True)
     parser.add_argument(
+        "--mock-required",
+        choices=("yes", "no"),
+        required=True,
+        help="Explicit mock decision derived from source and environment evidence",
+    )
+    parser.add_argument(
         "--dry-run",
         action="store_true",
         help="Print the planned paths without creating anything",
@@ -65,6 +71,7 @@ def replacements(args: argparse.Namespace) -> dict[str, str]:
         "{{TASK_NAME}}": args.task_name,
         "{{TASK_IDENTIFIER}}": args.task_identifier,
         "{{RELEASE_VERSION}}": args.release_version,
+        "{{MOCK_REQUIRED}}": args.mock_required,
     }
 
 
@@ -75,15 +82,18 @@ def render(template: Path, values: dict[str, str]) -> str:
     return content
 
 
-def planned_files(output_root: Path) -> list[Path]:
-    return [
+def planned_files(output_root: Path, mock_required: str) -> list[Path]:
+    files = [
+        output_root / "deploy.sh",
+        output_root / ".demo-deploy.env.example",
         output_root / "analysis" / "behavior-contract.md",
         output_root / "analysis" / "gap-register.md",
+        output_root / "analysis" / "mock-contract.md",
         output_root / "analysis" / "source-to-target-traceability.md",
         output_root / "spec" / "migration-spec.md",
         output_root / "implementation" / ".gitkeep",
         output_root / "implementation" / "tests" / ".gitkeep",
-        output_root / "platforms" / "oci" / "scripts" / ".gitkeep",
+        output_root / "platforms" / "oci" / "scripts" / "deploy-internal.sh",
         output_root / "platforms" / "oci" / "deployment.env.example",
         output_root / "target" / ".gitkeep",
         output_root / "expected-output" / ".gitkeep",
@@ -91,6 +101,14 @@ def planned_files(output_root: Path) -> list[Path]:
         output_root / "README.md",
         output_root / "source-evidence" / "approved-spec.md",
     ]
+    if mock_required == "yes":
+        files.extend(
+            (
+                output_root / "implementation" / "fixtures" / ".gitkeep",
+                output_root / "platforms" / "oci" / "systemd" / ".gitkeep",
+            )
+        )
+    return files
 
 
 def write_file(path: Path, content: str) -> None:
@@ -100,7 +118,7 @@ def write_file(path: Path, content: str) -> None:
 
 def scaffold(args: argparse.Namespace) -> list[Path]:
     output_root = args.output_root.expanduser().resolve()
-    files = planned_files(output_root)
+    files = planned_files(output_root, args.mock_required)
     if args.dry_run:
         return files
 
@@ -113,6 +131,15 @@ def scaffold(args: argparse.Namespace) -> list[Path]:
     values = replacements(args)
 
     write_file(
+        output_root / "deploy.sh",
+        (assets / "deploy.template.sh").read_text(encoding="utf-8"),
+    )
+    (output_root / "deploy.sh").chmod(0o755)
+    write_file(
+        output_root / ".demo-deploy.env.example",
+        (assets / "deployment.env.example").read_text(encoding="utf-8"),
+    )
+    write_file(
         output_root / "spec" / "migration-spec.md",
         render(assets / "migration-spec.template.md", values),
     )
@@ -121,9 +148,18 @@ def scaffold(args: argparse.Namespace) -> list[Path]:
         render(assets / "traceability.template.md", values),
     )
     write_file(
+        output_root / "analysis" / "mock-contract.md",
+        render(assets / "mock-contract.template.md", values),
+    )
+    write_file(
         output_root / "platforms" / "oci" / "deployment.env.example",
         (assets / "deployment.env.example").read_text(encoding="utf-8"),
     )
+    write_file(
+        output_root / "platforms" / "oci" / "scripts" / "deploy-internal.sh",
+        (assets / "deploy-internal.template.sh").read_text(encoding="utf-8"),
+    )
+    (output_root / "platforms" / "oci" / "scripts" / "deploy-internal.sh").chmod(0o755)
     write_file(
         output_root / "README.md",
         render(assets / "operator-readme.template.md", values),
@@ -148,11 +184,16 @@ def scaffold(args: argparse.Namespace) -> list[Path]:
     for placeholder in (
         output_root / "implementation" / ".gitkeep",
         output_root / "implementation" / "tests" / ".gitkeep",
-        output_root / "platforms" / "oci" / "scripts" / ".gitkeep",
         output_root / "target" / ".gitkeep",
         output_root / "expected-output" / ".gitkeep",
     ):
         write_file(placeholder, "")
+    if args.mock_required == "yes":
+        for placeholder in (
+            output_root / "implementation" / "fixtures" / ".gitkeep",
+            output_root / "platforms" / "oci" / "systemd" / ".gitkeep",
+        ):
+            write_file(placeholder, "")
 
     return files
 

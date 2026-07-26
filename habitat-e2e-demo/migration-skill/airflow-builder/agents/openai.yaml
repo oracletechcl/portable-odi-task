@@ -1,0 +1,4 @@
+interface:
+  display_name: "Airflow Builder"
+  short_description: "Migrate Pentaho flows into deployable Airflow DAGs."
+  default_prompt: "Use $airflow-builder to migrate this Pentaho flow into a deploy-ready Airflow DAG runtime."

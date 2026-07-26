@@ -15,8 +15,43 @@ tests/
 docs/tdd-evidence.md
 ```
 
+## Deployment ownership
+
+Every migrated application must contain its own executable one-stop deployment
+engine under `platforms/oci/scripts/`. Its top-level `deploy.sh` may delegate
+only to a script inside the same migration root. Do not piggyback on another
+application's deployment script, release archive, configuration file, or
+systemd unit.
+
+The engine must accept `--config PATH` and `--app-name NAME`, use
+`set -euo pipefail`, validate all files and checksums before mutation, and make
+the mock lifecycle explicit. Manage and health-check only a migration-managed
+mock; for a user-supplied external mock, materialize the endpoint without a
+probe or lifecycle action.
+
+The scaffold wrapper is not an implementation. In the same migration pass,
+create executable `platforms/oci/scripts/deploy-internal.sh`; it must validate
+the explicit config and immutable project checksum, upload/import with
+replacement, materialize REST tasks, create or reuse the exact application,
+publish the root task, and verify publication. Before handoff run `bash -n` on
+both scripts and `./deploy.sh --config CONFIG --app-name NAME --dry-run`.
+
+## Fresh-build rule
+
+Implement the selected migration from its own Pentaho XML, approved
+specification, and canonical OCI export only. Another migration may be consulted
+as non-authoritative background, but its runtime code, fixtures, tests, release
+archives, expected outputs, and deployment files must never be copied or relabeled
+into the new output root. Record all source evidence and derive every target
+artifact independently.
+
 The target design must trace every Pentaho stage and branch to either pure business
 logic, an OCI orchestration object, a mock boundary, or an explicitly deferred gap.
+
+Record a mock decision for every external boundary. A `yes` decision requires an
+existing-mock audit and creation of every missing or incomplete mock before
+packaging. A `no` decision requires evidence that the real boundary is available,
+authorized, safe, stable, and repeatable.
 
 ## Specification-driven sequence
 
@@ -49,8 +84,11 @@ Cover at least:
 - zero rows, malformed values, injection-like input, and duplicate input;
 - ordered orchestration and every failure/notification branch;
 - mock method, path, JSON body, response, error, and unknown-route contracts;
+- the explicit mock decision, existing-mock audit, missing-mock creation, and final
+  `READY` or `NOT_REQUIRED` status;
 - deterministic project ZIP and mock archive packaging;
-- required deployment arguments, dry-run behavior, and shell syntax;
+- required deployment arguments, dry-run behavior, shell syntax, and the app-root
+  `deploy.sh` operator entry point;
 - secret, real-endpoint, OCID, IP, and private-key scans;
 - import, publish, zero-parameter run, and expected-output verification.
 

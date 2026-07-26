@@ -96,11 +96,40 @@ def json_object(data: ProjectData, name: str, errors: list[str]) -> dict[str, An
 
 
 def validate_rest_task(obj: dict[str, Any], filename: str, errors: list[str]) -> None:
+    if obj.get("apiCallMode") != "SYNCHRONOUS":
+        errors.append(f"{filename}: apiCallMode must be SYNCHRONOUS")
+    for field in ("inputPorts", "outputPorts"):
+        if obj.get(field) != []:
+            errors.append(f"{filename}: {field} must be an empty list")
+    if obj.get("objectVersion") != 1:
+        errors.append(f"{filename}: objectVersion must be 1")
     config = obj.get("executeRestCallConfig")
     if not isinstance(config, dict):
         errors.append(f"{filename}: missing executeRestCallConfig")
         return
-    values = config.get("configValues", {}).get("configParamValues", {})
+    if config.get("methodType") != "POST":
+        errors.append(f"{filename}: executeRestCallConfig.methodType must be POST")
+    if config.get("requestHeaders") != {"Content-Type": "application/json"}:
+        errors.append(
+            f"{filename}: executeRestCallConfig.requestHeaders must declare JSON"
+        )
+    config_values = config.get("configValues")
+    if not isinstance(config_values, dict):
+        errors.append(f"{filename}: missing executeRestCallConfig.configValues")
+        return
+    if config_values.get("parentRef") != {"parent": obj.get("key")}:
+        errors.append(
+            f"{filename}: executeRestCallConfig parentRef must reference the task"
+        )
+    values = config_values.get("configParamValues")
+    if not isinstance(values, dict):
+        errors.append(f"{filename}: missing REST configParamValues")
+        return
+    if set(values) != {"requestPayload", "requestURL"}:
+        errors.append(
+            f"{filename}: REST configParamValues must contain only "
+            "requestPayload and requestURL"
+        )
     payload = values.get("requestPayload", {}).get("refValue", {})
     if payload.get("modelType") != "JSON_TEXT":
         errors.append(f"{filename}: requestPayload must use JSON_TEXT refValue")
@@ -111,6 +140,148 @@ def validate_rest_task(obj: dict[str, Any], filename: str, errors: list[str]) ->
         errors.append(f"{filename}: requestURL must be an HTTP template URL")
     elif not (parsed.hostname or "").endswith(".invalid"):
         errors.append(f"{filename}: tracked requestURL must use a .invalid host")
+
+
+def validate_pipeline(
+    obj: dict[str, Any], filename: str, errors: list[str]
+) -> None:
+    if obj.get("nestedDepth") != 0:
+        errors.append(f"{filename}: PIPELINE nestedDepth must be 0")
+    if obj.get("objectVersion") != 1:
+        errors.append(f"{filename}: PIPELINE objectVersion must be 1")
+    if "variables" in obj:
+        errors.append(f"{filename}: PIPELINE must not contain variables")
+    nodes = obj.get("nodes")
+    if not isinstance(nodes, list) or len(nodes) < 2:
+        errors.append(f"{filename}: PIPELINE must contain START and END flow nodes")
+        return
+
+    input_links: dict[str, dict[str, Any]] = {}
+    output_links: dict[str, dict[str, Any]] = {}
+    for index, node in enumerate(nodes):
+        location = f"{filename}: node[{index}]"
+        if not isinstance(node, dict):
+            errors.append(f"{location} must be an object")
+            continue
+        if node.get("modelType") != "FLOW_NODE":
+            errors.append(
+                f"{location} must use a FLOW_NODE wrapper; flat operators are invalid"
+            )
+            continue
+        node_key = node.get("key")
+        if node.get("parentRef") != {"parent": obj.get("key")}:
+            errors.append(f"{location} parentRef must reference the PIPELINE")
+        operator = node.get("operator")
+        if not isinstance(operator, dict):
+            errors.append(f"{location} is missing its operator")
+            continue
+        expected_type = (
+            "START_OPERATOR"
+            if index == 0
+            else "END_OPERATOR"
+            if index == len(nodes) - 1
+            else "TASK_OPERATOR"
+        )
+        if operator.get("modelType") != expected_type:
+            errors.append(f"{location} operator must be {expected_type}")
+        if operator.get("parentRef") != {"parent": node_key}:
+            errors.append(f"{location} operator parentRef must reference its node")
+        if expected_type == "TASK_OPERATOR":
+            task = operator.get("task")
+            if not isinstance(task, dict):
+                errors.append(f"{location} TASK_OPERATOR is missing its task stub")
+            else:
+                for field, expected in (
+                    ("inputPorts", []),
+                    ("outputPorts", []),
+                    ("parameters", []),
+                    ("objectStatus", 1),
+                    ("objectVersion", 1),
+                ):
+                    if task.get(field) != expected:
+                        errors.append(
+                            f"{location} task stub {field} must be {expected!r}"
+                        )
+
+        node_inputs = node.get("inputLinks")
+        node_outputs = node.get("outputLinks")
+        if not isinstance(node_inputs, list) or not isinstance(node_outputs, list):
+            errors.append(f"{location} inputLinks and outputLinks must be lists")
+            continue
+        if index == 0 and node_inputs:
+            errors.append(f"{location} START must not have input links")
+        if index > 0 and not node_inputs:
+            errors.append(f"{location} must have an input link")
+        if index == len(nodes) - 1 and node_outputs:
+            errors.append(f"{location} END must not have output links")
+        if index < len(nodes) - 1 and not node_outputs:
+            errors.append(f"{location} must have an output link")
+        for link in node_inputs:
+            if not isinstance(link, dict):
+                errors.append(f"{location} contains an invalid input link")
+                continue
+            if (
+                link.get("modelType") != "INPUT_LINK"
+                or link.get("parentRef") != {"parent": node_key}
+            ):
+                errors.append(f"{location} contains a malformed INPUT_LINK")
+            if isinstance(link.get("key"), str):
+                input_links[link["key"]] = link
+        for link in node_outputs:
+            if not isinstance(link, dict):
+                errors.append(f"{location} contains an invalid output link")
+                continue
+            if (
+                link.get("modelType") != "OUTPUT_LINK"
+                or link.get("parentRef") != {"parent": node_key}
+                or not isinstance(link.get("toLinks"), list)
+            ):
+                errors.append(f"{location} contains a malformed OUTPUT_LINK")
+            if isinstance(link.get("key"), str):
+                output_links[link["key"]] = link
+
+    for input_key, input_link in input_links.items():
+        output_key = input_link.get("fromLink")
+        output_link = output_links.get(output_key)
+        if output_link is None or input_key not in output_link.get("toLinks", []):
+            errors.append(
+                f"{filename}: INPUT_LINK {input_key} lacks a reciprocal OUTPUT_LINK"
+            )
+    for output_key, output_link in output_links.items():
+        for input_key in output_link.get("toLinks", []):
+            input_link = input_links.get(input_key)
+            if input_link is None or input_link.get("fromLink") != output_key:
+                errors.append(
+                    f"{filename}: OUTPUT_LINK {output_key} lacks a reciprocal INPUT_LINK"
+                )
+
+
+def validate_pipeline_task(
+    obj: dict[str, Any], filename: str, errors: list[str]
+) -> None:
+    for field, expected in (
+        ("inputPorts", []),
+        ("outputPorts", []),
+        ("objectVersion", 1),
+    ):
+        if obj.get(field) != expected:
+            errors.append(f"{filename}: PIPELINE_TASK {field} must be {expected!r}")
+    pipeline = obj.get("pipeline")
+    if not isinstance(pipeline, dict):
+        errors.append(f"{filename}: PIPELINE_TASK is missing its pipeline stub")
+        return
+    for field, expected in (
+        ("modelType", "PIPELINE"),
+        ("nestedDepth", 0),
+        ("nodes", []),
+        ("objectStatus", 1),
+        ("objectVersion", 1),
+        ("parameters", []),
+    ):
+        if pipeline.get(field) != expected:
+            errors.append(
+                f"{filename}: pipeline stub {field} must be {expected!r}"
+            )
 
 
 def validate(data: ProjectData) -> list[str]:
@@ -150,6 +321,11 @@ def validate(data: ProjectData) -> list[str]:
         errors.append("manifest.objects must be a list")
         manifest_paths = []
 
+    if manifest_paths:
+        first_path = manifest_paths[0]
+        if not isinstance(first_path, str) or "/USER_PROJECT_" not in first_path:
+            errors.append("manifest.objects must list USER_PROJECT first")
+
     objects: list[tuple[str, dict[str, Any]]] = []
     for manifest_path in manifest_paths:
         if not isinstance(manifest_path, str) or not manifest_path.startswith(
@@ -175,6 +351,9 @@ def validate(data: ProjectData) -> list[str]:
             keys[key] = filename
         if isinstance(key, str) and not filename.endswith(f"_{key}.json"):
             errors.append(f"{filename}: filename must end with exact object key")
+        identifier = obj.get("identifier")
+        if isinstance(identifier, str) and f"_{identifier}_{key}.json" not in filename:
+            errors.append(f"{filename}: filename must include exact object identifier")
         if obj.get("objectStatus") != 8:
             errors.append(f"{filename}: first-class objectStatus must be 8")
         if obj.get("modelType") == "USER_PROJECT":
@@ -213,6 +392,10 @@ def validate(data: ProjectData) -> list[str]:
                 errors.append(f"{filename}: {model_type} must be parameter-free")
         if model_type == "REST_TASK":
             validate_rest_task(obj, filename, errors)
+        elif model_type == "PIPELINE":
+            validate_pipeline(obj, filename, errors)
+        elif model_type == "PIPELINE_TASK":
+            validate_pipeline_task(obj, filename, errors)
 
     serialized = "\n".join(data.read_text(name) for name in sorted(data.names) if name.endswith(".json"))
     if SECRET_PATTERN.search(serialized):

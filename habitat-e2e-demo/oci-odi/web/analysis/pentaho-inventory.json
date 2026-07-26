@@ -1,0 +1,28 @@
+{
+  "jobs": [
+    {
+      "entries": [
+        "START",
+        "Archivo Sesion (CL_BI_01)",
+        "Exito cargaArchivoExterno",
+        "Error cargaArchivoExterno"
+      ],
+      "name": "cargaArchivoExterno",
+      "path": "cargaArchivoExterno.kjb",
+      "referencedFiles": [
+        "${tranWeb.ruta.shell}guardarArchivoAcceso.sh"
+      ]
+    }
+  ],
+  "sourceRoot": "source-code/Web",
+  "transformations": [
+    "transf_CONFIGURACION_EQUIPO_MESA_TDS.ktr",
+    "transf_CONFIGURACION_EQUIPO_USUARIO_TDS.ktr",
+    "transf_OPC_OPCION_TDS.ktr",
+    "transf_SEC_SECCION_TDS.ktr",
+    "transf_SUB_SUBSECCION_TDS.ktr",
+    "transf_TB_LOG_SISTEMA_TDS.ktr",
+    "transf_TB_SUB_SISTEMA_SERVICIO_TDS.ktr"
+  ]
+}
+

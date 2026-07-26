@@ -5,6 +5,7 @@
 | Symptom | Likely cause | Corrective action |
 | --- | --- | --- |
 | Import completes with zero objects | Wrong ZIP root or missing explicit directories | Add `PROJECT.project/` and `Objects/` entries; validate archive |
+| Import fails reading `manifest.json` | Symbolic model-version map or non-canonical registry/REST envelope | Rebuild the manifest and objects from a known-good canonical export; run a real import-request gate |
 | Imported parameters have null name/type | Runtime parameters normalized incorrectly | Make pipeline/task/REST objects parameter-free and materialize later |
 | REST task fails publication | Parameterized URL, invalid expression, or unsupported config | Use concrete post-import URL and canonical/default operation config |
 | Backend reports empty JSON body | Payload stored as a plain string | Wrap it as `requestPayload.refValue` model type `JSON_TEXT` |

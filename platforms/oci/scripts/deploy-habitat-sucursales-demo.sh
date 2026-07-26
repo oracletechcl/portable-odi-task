@@ -3,7 +3,7 @@ set -euo pipefail
 
 OCI_DEPLOY_SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 OCI_DEPLOY_REPO_ROOT="$(cd "${OCI_DEPLOY_SCRIPT_DIR}/../../.." && pwd)"
-OCI_DEPLOY_DEMO_ROOT="${OCI_DEPLOY_REPO_ROOT}/habitat-e2e-demo/migrated-pipeline-demo"
+OCI_DEPLOY_DEMO_ROOT="${OCI_DEPLOY_REPO_ROOT}/habitat-e2e-demo/oci-odi/sucursales"
 OCI_DEPLOY_CONFIG_FILE="${DEMO_CONFIG_FILE:-${OCI_DEPLOY_DEMO_ROOT}/.demo-deploy.env}"
 OCI_DEPLOY_ARCHIVE="${OCI_DEPLOY_DEMO_ROOT}/target/habitat-sucursales-mock-backend-1.0.0.tar.gz"
 OCI_DEPLOY_CHECKSUM="${OCI_DEPLOY_ARCHIVE}.sha256"
@@ -19,7 +19,7 @@ Usage:
     --as-of-date YYYY-MM-DD
 
 The script loads:
-  habitat-e2e-demo/migrated-pipeline-demo/.demo-deploy.env
+  habitat-e2e-demo/oci-odi/sucursales/.demo-deploy.env
 
 Required argument:
   --app-name NAME

@@ -3,6 +3,29 @@
 The one-stop script prepares the supplied Compute VM mock, imports the immutable OCI
 Data Integration project, publishes the runnable task, and reports `READY`.
 
+## How the POC works
+
+```mermaid
+flowchart LR
+    OP["Operator"] --> DEPLOY["App-local one-stop deployer"]
+    DEPLOY --> MOCK["Compute VM mock"]
+    MOCK --> HEALTH["GET /health"]
+    DEPLOY --> STORE["Object Storage"]
+    STORE --> PROJECT["Imported OCI DI project"]
+    PROJECT --> APP["OCI DI Application"]
+    APP --> TASK["Runnable root task"]
+    TASK --> PIPE["Migrated pipeline"]
+    PIPE --> MOCK
+    MOCK --> OUTPUT["Expected outputs"]
+```
+
+Mock status:
+
+- `mock-required`:
+- mock exists:
+- action (`reuse`, `create`, `not-required`):
+- validator status (`READY`, `NOT_REQUIRED`):
+
 ## 1. Configure
 
 Copy the blank deployment example to an ignored file. Fill every value. Keep OCI
@@ -16,7 +39,15 @@ the resolved project, application, task, VM, network, archive, and run date.
 
 ## 3. Deploy
 
-Run the same command without `--dry-run`. The script:
+```bash
+./deploy.sh \
+  --config PATH \
+  --app-name NAME
+```
+
+Wait for `READY`.
+
+### What the one-stop script does
 
 1. validates required inputs and checksums;
 2. installs and health-checks the mock on the supplied Compute VM;

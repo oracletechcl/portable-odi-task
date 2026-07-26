@@ -25,6 +25,10 @@ Use deterministic JSON ordering, object ordering, UUIDv5 keys, ZIP timestamps,
 permissions, ownership, and compression inputs. Build twice and byte-compare. Emit
 `PROJECT-NAME.project.zip.sha256`.
 
+`manifest.objects` must list `USER_PROJECT` first. Every object filename must be
+exactly `MODEL_TYPE_IDENTIFIER_KEY.json`, including its identifier. Otherwise OCI
+may interpret a `PIPELINE` as a direct workspace object and reject the import.
+
 ## Manifest
 
 Require:
@@ -38,6 +42,32 @@ Require:
 
 Do not copy the canonical sample's project identities, object keys, workspace
 metadata, task types, or endpoints.
+
+### Live-import compatibility gate
+
+Offline structural validation is necessary but not sufficient. Before claiming an
+archive importable, derive the manifest shape from a known-good canonical export:
+
+- `modelVersionMap` keys are OCI numeric model-type IDs (for example `257`,
+  `788`, and `17230268181`), not symbolic names such as `PIPELINE`.
+- `objectKeysProvidedForExport` is a one-item list containing the exact
+  `USER_PROJECT` key.
+- Every child object uses the canonical registry envelope, including
+  `metadata.aggregatorKey` and an `aggregator` object describing the
+  `USER_PROJECT`.
+- The REST task must use the complete canonical `executeRestCallConfig`:
+  `requestURL.stringValue`, `requestPayload.refValue.modelType=JSON_TEXT`, and
+  the nested `dataParam.stringValue` body.
+- Every pipeline `nodes` entry is a `FLOW_NODE`. A raw `TASK_OPERATOR` in the
+  pipeline's top-level `nodes` list is not an abbreviated equivalent; OCI rejects
+  that archive as an unknown or tampered object format.
+
+Perform a real OCI import-request gate before application creation. If OCI says
+`Unable to read archive contents for file 'manifest.json'`, stop: rebuild from
+the canonical manifest/object schema rather than retrying the same ZIP.
+If the same message names a `PIPELINE_*.json` file, inspect that pipeline first.
+Reject flat operators, missing START/END nodes, incomplete task stubs, broken
+parent references, and nonreciprocal links before rebuilding the ZIP.
 
 ## Registry envelope
 
@@ -60,6 +90,10 @@ defaults.
 
 Preserve the Pentaho success and failure graph:
 
+- wrap every START, TASK, and END operator in a `FLOW_NODE`; never place an
+  operator directly in the pipeline's `nodes` list;
+- require the first flow node to contain `START_OPERATOR`, the last to contain
+  `END_OPERATOR`, and intermediate task nodes to contain `TASK_OPERATOR`;
 - each `OUTPUT_LINK` lists its destination input key;
 - each `INPUT_LINK` has a matching `fromLink`;
 - link and operator `parentRef` values point to the owning node/link as required by
@@ -80,13 +114,16 @@ parameters and fail publication. Use deployment-time materialization instead.
 A proven publishable mock REST task uses:
 
 - `modelType: REST_TASK`;
-- synchronous POST;
+- `apiCallMode: SYNCHRONOUS` and
+  `executeRestCallConfig.methodType: POST`;
 - `isConcurrentAllowed: false`;
+- `inputPorts: []`, `outputPorts: []`, and `objectVersion: 1`;
 - `parameters: []`, `typedExpressions: []`, and
   `configProviderDelegate: {}`;
 - no authentication for a private demo mock;
 - `Content-Type: application/json`;
 - tracked URL `http://mock-backend.invalid/<route>`;
+- `executeRestCallConfig.configValues.parentRef` pointing to the task key;
 - payload in `requestPayload.refValue` with `modelType: JSON_TEXT`, whose
   `dataParam.stringValue` contains compact JSON.
 

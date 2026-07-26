@@ -32,6 +32,11 @@ empty-input behavior, and repeat-run behavior.
 | Boundary | Available? | Target integration | Mock fixture/route | Deployment binding |
 | --- | --- | --- | --- | --- |
 
+## Mock decision
+
+| Boundary | Availability/access evidence | `mock-required` | Mock exists | Action (`reuse`, `create`, `not-required`) | Validation |
+| --- | --- | --- | --- | --- | --- |
+
 ## Target topology
 
 Describe the OCI pipeline order, success links, failure branches, notification task
@@ -50,6 +55,9 @@ per failure branch, and zero-parameter runnable task.
 - [ ] Deterministic project ZIP validates and imports.
 - [ ] Runnable task publishes and runs with zero parameters.
 - [ ] Output file set and golden manifest match.
+- [ ] Every external boundary has an explicit `mock-required` decision.
+- [ ] Every required mock exists or was created and validates as `READY`.
+- [ ] Every non-required boundary validates as `NOT_REQUIRED`.
 - [ ] No secrets, OCIDs, real endpoints, IPs, or private keys are tracked.
 
 ## Gaps and approved assumptions

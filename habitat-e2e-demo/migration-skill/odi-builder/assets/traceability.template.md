@@ -3,6 +3,11 @@
 | Source job/step | Source evidence | Required behavior | Pure implementation | OCI object | Mock boundary | Test | Status |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 
+## Mock lifecycle
+
+| Boundary | Decision evidence | `mock-required` | Mock exists | Create/reuse action | Validator status | Route/health test |
+| --- | --- | --- | --- | --- | --- | --- |
+
 ## Success topology
 
 | From | Condition | To | OCI link evidence | Test |

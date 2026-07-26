@@ -1,0 +1,69 @@
+{
+  "outputs": [
+    {
+      "bytes": 72,
+      "delimiter": "~|",
+      "encoding": "ISO-8859-1",
+      "newline": "LF",
+      "path": "CONFIGURACION_EQUIPO_MESA.csv",
+      "rows": 1,
+      "sha256": "d80e83854edce101e0e5e674cea407920362d2eff01b9f73e7f5e1771efc01cf"
+    },
+    {
+      "bytes": 125,
+      "delimiter": "~|",
+      "encoding": "ISO-8859-1",
+      "newline": "LF",
+      "path": "CONFIGURACION_EQUIPO_USUARIO.csv",
+      "rows": 1,
+      "sha256": "f70b44b63552145c61e0809b6359139513498661565efb043458316bd335ecce"
+    },
+    {
+      "bytes": 53,
+      "delimiter": "~|",
+      "encoding": "ISO-8859-1",
+      "newline": "LF",
+      "path": "OPC_OPCION.csv",
+      "rows": 1,
+      "sha256": "6417adc3d4e1bb5b206975cf50059f776904e5a2e92ff1a255dfcf34de0eadc6"
+    },
+    {
+      "bytes": 37,
+      "delimiter": "~|",
+      "encoding": "ISO-8859-1",
+      "newline": "LF",
+      "path": "SEC_SECCION.csv",
+      "rows": 1,
+      "sha256": "20087a2e85313de78a94a9d3aaa9a1158d23faaa81bdd5dbfd4fa34dcb77803e"
+    },
+    {
+      "bytes": 20,
+      "delimiter": "~|",
+      "encoding": "ISO-8859-1",
+      "newline": "LF",
+      "path": "SUB_SUBSECCION.csv",
+      "rows": 1,
+      "sha256": "e3f644a36825d25199879efdab15699cc01b2d5da1788cb06f607d0cdbbaa96c"
+    },
+    {
+      "bytes": 133,
+      "delimiter": "~|",
+      "encoding": "ISO-8859-1",
+      "newline": "LF",
+      "path": "TB_LOG_SISTEMA.csv",
+      "rows": 1,
+      "sha256": "b45bba2123e53b47acc93deb4d7d999535c8db19c135f6b905b330de0e49fad9"
+    },
+    {
+      "bytes": 63,
+      "delimiter": "~|",
+      "encoding": "ISO-8859-1",
+      "newline": "LF",
+      "path": "TB_SUB_SISTEMA_SERVICIO.csv",
+      "rows": 1,
+      "sha256": "964a1aeb621f3a35d26819aad956179efd27f989b7bc2522ec68034014d3db75"
+    }
+  ],
+  "runDate": "2026-07-25"
+}
+

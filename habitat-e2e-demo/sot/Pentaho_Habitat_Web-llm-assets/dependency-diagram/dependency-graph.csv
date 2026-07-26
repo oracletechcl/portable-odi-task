@@ -1,0 +1,19 @@
+NodeID,Label,Group,NodeType,Segment,Wave,Criticality,RefCount,Shape,Size,EvidenceConfidence
+web,Web,Application,Application,Business Process Management,Wave 1,CRITICAL,17,box,60,CONFIRMED
+database_database_connections_agilebi,Database connections: AgileBI,Resource,Database,,,RESOURCE,1,ellipse,19,CONFIRMED
+fileexchange_file_exchange_output,File Exchange Output,Resource,FileExchange,,,RESOURCE,1,ellipse,19,INFERRED
+other_bonobo_cntower,"Bonobo, cnTower",Resource,Other,,,RESOURCE,1,ellipse,19,CONFIRMED
+other_embedded_analyzers_plsql,Embedded analyzers: plsql.,Resource,Other,,,RESOURCE,1,ellipse,19,CONFIRMED
+other_excelinput,ExcelInput,Resource,Other,,,RESOURCE,1,ellipse,19,INFERRED
+other_fuga,FUGA,Resource,Other,,,RESOURCE,1,ellipse,19,CONFIRMED
+other_kettle,Kettle,Resource,Other,,,RESOURCE,1,ellipse,19,CONFIRMED
+other_mssqlserver_jndi_totalpack_datawarehouse,MsSQLServer_JNDI@TotalPack(Datawarehouse),Resource,Other,,,RESOURCE,1,ellipse,19,CONFIRMED
+other_mysql5,MySQL5,Resource,Other,,,RESOURCE,1,ellipse,19,CONFIRMED
+other_mysql_jndi_sgc_datawarehouse,MySQL_JNDI@SGC(Datawarehouse),Resource,Other,,,RESOURCE,1,ellipse,19,CONFIRMED
+other_nested_workflows_not_evidenced,Nested workflows: Not evidenced.,Resource,Other,,,RESOURCE,1,ellipse,19,CONFIRMED
+other_oracle_jdbc_desa_rtp_datawarehouse,Oracle_JDBC@DESA_RTP(Datawarehouse),Resource,Other,,,RESOURCE,1,ellipse,19,CONFIRMED
+other_oracle_jdbc_desa_rtp_ipinchei,Oracle_JDBC@DESA_RTP(IPINCHEI),Resource,Other,,,RESOURCE,1,ellipse,19,CONFIRMED
+other_oracle_jndi_desa_rtp_ipinchei,Oracle_JNDI@DESA_RTP(IPINCHEI),Resource,Other,,,RESOURCE,1,ellipse,19,CONFIRMED
+other_oracle_jndi_docuware_datawarehouse,Oracle_JNDI@DOCUWARE(Datawarehouse).,Resource,Other,,,RESOURCE,1,ellipse,19,CONFIRMED
+other_textfileoutput,TextFileOutput,Resource,Other,,,RESOURCE,1,ellipse,19,CONFIRMED
+other_transf_configuracion_equipo_mesa_tds_ktr,transf_CONFIGURACION_EQUIPO_MESA_TDS.ktr,Resource,Other,,,RESOURCE,1,ellipse,19,INFERRED

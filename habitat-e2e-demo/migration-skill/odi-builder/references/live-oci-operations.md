@@ -68,5 +68,6 @@ successful integration run.
 - Reuse an application only by exact identifier.
 - Refresh object versions before updates.
 - Generate a unique patch identifier per publish attempt.
-- Emit `READY` only after mock health, import, materialization, application state,
-  patch success, and published task verification all pass.
+- Emit `READY` after import, materialization, application state, patch success,
+  and published-task verification. Add mock health only for a migration-managed
+  mock; never make an external-reuse mock probe a deployment gate.
